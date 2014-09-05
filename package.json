@@ -1,0 +1,17 @@
+{
+  "name": "forkability",
+  "version": "0.0.1",
+  "description": "A JS module for determining the forkability of an open-source GitHub repository.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha spec/**/*.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^0.6.2",
+    "github": "^0.2.2",
+    "request": "^2.42.0",
+    "request-promise": "^0.1.2"
+  }
+}
