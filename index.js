@@ -16,11 +16,17 @@ if (!program.args[0] || !repoRegex.test(program.args[0])) {
 
 repoInfo = program.args[0].match(repoRegex);
 
-forkability(repoInfo[1], repoInfo[2], function(present, missing) {
+forkability(repoInfo[1], repoInfo[2], function(present, missing, warnings) {
 	present.forEach(function(thing) {
 		console.log('✓'.green, thing);
 	});
 	missing.forEach(function(thing) {
 		console.log('✘'.red, thing);
+	});
+	warnings.forEach(function (w) {
+		console.log('!'.grey, w.message);
+		if (w.details && w.details.url) {
+			console.log('└──'.grey, w.details.title ? (w.details.title + ':') : '', w.details.url);
+		}
 	});
 });
