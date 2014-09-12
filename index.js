@@ -1,33 +1,26 @@
-var request = require('request');
+#! /usr/bin/env node
+
+var program = require('commander');
+var forkability = require('./lib/app');
+var packageInfo = require('./package.json');
 var colors = require('colors');
+var repoRegex = /([^\/]*)\/([^\/]*)/;
+var repoInfo;
+program
+	.version(packageInfo.version)
+	.parse(process.argv);
 
-var points = {
-	'Contributing document':/contributing.(txt|md)/i,
-	'Readme document':/readme.(txt|md)/i,
-};
+if (!program.args[0] || !repoRegex.test(program.args[0])) {
+	throw new Error('You need to specify a repo in the format username/repository');
+}
 
-request.get({ url:'https://api.github.com/repos/basicallydan/interfake/commits', headers: {'User-Agent':'Forkability'}, json: true}, function (err, response, data) {
-	var sha = data[0].sha;
-	var url = 'https://api.github.com/repos/basicallydan/interfake/git/trees/' + sha;
-	console.log(url);
-	request.get({ url:url, headers: {'User-Agent':'Forkability'}, json: true}, function (err, response, data) {
-		// console.log(data);
-		var pointKeys = Object.keys(points);
-		pointKeys.forEach(function (p) {
-			var found = false;
-			var i;
-			for (i = data.tree.length - 1; i >= 0; i--) {
-				// console.log(data.tree[i])
-				if (points[p].test(data.tree[i].path)) {
-					found = true;
-					break;
-				}
-			}
-			if (found) {
-				console.log('✓'.green, p);
-			} else {
-				console.log('✘'.red, p);
-			}
-		});
+repoInfo = program.args[0].match(repoRegex);
+
+forkability(repoInfo[1], repoInfo[2], function(present, missing) {
+	present.forEach(function(thing) {
+		console.log('✓'.green, thing);
+	});
+	missing.forEach(function(thing) {
+		console.log('✘'.red, thing);
 	});
 });
