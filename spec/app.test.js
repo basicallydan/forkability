@@ -39,12 +39,12 @@ describe('forkability', function() {
 			.get('/repos/thatoneguy/thatonerepo/issues?state=open')
 			.reply(200, []);
 
-		forkability('thatoneguy', 'thatonerepo', function (present, missing) {
-			present.should.containEql('Contributing document');
-			present.should.containEql('Readme document');
-			present.should.containEql('Licence document');
-			present.should.have.a.lengthOf(3);
-			missing.should.be.empty;
+		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+			report.files.present.should.containEql('Contributing document');
+			report.files.present.should.containEql('Readme document');
+			report.files.present.should.containEql('Licence document');
+			report.files.present.should.have.a.lengthOf(3);
+			report.files.missing.should.be.empty;
 			done();
 		});
 	});
@@ -68,11 +68,11 @@ describe('forkability', function() {
 			.get('/repos/thatoneguy/thatonerepo/issues?state=open')
 			.reply(200, []);
 
-		forkability('thatoneguy', 'thatonerepo', function (present, missing) {
-			present.should.containEql('Contributing document').and.lengthOf(1);
-			missing.should.containEql('Readme document');
-			missing.should.containEql('Licence document');
-			missing.should.have.a.lengthOf(2);
+		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
+			report.files.missing.should.containEql('Readme document');
+			report.files.missing.should.containEql('Licence document');
+			report.files.missing.should.have.a.lengthOf(2);
 			done();
 		});
 	});
@@ -96,11 +96,11 @@ describe('forkability', function() {
 			.get('/repos/thatoneguy/thatonerepo/issues?state=open')
 			.reply(200, []);
 
-		forkability('thatoneguy', 'thatonerepo', function (present, missing) {
-			present.should.containEql('Contributing document').and.lengthOf(1);
-			missing.should.containEql('Readme document');
-			missing.should.containEql('Licence document');
-			missing.should.have.a.lengthOf(2);
+		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
+			report.files.missing.should.containEql('Readme document');
+			report.files.missing.should.containEql('Licence document');
+			report.files.missing.should.have.a.lengthOf(2);
 			done();
 		});
 	});
@@ -154,13 +154,13 @@ describe('forkability', function() {
 				}
 			]);
 
-		forkability('thatoneguy', 'thatonerepo', function (present, missing, warnings) {
-			present.should.containEql('Contributing document').and.lengthOf(1);
-			missing.should.containEql('Readme document');
-			missing.should.containEql('Licence document');
-			missing.should.have.a.lengthOf(2);
+		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
+			report.files.missing.should.containEql('Readme document');
+			report.files.missing.should.containEql('Licence document');
+			report.files.missing.should.have.a.lengthOf(2);
 
-			warnings.should.containEql({
+			report.warnings.should.containEql({
 				message: 'Uncommented issue',
 				details: {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
@@ -168,7 +168,7 @@ describe('forkability', function() {
 				}
 			});
 
-			warnings.should.containEql({
+			report.warnings.should.containEql({
 				message: 'Uncommented issue',
 				details: {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/2345',
