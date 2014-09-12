@@ -3,6 +3,10 @@ forkability
 
 A JS module for determining the forkability of an open-source GitHub repository.
 
+## Warning
+
+This project is a work in progress :)
+
 ### Long-term goals:
 
 * Give people a recognisable score for the open-source-friendliness ("forkability") of their project
