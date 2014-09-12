@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "browser-request": "^0.3.2",
     "colors": "^0.6.2",
     "commander": "^2.3.0",
     "github": "^0.2.2",

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forkability</title>
+</head>
+<body>
+	<h2>Present Files</h2>
+	<h2>Missing Files</h2>
+	<h2>Warnings</h2>
+	<script type="text/javascript" src="dist/forkability.edge.js"></script>
+	<script type="text/javascript">
+		forkability('basicallydan', 'interfake', function (present, missing, warnings) {
+			present.forEach(function(thing) {
+				console.log('✓'.green, thing);
+			});
+			missing.forEach(function(thing) {
+				console.log('✘'.red, thing);
+			});
+			warnings.forEach(function (w) {
+				console.log('!'.grey, w.message);
+				if (w.details && w.details.url) {
+					console.log('└──'.grey, w.details.title ? (w.details.title + ':') : '', w.details.url);
+				}
+			});
+		});
+	</script>
+</body>
+</html>
