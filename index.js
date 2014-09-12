@@ -17,16 +17,19 @@ if (!program.args[0] || !repoRegex.test(program.args[0])) {
 repoInfo = program.args[0].match(repoRegex);
 
 forkability(repoInfo[1], repoInfo[2], function(err, report) {
+	console.log('# Recommended files'.magenta);
 	report.files.present.forEach(function(thing) {
 		console.log('✓'.green, thing);
 	});
 	report.files.missing.forEach(function(thing) {
 		console.log('✘'.red, thing);
 	});
-	report.warnings.forEach(function (w) {
-		console.log('!'.grey, w.message);
+	console.log('');
+	console.log(('# ' + report.warnings.length + (' Warning' + (report.warnings.length === 1 ? '' : 's')))[report.warnings.length ? 'magenta' : 'green']);
+	report.warnings.forEach(function (w, i) {
+		console.log('|'.cyan, w.message);
 		if (w.details && w.details.url) {
-			console.log('└──'.grey, w.details.title ? (w.details.title + ':') : '', w.details.url);
+			console.log(((i === report.warnings.length - 1 ? '└' : '├') + '──').cyan, w.details.title ? (w.details.title + ':') : '', w.details.url);
 		}
 	});
 });
