@@ -10,9 +10,21 @@
 			padding: 0;
 		}
 	</style>
+	<script type="text/javascript">
+	function generateUUID() {
+	    var d = new Date().getTime();
+	    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+	        var r = (d + Math.random()*16)%16 | 0;
+	        d = Math.floor(d/16);
+	        return (c=='x' ? r : (r&0x7|0x8)).toString(16);
+	    });
+	    return uuid;
+	}
+	</script>
 </head>
 <body>
 	<div class="container">
+		<p><a class="sign-in" href="https://github.com/login/oauth/authorize?client_id=9dddfb154feb2d02d35c&amp;state=">Sign in with GitHub</a></p>
 		<h2>Recommended Files</h2>
 		<ul class="present-files">
 		</ul>
@@ -25,21 +37,24 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="dist/forkability.edge.js"></script>
 	<script type="text/javascript">
-		forkability('basicallydan', 'interfake', function (err, report) {
-			report.files.present.forEach(function(thing) {
-				$('<li><span class="green">✓</span>' + thing + '</li>').appendTo('.present-files');
-			});
-			report.files.missing.forEach(function(thing) {
-				$('<li><span class="red">✘</span>' + thing + '</li>').appendTo('.missing-files');
-			});
-			report.warnings.forEach(function (w, i) {
-				var warning = $('<li class="warning"><span class="cyan">|</span>' + w.message + '</li>').appendTo('.warnings');
-				if (w.details && w.details.url) {
-					$('<span class="warning-detail"></span>').appendTo(warning).html('Hello');
-					// $('<span class="warning-detail">' +
-					// 	'<span class="cyan">' + ((i === report.warnings.length - 1 ? '└' : '├') + '──') + '</span>' +
-					// 	w.details.title ? (w.details.title + ':') : '' + ' ' + w.details.url + '</span>').appendTo(warning);
-				}
+		$(document).ready(function () {
+			$('.sign-in').attr('href', $('.sign-in').attr('href') + generateUUID());
+			forkability('basicallydan', 'interfake', function (err, report) {
+				report.files.present.forEach(function(thing) {
+					$('<li><span class="green">✓</span>' + thing + '</li>').appendTo('.present-files');
+				});
+				report.files.missing.forEach(function(thing) {
+					$('<li><span class="red">✘</span>' + thing + '</li>').appendTo('.missing-files');
+				});
+				report.warnings.forEach(function (w, i) {
+					var warning = $('<li class="warning"><span class="cyan">|</span>' + w.message + '</li>').appendTo('.warnings');
+					if (w.details && w.details.url) {
+						$('<span class="warning-detail"></span>').appendTo(warning).html('Hello');
+						// $('<span class="warning-detail">' +
+						// 	'<span class="cyan">' + ((i === report.warnings.length - 1 ? '└' : '├') + '──') + '</span>' +
+						// 	w.details.title ? (w.details.title + ':') : '' + ' ' + w.details.url + '</span>').appendTo(warning);
+					}
+				});
 			});
 		});
 	</script>
