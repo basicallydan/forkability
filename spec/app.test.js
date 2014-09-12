@@ -2,42 +2,39 @@ var nock = require('nock');
 var forkability = require('..');
 require('should');
 
+function mockResponses(responses) {
+	responses = responses || {};
+
+	nock('https://api.github.com')
+		.get('/repos/thatoneguy/thatonerepo/commits')
+		.reply(responses.commitsStatus || 200, responses.commitsBody || [{
+			sha: 'fakeshalol'
+		}]);
+
+	nock('https://api.github.com')
+		.get('/repos/thatoneguy/thatonerepo/git/trees/fakeshalol')
+		.reply(responses.firstCommitTreeStatus || 200, responses.firstCommitTreeBody || {
+			tree: [{
+				path: 'contributing.md'
+			}, {
+				path: 'readme.md'
+			}, {
+				path: 'licence.md'
+			}]
+		});
+
+	nock('https://api.github.com')
+		.get('/repos/thatoneguy/thatonerepo/issues?state=open')
+		.reply(responses.openIssuesStatus || 200, responses.openIssuesBody || []);
+}
+
 describe('forkability', function() {
 	beforeEach(function () {
 		nock.cleanAll();
-		// nock('https://api.github.com')
-		// 	.get('/repos/thatoneguy/thatonerepo/commits')
-		// 	.reply(200, []);
-		// nock('https://api.github.com')
-		// 	.get('/repos/thatoneguy/thatonerepo/git/trees/fakeshalol')
-		// 	.reply(200, { tree : [] });
-		// nock('https://api.github.com')
-		// 	.get('/repos/thatoneguy/thatonerepo/issues?state=open')
-		// 	.reply(200, []);
 	});
 
 	it('should identify that the repo has both contributing and readme docs', function(done) {
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/commits')
-			.reply(200, [{
-				sha: 'fakeshalol'
-			}]);
-
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/git/trees/fakeshalol')
-			.reply(200, {
-				tree: [{
-					path: 'contributing.md'
-				}, {
-					path: 'readme.md'
-				}, {
-					path: 'licence.md'
-				}]
-			});
-
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/issues?state=open')
-			.reply(200, []);
+		mockResponses();
 
 		forkability('thatoneguy', 'thatonerepo', function (err, report) {
 			report.files.present.should.containEql('Contributing document');
@@ -50,23 +47,13 @@ describe('forkability', function() {
 	});
 
 	it('should identify that the repo has just a contributing doc, but nothing else', function(done) {
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/commits')
-			.reply(200, [{
-				sha: 'fakeshalol'
-			}]);
-
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/git/trees/fakeshalol')
-			.reply(200, {
+		mockResponses({
+			firstCommitTreeBody: {
 				tree: [{
 					path: 'contributing.md'
 				}]
-			});
-
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/issues?state=open')
-			.reply(200, []);
+			}
+		});
 
 		forkability('thatoneguy', 'thatonerepo', function (err, report) {
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
@@ -78,23 +65,13 @@ describe('forkability', function() {
 	});
 
 	it('should be case insensitive about the presence of files', function(done) {
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/commits')
-			.reply(200, [{
-				sha: 'fakeshalol'
-			}]);
-
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/git/trees/fakeshalol')
-			.reply(200, {
+		mockResponses({
+			firstCommitTreeBody: {
 				tree: [{
 					path: 'CONTRIBUTing.md'
 				}]
-			});
-
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/issues?state=open')
-			.reply(200, []);
+			}
+		});
 
 		forkability('thatoneguy', 'thatonerepo', function (err, report) {
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
@@ -106,23 +83,13 @@ describe('forkability', function() {
 	});
 
 	it('should warn about un-replied-to repositories', function(done) {
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/commits')
-			.reply(200, [{
-				sha: 'fakeshalol'
-			}]);
-
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/git/trees/fakeshalol')
-			.reply(200, {
+		mockResponses({
+			firstCommitTreeBody: {
 				tree: [{
 					path: 'CONTRIBUTing.md'
 				}]
-			});
-
-		nock('https://api.github.com')
-			.get('/repos/thatoneguy/thatonerepo/issues?state=open')
-			.reply(200, [
+			},
+			openIssuesBody: [
 				{
 					number: 1234,
 					title: 'Your repo sucks',
@@ -152,7 +119,8 @@ describe('forkability', function() {
 					},
 					comments: 0
 				}
-			]);
+			]
+		});
 
 		forkability('thatoneguy', 'thatonerepo', function (err, report) {
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
