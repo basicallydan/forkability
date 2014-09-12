@@ -1,6 +1,6 @@
 var nock = require('nock');
 var forkability = require('..');
-require('should');
+var should = require('should');
 
 function mockResponses(responses) {
 	responses = responses || {};
@@ -37,6 +37,7 @@ describe('forkability', function() {
 		mockResponses();
 
 		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+			should(err).eql(null);
 			report.files.present.should.containEql('Contributing document');
 			report.files.present.should.containEql('Readme document');
 			report.files.present.should.containEql('Licence document');
@@ -56,6 +57,7 @@ describe('forkability', function() {
 		});
 
 		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+			should(err).not.be.ok;
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
 			report.files.missing.should.containEql('Readme document');
 			report.files.missing.should.containEql('Licence document');
@@ -74,6 +76,7 @@ describe('forkability', function() {
 		});
 
 		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+			should(err).eql(null);
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
 			report.files.missing.should.containEql('Readme document');
 			report.files.missing.should.containEql('Licence document');
@@ -82,7 +85,7 @@ describe('forkability', function() {
 		});
 	});
 
-	it('should warn about un-replied-to repositories', function(done) {
+	it('should warn about uncommented issues', function(done) {
 		mockResponses({
 			firstCommitTreeBody: {
 				tree: [{
@@ -98,13 +101,15 @@ describe('forkability', function() {
 					user: {
 						login: 'notthatoneguy'
 					},
-					comments: 0
+					comments: 0,
+					labels: [{}]
 				},
 				{
 					number: 2345,
 					title: 'This is the worst open source project ever',
 					html_url: 'https://github.com/thatoneguy/thatonerepo/issues/2345',
 					state: 'open',
+					labels: [{}],
 					user: {
 						login: 'someoneelse'
 					},
@@ -114,6 +119,7 @@ describe('forkability', function() {
 					number: 3456,
 					html_url: 'https://github.com/thatoneguy/thatonerepo/issues/3456',
 					state: 'open',
+					labels: [{}],
 					user: {
 						login: 'thatoneguy'
 					},
@@ -123,6 +129,8 @@ describe('forkability', function() {
 		});
 
 		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+			should(err).eql(null);
+
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
 			report.files.missing.should.containEql('Readme document');
 			report.files.missing.should.containEql('Licence document');
@@ -144,6 +152,46 @@ describe('forkability', function() {
 				}
 			});
 
+			done();
+		});
+	});
+	
+	it('should warn about issues with no comments and no tags', function (done) {
+		mockResponses({
+			openIssuesBody: [
+				{
+					number: 1234,
+					title: 'This issue has no comments and no labels',
+					state: 'open',
+					html_url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
+					user: {
+						login: 'notthatoneguy'
+					},
+					labels: [],
+					comments: 0
+				},
+				{
+					number: 3456,
+					html_url: 'https://github.com/thatoneguy/thatonerepo/issues/3456',
+					state: 'open',
+					user: {
+						login: 'thatoneguy'
+					},
+					labels: [],
+					comments: 0
+				}
+			]
+		});
+
+		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+			should(err).eql(null);
+			report.warnings.should.containEql({
+				message: 'Untouched issue',
+				details: {
+					title: 'This issue has no comments and no labels',
+					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234'
+				}
+			});
 			done();
 		});
 	});
