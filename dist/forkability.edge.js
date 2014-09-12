@@ -26,7 +26,13 @@
 		var congrats = [];
 
 		get('https://api.github.com/repos/' + username + '/' + repo + '/commits')
-			.then(function (response) {
+			.then(function (response, reject) {
+				if (response[0] && response[0].statusCode == 403) {
+					throw new Error({
+						message: 'The GitHub API is refusing requests',
+						innerError: response[1]
+					});
+				}
 				var data = response[1];
 				var sha = data[0].sha;
 				var url = 'https://api.github.com/repos/' + username + '/' + repo + '/git/trees/' + sha;
