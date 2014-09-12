@@ -2,24 +2,43 @@
 <html>
 <head>
 	<title>Forkability</title>
+	<style type="text/css">
+		li {
+			list-style: none;
+			text-indent: 0;
+			margin-left:0;
+			padding: 0;
+		}
+	</style>
 </head>
 <body>
-	<h2>Present Files</h2>
-	<h2>Missing Files</h2>
-	<h2>Warnings</h2>
+	<div class="container">
+		<h2>Recommended Files</h2>
+		<ul class="present-files">
+		</ul>
+		<ul class="missing-files">
+		</ul>
+		<h2>Warnings</h2>
+		<ul class="warnings">
+		</ul>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="dist/forkability.edge.js"></script>
 	<script type="text/javascript">
 		forkability('basicallydan', 'interfake', function (err, report) {
 			report.files.present.forEach(function(thing) {
-				console.log('✓', thing);
+				$('<li><span class="green">✓</span>' + thing + '</li>').appendTo('.present-files');
 			});
 			report.files.missing.forEach(function(thing) {
-				console.log('✘', thing);
+				$('<li><span class="red">✘</span>' + thing + '</li>').appendTo('.missing-files');
 			});
-			report.warnings.forEach(function (w) {
-				console.log('!', w.message);
+			report.warnings.forEach(function (w, i) {
+				var warning = $('<li class="warning"><span class="cyan">|</span>' + w.message + '</li>').appendTo('.warnings');
 				if (w.details && w.details.url) {
-					console.log('└──', w.details.title ? (w.details.title + ':') : '', w.details.url);
+					$('<span class="warning-detail"></span>').appendTo(warning).html('Hello');
+					// $('<span class="warning-detail">' +
+					// 	'<span class="cyan">' + ((i === report.warnings.length - 1 ? '└' : '├') + '──') + '</span>' +
+					// 	w.details.title ? (w.details.title + ':') : '' + ' ' + w.details.url + '</span>').appendTo(warning);
 				}
 			});
 		});
