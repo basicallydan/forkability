@@ -8,6 +8,8 @@ var repoRegex = /([^\/]*)\/([^\/]*)/;
 var repoInfo;
 program
 	.version(packageInfo.version)
+	.option('-u, --username [user]', 'Username to use for auth')
+	.option('-p, --password [pass]', 'Password to use for auth')
 	.parse(process.argv);
 
 if (!program.args[0] || !repoRegex.test(program.args[0])) {
@@ -16,7 +18,19 @@ if (!program.args[0] || !repoRegex.test(program.args[0])) {
 
 repoInfo = program.args[0].match(repoRegex);
 
-forkability(repoInfo[1], repoInfo[2], function(err, report) {
+var options = {
+	user: repoInfo[1],
+	repository: repoInfo[2]
+};
+
+if (program.username && program.password) {
+	options.auth = {
+		username: program.username,
+		password: program.password
+	};
+}
+
+forkability(options, function(err, report) {
 	console.log('# Recommended files'.magenta);
 	report.files.present.forEach(function(thing) {
 		console.log('✓'.green, thing);

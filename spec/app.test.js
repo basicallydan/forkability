@@ -5,7 +5,11 @@ var should = require('should');
 function mockResponses(responses) {
 	responses = responses || {};
 
-	nock('https://api.github.com')
+	nock('https://api.github.com', {
+		reqHeaders: responses.firstCommitTreeRequestHeaders || {
+			'User-Agent': 'Forkability (http://github.com/basicallydan/forkability) (Daniel Hough <daniel.hough@gmail.com>)'
+		}
+	})
 		.get('/repos/thatoneguy/thatonerepo/commits')
 		.reply(responses.commitsStatus || 200, responses.commitsBody || [{
 			sha: 'fakeshalol'
@@ -33,7 +37,7 @@ describe('forkability', function() {
 		nock.cleanAll();
 	});
 
-	it('should identify that the repo has both contributing and readme docs', function(done) {
+	it('should identify that the repo has all recommended files', function(done) {
 		mockResponses();
 
 		forkability({
@@ -212,6 +216,36 @@ describe('forkability', function() {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234'
 				}
 			});
+			done();
+		});
+	});
+
+	it('should identify that the repo has all recommended files when basic auth specified', function(done) {
+		mockResponses({
+			firstCommitTreeRequestHeaders: {
+				auth: {
+					username: 'thatoneguy',
+					password: 'password'
+				},
+				'User-Agent': 'Forkability (http://github.com/basicallydan/forkability) (Daniel Hough <daniel.hough@gmail.com>)'
+			}
+		});
+
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo',
+			auth: {
+				username: 'thatoneguy',
+				password: 'password'
+			}
+		},
+		function (err, report) {
+			should(err).eql(null);
+			report.files.present.should.containEql('Contributing document');
+			report.files.present.should.containEql('Readme document');
+			report.files.present.should.containEql('Licence document');
+			report.files.present.should.have.a.lengthOf(3);
+			report.files.missing.should.be.empty;
 			done();
 		});
 	});
