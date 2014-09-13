@@ -36,7 +36,11 @@ describe('forkability', function() {
 	it('should identify that the repo has both contributing and readme docs', function(done) {
 		mockResponses();
 
-		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo'
+		},
+		function (err, report) {
 			should(err).eql(null);
 			report.files.present.should.containEql('Contributing document');
 			report.files.present.should.containEql('Readme document');
@@ -56,7 +60,11 @@ describe('forkability', function() {
 			}
 		});
 
-		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo'
+		},
+		function (err, report) {
 			should(err).not.be.ok;
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
 			report.files.missing.should.containEql('Readme document');
@@ -75,7 +83,11 @@ describe('forkability', function() {
 			}
 		});
 
-		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo'
+		},
+		function (err, report) {
 			should(err).eql(null);
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
 			report.files.missing.should.containEql('Readme document');
@@ -128,7 +140,11 @@ describe('forkability', function() {
 			]
 		});
 
-		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo'
+		},
+		function (err, report) {
 			should(err).eql(null);
 
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
@@ -183,7 +199,11 @@ describe('forkability', function() {
 			]
 		});
 
-		forkability('thatoneguy', 'thatonerepo', function (err, report) {
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo'
+		},
+		function (err, report) {
 			should(err).eql(null);
 			report.warnings.should.containEql({
 				message: 'Untouched issue',
