@@ -19,6 +19,7 @@
     "request-promise": "^0.1.2"
   },
   "devDependencies": {
+    "interfake": "^1.9.2",
     "nock": "^0.47.0",
     "should": "^4.0.4"
   }
