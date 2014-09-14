@@ -2,6 +2,11 @@
 <html>
 <head>
 	<title>Forkability</title>
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	<link rel="stylesheet" type="text/css" href="pages/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="pages/bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="pages/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="pages/bootstrap-social/bootstrap-social.css">
 	<style type="text/css">
 		li {
 			list-style: none;
@@ -9,48 +14,110 @@
 			margin-left:0;
 			padding: 0;
 		}
-	</style>
-	<script type="text/javascript">
-	function generateUUID() {
-		var d = new Date().getTime();
-		var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-			var r = (d + Math.random()*16)%16 | 0;
-			d = Math.floor(d/16);
-			return (c=='x' ? r : (r&0x7|0x8)).toString(16);
-		});
-		return uuid;
-	}
-	function getUrlVars()
-	{
-		var vars = [], hash;
-		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-		for(var i = 0; i < hashes.length; i++)
-		{
-			hash = hashes[i].split('=');
-			vars.push(hash[0]);
-			vars[hash[0]] = hash[1];
+
+		.handlebar-template {
+			display: none;
 		}
-		return vars;
-	}
-	</script>
+
+		.btn-github {
+			background-color:#444;
+			background-image:none;
+			color:white;
+			text-shadow:none;
+			line-height: 1.5em;
+			vertical-align: top;
+		}
+
+		.btn-github:hover {
+			background-color:#555;
+			background-image:none;
+			color:white;
+			text-shadow:none;
+			line-height: 1.5em;
+			vertical-align: top;
+		}
+
+		.hero {
+			text-align: center;
+		}
+
+		.repo-form {
+			width:;
+		}
+
+		.form-inline.form-control .left-of-slash, .form-inline.form-control .right-of-slash {
+			width:40%;
+		}
+
+		.slash {
+			display:inline-block;
+		}
+	</style>
+	<div class="handlebar-template" id="sign-in-template" type="text/x-handlebars-template">
+		<div class="row">
+			<div class="hero col-md-12">
+				<h2 class="summary">A linter for your repository.</h2>
+				<a class="btn btn-social btn-large btn-github sign-in"><i class="fa fa-github"></i> Sign in with GitHub</a>
+			</div>
+		</div>
+	</div>
+	<div class="handlebar-template" id="choose-repo-template" type="text/x-handlebars-template">
+		<div class="row">
+			<div class="hero col-md-12">
+				<h3>Enter the username of the repo owner and the repo to lint.</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<form class="repo-form">
+					<div class="form-group">
+						<label for="username">Repository owner</label>
+						<input type="text" id="username" placeholder="Default: {{username}}" class="username form-control left-of-slash">
+					</div>
+					<div class="form-group">
+						<label for="repository">Repository name</label>
+						<input type="text" id="repository" class="repository form-control right-of-slash">
+					</div>
+					<button class="btn btn-primary btn-block" id="check-forkability">Check Forkability</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="handlebar-template" id="repo-info-template" type="text/x-handlebars-template">
+		<div class="row">
+			<div class="col-md-4">
+				<h2>Congrats</h2>
+				<ul class="present-files">
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<h2>Missing files</h2>
+				<ul class="missing-files">
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<h2>Warnings</h2>
+				<ul class="warnings">
+				</ul>
+			</div>
+		</div>
+	</div>
 </head>
 <body>
 	<div class="container">
-		<p><a class="sign-in" href="#">Sign in with GitHub</a></p>
-		<h2>Recommended Files</h2>
-		<ul class="present-files">
-		</ul>
-		<ul class="missing-files">
-		</ul>
-		<h2>Warnings</h2>
-		<ul class="warnings">
-		</ul>
+		<div class="row header">
+			<div class="col-md-12">
+				<h1>Forkability</h1>
+			</div>
+		</div>
+		<div class="main-body">
+		</div>
 	</div>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdn.firebase.com/js/simple-login/1.6.3/firebase-simple-login.js"></script>
+	<script type="text/javascript" src="pages/handlebars-v2.0.0.js"></script>
 	<script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
-	<!-- <script type="text/javascript" src="firebase-simple-login.js"></script> -->
 	<script type="text/javascript" src="dist/forkability.edge.js"></script>
-	<script type="text/javascript" src="pages.js"></script>
+	<script type="text/javascript" src="pages/pages.js"></script>
 </body>
 </html>
