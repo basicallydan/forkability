@@ -12,13 +12,25 @@
 	</style>
 	<script type="text/javascript">
 	function generateUUID() {
-	    var d = new Date().getTime();
-	    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-	        var r = (d + Math.random()*16)%16 | 0;
-	        d = Math.floor(d/16);
-	        return (c=='x' ? r : (r&0x7|0x8)).toString(16);
-	    });
-	    return uuid;
+		var d = new Date().getTime();
+		var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+			var r = (d + Math.random()*16)%16 | 0;
+			d = Math.floor(d/16);
+			return (c=='x' ? r : (r&0x7|0x8)).toString(16);
+		});
+		return uuid;
+	}
+	function getUrlVars()
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars;
 	}
 	</script>
 </head>
@@ -38,8 +50,20 @@
 	<script type="text/javascript" src="dist/forkability.edge.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
+			var urlVars = getUrlVars();
+			var forkabilityOpts = {
+				user: 'basicallydan',
+				repository: 'interfake'
+			};
+
+			if (urlVars.access_token) {
+				forkabilityOpts.auth = {
+					token: urlVars.access_token
+				};
+			}
+			
 			$('.sign-in').attr('href', $('.sign-in').attr('href') + generateUUID());
-			forkability('basicallydan', 'interfake', function (err, report) {
+			forkability(forkabilityOpts, function (err, report) {
 				report.files.present.forEach(function(thing) {
 					$('<li><span class="green">✓</span>' + thing + '</li>').appendTo('.present-files');
 				});
