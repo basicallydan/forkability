@@ -36,7 +36,7 @@
 </head>
 <body>
 	<div class="container">
-		<p><a class="sign-in" href="https://github.com/login/oauth/authorize?client_id=9dddfb154feb2d02d35c&amp;state=">Sign in with GitHub</a></p>
+		<p><a class="sign-in" href="#">Sign in with GitHub</a></p>
 		<h2>Recommended Files</h2>
 		<ul class="present-files">
 		</ul>
@@ -47,40 +47,10 @@
 		</ul>
 	</div>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdn.firebase.com/js/simple-login/1.6.3/firebase-simple-login.js"></script>
+	<script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+	<!-- <script type="text/javascript" src="firebase-simple-login.js"></script> -->
 	<script type="text/javascript" src="dist/forkability.edge.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			var urlVars = getUrlVars();
-			var forkabilityOpts = {
-				user: 'basicallydan',
-				repository: 'interfake'
-			};
-
-			if (urlVars.access_token) {
-				forkabilityOpts.auth = {
-					token: urlVars.access_token
-				};
-			}
-			
-			$('.sign-in').attr('href', $('.sign-in').attr('href') + generateUUID());
-			forkability(forkabilityOpts, function (err, report) {
-				report.files.present.forEach(function(thing) {
-					$('<li><span class="green">✓</span>' + thing + '</li>').appendTo('.present-files');
-				});
-				report.files.missing.forEach(function(thing) {
-					$('<li><span class="red">✘</span>' + thing + '</li>').appendTo('.missing-files');
-				});
-				report.warnings.forEach(function (w, i) {
-					var warning = $('<li class="warning"><span class="cyan">|</span>' + w.message + '</li>').appendTo('.warnings');
-					if (w.details && w.details.url) {
-						$('<span class="warning-detail"></span>').appendTo(warning).html('Hello');
-						// $('<span class="warning-detail">' +
-						// 	'<span class="cyan">' + ((i === report.warnings.length - 1 ? '└' : '├') + '──') + '</span>' +
-						// 	w.details.title ? (w.details.title + ':') : '' + ' ' + w.details.url + '</span>').appendTo(warning);
-					}
-				});
-			});
-		});
-	</script>
+	<script type="text/javascript" src="pages.js"></script>
 </body>
 </html>
