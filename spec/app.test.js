@@ -24,12 +24,19 @@ function mockResponses(responses) {
 				path: 'readme.md'
 			}, {
 				path: 'licence.md'
+			}, {
+				path: 'spec',
+				type: 'tree'
 			}]
 		});
 
 	nock('https://api.github.com')
 		.get('/repos/thatoneguy/thatonerepo/issues?state=open')
 		.reply(responses.openIssuesStatus || 200, responses.openIssuesBody || []);
+
+	nock('https://api.github.com')
+		.get('/repos/thatoneguy/thatonerepo/languages')
+		.reply(responses.languagesStatus || 200, responses.languagesBody || { JavaScript : 1000 });
 }
 
 describe('forkability', function() {
@@ -49,7 +56,8 @@ describe('forkability', function() {
 			report.files.present.should.containEql('Contributing document');
 			report.files.present.should.containEql('Readme document');
 			report.files.present.should.containEql('Licence document');
-			report.files.present.should.have.a.lengthOf(3);
+			report.files.present.should.containEql('Test suite');
+			report.files.present.should.have.a.lengthOf(4);
 			report.files.missing.should.be.empty;
 			done();
 		});
@@ -73,7 +81,8 @@ describe('forkability', function() {
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
 			report.files.missing.should.containEql('Readme document');
 			report.files.missing.should.containEql('Licence document');
-			report.files.missing.should.have.a.lengthOf(2);
+			report.files.missing.should.containEql('Test suite');
+			report.files.missing.should.have.a.lengthOf(3);
 			done();
 		});
 	});
@@ -96,7 +105,8 @@ describe('forkability', function() {
 			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
 			report.files.missing.should.containEql('Readme document');
 			report.files.missing.should.containEql('Licence document');
-			report.files.missing.should.have.a.lengthOf(2);
+			report.files.missing.should.containEql('Test suite');
+			report.files.missing.should.have.a.lengthOf(3);
 			done();
 		});
 	});
@@ -150,11 +160,6 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-
-			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
-			report.files.missing.should.containEql('Readme document');
-			report.files.missing.should.containEql('Licence document');
-			report.files.missing.should.have.a.lengthOf(2);
 
 			report.warnings.should.containEql({
 				message: 'Uncommented issue',
@@ -245,7 +250,8 @@ describe('forkability', function() {
 			report.files.present.should.containEql('Contributing document');
 			report.files.present.should.containEql('Readme document');
 			report.files.present.should.containEql('Licence document');
-			report.files.present.should.have.a.lengthOf(3);
+			report.files.present.should.containEql('Test suite');
+			report.files.present.should.have.a.lengthOf(4);
 			report.files.missing.should.be.empty;
 			done();
 		});
@@ -274,7 +280,8 @@ describe('forkability', function() {
 			report.files.present.should.containEql('Contributing document');
 			report.files.present.should.containEql('Readme document');
 			report.files.present.should.containEql('Licence document');
-			report.files.present.should.have.a.lengthOf(3);
+			report.files.present.should.containEql('Test suite');
+			report.files.present.should.have.a.lengthOf(4);
 			report.files.missing.should.be.empty;
 			done();
 		});
