@@ -1,6 +1,18 @@
+function getParameterByName(name) {
+	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+	var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+	var results = regex.exec(location.search);
+	return results == null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
 $(document).ready(function() {
-	var myRef = new Firebase("https://blistering-inferno-9575.firebaseio.com");
+	var myRef = new Firebase('https://blistering-inferno-9575.firebaseio.com');
 	var currentUser;
+	var repoOptions = {};
+
+	repoOptions.username = getParameterByName('u');
+	repoOptions.repository = getParameterByName('r');
+
 	var authClient = new FirebaseSimpleLogin(myRef, function(error, user) {
 		if (error) {
 			// an error occurred while attempting login
@@ -8,9 +20,14 @@ $(document).ready(function() {
 		} else if (user) {
 			currentUser = user;
 			// user authenticated with Firebase
-			console.log("User ID: " + user.uid + ", Provider: " + user.provider);
-			// doRepos(user.accessToken);
-			showRepoPicker({ username : currentUser.username });
+			console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+			if (repoOptions.username && repoOptions.repository) {
+				checkRepo(repoOptions.username, repoOptions.repository, currentUser.accessToken);
+			} else {
+				showRepoPicker({
+					defaultUsername: currentUser.username
+				}, repoOptions);
+			}
 		} else {
 			showSignIn();
 		}
@@ -34,10 +51,10 @@ $(document).ready(function() {
 		});
 	}
 
-	function showRepoPicker(model) {
+	function showRepoPicker(model, o) {
 		var hero = renderByID('#choose-repo-template', model);
 
-		var submit = function (e) {
+		var submit = function(e) {
 			e.preventDefault();
 			var user = hero.find('#username').val() || currentUser.username;
 			var repo = hero.find('#repository').val();
@@ -47,11 +64,18 @@ $(document).ready(function() {
 			checkRepo(user, repo, currentUser.accessToken);
 		};
 
+		if (o) {
+			hero.find('#username').val(o.username);
+			hero.find('#repository').val(o.repository);
+		}
+
 		hero.find('.repo-form').submit(submit);
 		hero.find('#check-forkability').click(submit);
 	}
 
 	function checkRepo(user, repository, accessToken) {
+		repoOptions = {};
+
 		var forkabilityOpts = {
 			user: user,
 			repository: repository
@@ -61,7 +85,11 @@ $(document).ready(function() {
 			forkabilityOpts.auth = {
 				token: accessToken
 			};
+		} else {
+			return showSignIn();
 		}
+
+		history.pushState({}, 'Forkability of ' + user + '/' + repository, '?u=' + user + '&r=' + repository);
 
 		forkability(forkabilityOpts, function(err, report) {
 			var reportElement = renderByID('#repo-info-template');
