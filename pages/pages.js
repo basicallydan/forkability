@@ -94,18 +94,22 @@ $(document).ready(function() {
 		forkability(forkabilityOpts, function(err, report) {
 			var reportElement = renderByID('#repo-info-template');
 			report.files.present.forEach(function(thing) {
-				$('<li><i class="fa fa-check"></i> ' + thing + '</li>').appendTo(reportElement.find('.present-files'));
+				$('<li><i class="fa fa-check tick"></i> ' + thing + '</li>').appendTo(reportElement.find('.present-files'));
 			});
 			report.files.missing.forEach(function(thing) {
-				$('<li><i class="fa fa-times"></i> ' + thing + '</li>').appendTo(reportElement.find('.missing-files'));
+				$('<li><i class="fa fa-times cross"></i> ' + thing + '</li>').appendTo(reportElement.find('.missing-files'));
 			});
 			report.warnings.forEach(function(w, i) {
 				var warningMessage = w.message;
 				if (w.details && w.details.url && w.details.title) {
 					warningMessage += '<br><i class="fa fa-long-arrow-right"></i><a href="' + w.details.url + '" target="_blank">' + w.details.title + '</a>';
 				}
-				var warning = $('<li class="warning"><i class="fa fa-exclamation"></i> ' + warningMessage + '</li>').appendTo(reportElement.find('.warnings'));
+				var warning = $('<li class="warning"><i class="fa fa-exclamation exclaimation"></i> ' + warningMessage + '</li>').appendTo(reportElement.find('.warnings'));
 			});
+
+			// Now initialise all the pretty bootstrap stuff
+			// $('.explanation-link').popover();
+			// $('#warnings-modal').modal();
 		});
 	}
 });

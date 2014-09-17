@@ -1,123 +1,187 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Forkability</title>
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-	<link rel="stylesheet" type="text/css" href="pages/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="pages/bootstrap/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="pages/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="pages/bootstrap-social/bootstrap-social.css">
-	<style type="text/css">
-		ul,li {
-			list-style: none;
-			text-indent: 0;
-			margin-left:0;
-			padding: 0;
-		}
-
-		.handlebar-template {
-			display: none;
-		}
-
-		.btn-github {
-			background-color:#444;
-			background-image:none;
-			color:white;
-			text-shadow:none;
-			line-height: 1.5em;
-			vertical-align: top;
-		}
-
-		.btn-github:hover {
-			background-color:#555;
-			background-image:none;
-			color:white;
-			text-shadow:none;
-			line-height: 1.5em;
-			vertical-align: top;
-		}
-
-		.hero {
-			text-align: center;
-		}
-
-		.repo-form {
-			width:;
-		}
-
-		.form-inline.form-control .left-of-slash, .form-inline.form-control .right-of-slash {
-			width:40%;
-		}
-
-		.slash {
-			display:inline-block;
-		}
-	</style>
-	<div class="handlebar-template" id="sign-in-template" type="text/x-handlebars-template">
-		<div class="row">
-			<div class="hero col-md-12">
-				<h2 class="summary">A linter for your repository.</h2>
-				<a class="btn btn-social btn-large btn-github sign-in"><i class="fa fa-github"></i> Sign in with GitHub</a>
-			</div>
-		</div>
-	</div>
-	<div class="handlebar-template" id="choose-repo-template" type="text/x-handlebars-template">
-		<div class="row">
-			<div class="hero col-md-12">
-				<h3>Enter the username of the repo owner and the repo to lint.</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-offset-4 col-md-4">
-				<form class="repo-form">
-					<div class="form-group">
-						<label for="username">Repository owner</label>
-						<input type="text" id="username" placeholder="Default: {{defaultUsername}}" class="username form-control left-of-slash">
+	<head>
+		<title>Forkability</title>
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+		<link rel="stylesheet" type="text/css" href="pages/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="pages/bootstrap/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="pages/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="pages/bootstrap-social/bootstrap-social.css">
+		<style type="text/css">
+			.results-list, .results-list li {
+				list-style: none;
+				text-indent: 0;
+				margin-left:0;
+				padding: 0;
+			}
+			.handlebar-template {
+				display: none;
+			}
+			.btn-github {
+				background-color:#444;
+				background-image:none;
+				color:white;
+				text-shadow:none;
+				line-height: 1.5em;
+				vertical-align: top;
+			}
+			.btn-github:hover {
+				background-color:#555;
+				background-image:none;
+				color:white;
+				text-shadow:none;
+				line-height: 1.5em;
+				vertical-align: top;
+			}
+			.hero {
+				text-align: center;
+			}
+			.repo-form {
+				width:;
+			}
+			.form-inline.form-control .left-of-slash, .form-inline.form-control .right-of-slash {
+				width:40%;
+			}
+			.slash {
+				display:inline-block;
+			}
+			.login-explanation {
+				color:#555;
+				font-size:1.2rem;
+				margin-top:1rem;
+			}
+			.present-files .tick {
+				color:green;
+			}
+			.missing-files .cross {
+				color:red;
+			}
+			.warnings .exclaimation {
+				color:orange;
+			}
+			.explanation-link {
+				font-size:0.5em;
+			}
+			.explanation-link i {
+				margin-top:0.6em;
+			}
+		</style>
+		<div class="handlebar-template" id="sign-in-template" type="text/x-handlebars-template">
+			<div class="row">
+				<div class="hero col-md-12">
+					<h2 class="summary">A linter for your repository.</h2>
+					<div class="col-md-6 col-md-offset-3">
+						<a class="btn btn-social btn-large btn-github sign-in"><i class="fa fa-github"></i> Sign in with GitHub</a>
 					</div>
-					<div class="form-group">
-						<label for="repository">Repository name</label>
-						<input type="text" id="repository" class="repository form-control right-of-slash">
+					<p class="login-explanation col-md-6 col-md-offset-3">The prompt will ask you for write access to your GitHub User Profile. <strong>Don't worry, Forkability won't use it.</strong> You need to login just to prevent GitHub API request limits being hit.</p>
+				</div>
+			</div>
+		</div>
+		<div class="handlebar-template" id="choose-repo-template" type="text/x-handlebars-template">
+			<div class="row">
+				<div class="hero col-md-12">
+					<h3>Enter the username of the repo owner and the repo to lint.</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-4 col-md-4">
+					<form class="repo-form">
+						<div class="form-group">
+							<label for="username">Repository owner</label>
+							<input type="text" id="username" placeholder="Default: {{defaultUsername}}" class="username form-control left-of-slash">
+						</div>
+						<div class="form-group">
+							<label for="repository">Repository name</label>
+							<input type="text" id="repository" class="repository form-control right-of-slash">
+						</div>
+						<button class="btn btn-primary btn-block" id="check-forkability">Check Forkability</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="handlebar-template" id="repo-info-template" type="text/x-handlebars-template">
+			<div class="row">
+				<div class="col-md-4 found-list">
+					<h2>Found <a href="#" class="explanation-link found-explanation pull-right" data-toggle="modal" data-target="#features-modal"><i class="fa fa-question-circle"></i></a></h2>
+					<ul class="results-list present-files">
+					</ul>
+				</div>
+				<div class="col-md-4 missing-list">
+					<h2>Missing <a href="#" class="explanation-link found-explanation pull-right" data-toggle="modal" data-target="#features-modal"><i class="fa fa-question-circle"></i></a></h2>
+					<ul class="results-list  missing-files">
+					</ul>
+				</div>
+				<div class="col-md-4 warnings-list">
+					<h2>Warnings <a href="#" class="explanation-link found-explanation pull-right" data-toggle="modal" data-target="#warnings-modal"><i class="fa fa-question-circle"></i></a></h2>
+					<ul class="results-list warnings">
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="warnings-modal" tabindex="-1" role="dialog" aria-labelledby="warnings-modal-label" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">Warnings</h4>
 					</div>
-					<button class="btn btn-primary btn-block" id="check-forkability">Check Forkability</button>
-				</form>
+					<div class="modal-body">
+					<h5>Untouched &amp; Uncommented Issues</h5>
+					<p>GitHub's issue tracker is a feature commonly used both by users of open-source code and the code's owners or contributors for keeping track of bugs and new features.</p>
+					<p>Forkability looks for any <strong>open</strong> issues which weren't created by the repository owner which haven't been commented, and labels these as <strong>Uncommented Issues</strong>.</p>
+					<p><strong>Untouched Issues</strong> on the other hand are <strong>open</strong>, non-owner issues which haven't been commented on and haven't been labeled, suggesting that no contributor has even acknowledged the issue.</p>
+					<p>As an open-source project contributor, it's important to keep on top of issues by organising them, responding to the issue openers. If you do, you're less likely to have people opening up duplicate issues, and less likely to miss important, high-priority bugs or great new ideas.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="handlebar-template" id="repo-info-template" type="text/x-handlebars-template">
-		<div class="row">
-			<div class="col-md-4">
-				<h2>Congrats</h2>
-				<ul class="present-files">
-				</ul>
-			</div>
-			<div class="col-md-4">
-				<h2>Missing files</h2>
-				<ul class="missing-files">
-				</ul>
-			</div>
-			<div class="col-md-4">
-				<h2>Warnings</h2>
-				<ul class="warnings">
-				</ul>
-			</div>
-		</div>
-	</div>
-</head>
-<body>
-	<div class="container">
-		<div class="row header">
-			<div class="col-md-12">
-				<h1>Forkability</h1>
+
+		<div class="modal fade" id="features-modal" tabindex="-1" role="dialog" aria-labelledby="features-modal-label" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">Features Found or Missing</h4>
+					</div>
+					<div class="modal-body">
+					<p>Forkability recommends a few files, folders and features for open-source projects, and this project has the ones with ticks by them.</p>
+					<p>You can click on any of the found or missing features in the list to get an explanation of why it's recommended, or read below for each of them.</p>
+					<h5>Contributing Guide</h5>
+					<p>The contributing guide is a file which explains to any would-be contributors some important things they should know before they open an issue, fork the repo or create pull request. It is often simply called <code>CONTRIBUTING</code> without an extension, but some people prefer to use Markdown (<code>.md</code> or <code>.markdown</code>) or <code>.txt</code>.</p>
+					<p>Some of the things which should be included in your contributing guide are:</p>
+					<ul>
+						<li>The goal of the project. To make sure contributors don't open issues which are way outside of the scope of the project, any pre-determined limitations of the project should be outlined here by explaining what the project intends to achieve.</li>
+						<li>Coding style guidelines. E.g. variable naming conventions, architectural patterns used, indent characters used.</li>
+						<li>Test-writing guidelines. E.g. BDD-style, end-to-end, extent of coverage.</li>
+					</ul>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="main-body">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row header">
+				<div class="col-md-12">
+					<h1>Forkability</h1>
+				</div>
+			</div>
+			<div class="main-body">
+			</div>
 		</div>
-	</div>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="https://cdn.firebase.com/js/simple-login/1.6.3/firebase-simple-login.js"></script>
-	<script type="text/javascript" src="pages/handlebars-v2.0.0.js"></script>
-	<script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
-	<script type="text/javascript" src="dist/forkability.edge.js"></script>
-	<script type="text/javascript" src="pages/pages.js"></script>
-</body>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://cdn.firebase.com/js/simple-login/1.6.3/firebase-simple-login.js"></script>
+		<script type="text/javascript" src="pages/handlebars-v2.0.0.js"></script>
+		<script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+		<script src="pages/bootstrap/js/bootstrap.js"></script>
+		<script type="text/javascript" src="dist/forkability.edge.js"></script>
+		<script type="text/javascript" src="pages/pages.js"></script>
+	</body>
 </html>
