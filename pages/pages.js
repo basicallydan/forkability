@@ -93,6 +93,14 @@ $(document).ready(function() {
 
 		forkability(forkabilityOpts, function(err, report) {
 			var reportElement = renderByID('#repo-info-template');
+			if (!report.files.present.length) {
+				$('<li class="message"><strong>Oops!</strong> You don\'t have any of the recommended features for your open source project!</li>').appendTo('.missing-files');
+			}
+
+			if (!report.files.missing.length) {
+				$('<li class="message"><strong>Congrats!</strong> You have all the recommended features for your open source project!</li>').appendTo('.missing-files');
+			}
+			
 			report.files.present.forEach(function(thing) {
 				$('<li><i class="fa fa-check tick"></i> ' + thing + '</li>').appendTo(reportElement.find('.present-files'));
 			});

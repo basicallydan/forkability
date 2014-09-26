@@ -5,7 +5,7 @@
   "main": "./lib/app.js",
   "bin": "./index.js",
   "scripts": {
-   "test": "mocha spec/*.test.js --reporter spec"
+    "test": "mocha spec/*.test.js --reporter spec"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,8 @@
   "devDependencies": {
     "interfake": "^1.9.2",
     "nock": "^0.47.0",
-    "should": "^4.0.4"
+    "proxyquire": "^1.0.1",
+    "should": "^4.0.4",
+    "sinon": "^1.10.3"
   }
 }

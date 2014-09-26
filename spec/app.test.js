@@ -25,6 +25,8 @@ function mockResponses(responses) {
 			}, {
 				path: 'licence.md'
 			}, {
+				path: 'changelog.md'
+			}, {
 				path: 'spec',
 				type: 'tree'
 			}]
@@ -57,67 +59,79 @@ describe('forkability', function() {
 			report.files.present.should.containEql('Readme document');
 			report.files.present.should.containEql('Licence document');
 			report.files.present.should.containEql('Test suite');
-			report.files.present.should.have.a.lengthOf(4);
+			report.files.present.should.containEql('Changelog document');
+			report.files.present.should.have.a.lengthOf(5);
 			report.files.missing.should.be.empty;
 			done();
 		});
 	});
 
-	it('should identify that the repo has just a contributing doc, but nothing else', function(done) {
+	// Fairly sure this test is a false positive
+	it('should identify that the repo has all recommended files when basic auth specified', function(done) {
 		mockResponses({
-			firstCommitTreeBody: {
-				tree: [{
-					path: 'contributing.md'
-				}]
+			firstCommitTreeRequestHeaders: {
+				auth: {
+					username: 'thatoneguy',
+					password: 'password'
+				},
+				'User-Agent': 'Forkability (http://github.com/basicallydan/forkability) (Daniel Hough <daniel.hough@gmail.com>)'
 			}
 		});
 
 		forkability({
 			user: 'thatoneguy',
-			repository: 'thatonerepo'
+			repository: 'thatonerepo',
+			auth: {
+				username: 'thatoneguy',
+				password: 'password'
+			}
 		},
 		function (err, report) {
-			should(err).not.be.ok;
-			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
-			report.files.missing.should.containEql('Readme document');
-			report.files.missing.should.containEql('Licence document');
-			report.files.missing.should.containEql('Test suite');
-			report.files.missing.should.have.a.lengthOf(3);
+			should(err).eql(null);
+			report.files.present.should.containEql('Contributing document');
+			report.files.present.should.containEql('Readme document');
+			report.files.present.should.containEql('Licence document');
+			report.files.present.should.containEql('Test suite');
+			report.files.present.should.containEql('Changelog document');
+			report.files.present.should.have.a.lengthOf(5);
+			report.files.missing.should.be.empty;
 			done();
 		});
 	});
 
-	it('should be case insensitive about the presence of files', function(done) {
+	// Fairly sure this test is a false positive
+	it('should identify that the repo has all recommended files when an auth token is provided', function(done) {
 		mockResponses({
-			firstCommitTreeBody: {
-				tree: [{
-					path: 'CONTRIBUTing.md'
-				}]
+			firstCommitTreeRequestHeaders: {
+				auth: {
+					token: 'whatevs'
+				},
+				'User-Agent': 'Forkability (http://github.com/basicallydan/forkability) (Daniel Hough <daniel.hough@gmail.com>)'
 			}
 		});
 
 		forkability({
 			user: 'thatoneguy',
-			repository: 'thatonerepo'
+			repository: 'thatonerepo',
+			auth: {
+				token: 'whatevs'
+			}
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.files.present.should.containEql('Contributing document').and.lengthOf(1);
-			report.files.missing.should.containEql('Readme document');
-			report.files.missing.should.containEql('Licence document');
-			report.files.missing.should.containEql('Test suite');
-			report.files.missing.should.have.a.lengthOf(3);
+			report.files.present.should.containEql('Contributing document');
+			report.files.present.should.containEql('Readme document');
+			report.files.present.should.containEql('Licence document');
+			report.files.present.should.containEql('Test suite');
+			report.files.present.should.containEql('Changelog document');
+			report.files.present.should.have.a.lengthOf(5);
+			report.files.missing.should.be.empty;
 			done();
 		});
 	});
 
 	it('should warn about uncommented issues', function(done) {
 		mockResponses({
-			firstCommitTreeBody: {
-				tree: [{
-					path: 'CONTRIBUTing.md'
-				}]
-			},
 			openIssuesBody: [
 				{
 					number: 1234,
@@ -181,7 +195,7 @@ describe('forkability', function() {
 		});
 	});
 	
-	it('should warn about issues with no comments and no tags', function (done) {
+	it('should warn about issues with no comments and no tags (untouched issues)', function (done) {
 		mockResponses({
 			openIssuesBody: [
 				{
@@ -221,68 +235,6 @@ describe('forkability', function() {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234'
 				}
 			});
-			done();
-		});
-	});
-
-	// Fairly sure this test is a false positive
-	it('should identify that the repo has all recommended files when basic auth specified', function(done) {
-		mockResponses({
-			firstCommitTreeRequestHeaders: {
-				auth: {
-					username: 'thatoneguy',
-					password: 'password'
-				},
-				'User-Agent': 'Forkability (http://github.com/basicallydan/forkability) (Daniel Hough <daniel.hough@gmail.com>)'
-			}
-		});
-
-		forkability({
-			user: 'thatoneguy',
-			repository: 'thatonerepo',
-			auth: {
-				username: 'thatoneguy',
-				password: 'password'
-			}
-		},
-		function (err, report) {
-			should(err).eql(null);
-			report.files.present.should.containEql('Contributing document');
-			report.files.present.should.containEql('Readme document');
-			report.files.present.should.containEql('Licence document');
-			report.files.present.should.containEql('Test suite');
-			report.files.present.should.have.a.lengthOf(4);
-			report.files.missing.should.be.empty;
-			done();
-		});
-	});
-
-	// Fairly sure this test is a false positive
-	it('should identify that the repo has all recommended files when an auth token is provided', function(done) {
-		mockResponses({
-			firstCommitTreeRequestHeaders: {
-				auth: {
-					token: 'whatevs'
-				},
-				'User-Agent': 'Forkability (http://github.com/basicallydan/forkability) (Daniel Hough <daniel.hough@gmail.com>)'
-			}
-		});
-
-		forkability({
-			user: 'thatoneguy',
-			repository: 'thatonerepo',
-			auth: {
-				token: 'whatevs'
-			}
-		},
-		function (err, report) {
-			should(err).eql(null);
-			report.files.present.should.containEql('Contributing document');
-			report.files.present.should.containEql('Readme document');
-			report.files.present.should.containEql('Licence document');
-			report.files.present.should.containEql('Test suite');
-			report.files.present.should.have.a.lengthOf(4);
-			report.files.missing.should.be.empty;
 			done();
 		});
 	});

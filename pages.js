@@ -35,9 +35,18 @@ $(document).ready(function() {
 
 		$('.sign-in').attr('href', $('.sign-in').attr('href') + generateUUID());
 		forkability(forkabilityOpts, function(err, report) {
+			if (!report.files.present.length) {
+				$('<li class="message"><strong>Oops!</strong> You don\'t have any of the recommended features for your open source project!</li>').appendTo('.missing-files');
+			}
+
 			report.files.present.forEach(function(thing) {
 				$('<li><span class="green">✓</span>' + thing + '</li>').appendTo('.present-files');
 			});
+
+			if (!report.files.missing.length) {
+				$('<li class="message"><strong>Congrats!</strong> You have all the recommended features for your open source project!</li>').appendTo('.missing-files');
+			}
+
 			report.files.missing.forEach(function(thing) {
 				$('<li><span class="red">✘</span>' + thing + '</li>').appendTo('.missing-files');
 			});
@@ -45,9 +54,6 @@ $(document).ready(function() {
 				var warning = $('<li class="warning"><span class="cyan">|</span>' + w.message + '</li>').appendTo('.warnings');
 				if (w.details && w.details.url) {
 					$('<span class="warning-detail"></span>').appendTo(warning).html('Hello');
-					// $('<span class="warning-detail">' +
-					// 	'<span class="cyan">' + ((i === report.warnings.length - 1 ? '└' : '├') + '──') + '</span>' +
-					// 	w.details.title ? (w.details.title + ':') : '' + ' ' + w.details.url + '</span>').appendTo(warning);
 				}
 			});
 		});

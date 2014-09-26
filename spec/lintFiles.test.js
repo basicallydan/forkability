@@ -192,4 +192,42 @@ describe('lintFiles', function () {
 		report.present.should.not.containEql('Test suite');
 		report.missing.should.not.containEql('Test suite');
 	});
+
+	it('should return presence of a changelog called changes with a markdown extension', function () {
+		var tree = [
+			{
+				path:'changes.md'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.present.should.containEql('Changelog document');
+		report.missing.should.not.containEql('Changelog document');
+	});
+
+	it('should return presence of a changelog called changelog with a markdown extension', function () {
+		var tree = [
+			{
+				path:'changelog.md'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.present.should.containEql('Changelog document');
+	});
+
+	it('should return presence of a changelog called changelog with no extension', function () {
+		var tree = [
+			{
+				path:'changelog'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.present.should.containEql('Changelog document');
+		report.missing.should.not.containEql('Changelog document');
+	});
 });
