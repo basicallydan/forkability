@@ -1,14 +1,15 @@
 {
   "name": "forkability",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A JS module for determining the forkability of an open-source GitHub repository.",
   "main": "./lib/app.js",
   "bin": "./index.js",
   "scripts": {
     "test": "mocha spec/*.test.js --reporter spec"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dan Hough <dan@danhough.com>",
+  "license": "MIT",
+  "repository": "git@github.com:basicallydan/forkability.git",
   "dependencies": {
     "browser-request": "^0.3.2",
     "colors": "^0.6.2",
