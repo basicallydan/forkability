@@ -65,6 +65,39 @@
 			.explanation-link i {
 				margin-top:0.6em;
 			}
+
+			.sticky-footer {
+				position: fixed;
+				left:0;
+				right:0;
+				bottom:0;
+			}
+
+			.sticky-footer__info, .sticky-footer__info li {
+				list-style:none;
+				text-indent:none;
+				text-align:center;
+			}
+
+			.sticky-footer__info li {
+				display: inline-block;
+			}
+
+			.sticky-footer__info li:before {
+				color:rgb(34, 156, 236);
+				color:rgba(34, 156, 236, 0.77);
+				content:'\2022';
+				margin:0.5em 0.5em 0.5em 0.2em;
+			}
+
+			.sticky-footer__info li:first-child:before {
+				content:'';
+				margin-left:0;
+			}
+
+			.sticky-footer__info li:last-child {
+				margin-right:0;
+			}
 		</style>
 		<div class="handlebar-template" id="sign-in-template" type="text/x-handlebars-template">
 			<div class="row">
@@ -167,7 +200,7 @@
 		</div>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" id="main-content">
 			<div class="row header">
 				<div class="col-md-12">
 					<h1>Forkability</h1>
@@ -176,6 +209,15 @@
 			<div class="main-body">
 			</div>
 		</div>
+		<footer class="sticky-footer">
+			<div class="container">
+				<ul class="sticky-footer__info">
+					<li>Hacked together by <a href="https://github.com/basicallydan" title="Dan Hough on GitHub">@basicallydan</a></li>
+					<li>You can <a href="https://github.com/basicallydan/forkability" title="Forkability on GitHub">fork this on GitHub</a>, obviously</li>
+					<li><a href="?u=basicallydan&amp;r=forkability" title="Forkability of Forkability">Forkability of basicallydan/forkability</a></li>
+				</ul>
+			</div>
+		</footer>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="https://cdn.firebase.com/js/simple-login/1.6.3/firebase-simple-login.js"></script>
 		<script type="text/javascript" src="pages/handlebars-v2.0.0.js"></script>
