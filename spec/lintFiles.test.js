@@ -59,6 +59,7 @@ describe('lintFiles', function () {
 		var report = lintFiles(tree);
 
 		report.present.should.containEql('Licence document');
+		report.missing.should.not.containEql('Licence document');
 	});
 
 	it('should return presence of a licence with a txt extension', function () {
@@ -71,6 +72,7 @@ describe('lintFiles', function () {
 		var report = lintFiles(tree);
 
 		report.present.should.containEql('Licence document');
+		report.missing.should.not.containEql('Licence document');
 	});
 
 	it('should return presence of an upper-case licence with a txt extension', function () {
@@ -83,6 +85,7 @@ describe('lintFiles', function () {
 		var report = lintFiles(tree);
 
 		report.present.should.containEql('Licence document');
+		report.missing.should.not.containEql('Licence document');
 	});
 
 	it('should return presence of an upper-case licence with no extension at all', function () {
@@ -95,6 +98,20 @@ describe('lintFiles', function () {
 		var report = lintFiles(tree);
 
 		report.present.should.containEql('Licence document');
+		report.missing.should.not.containEql('Licence document');
+	});
+
+	it('should return presence of licence where the spelling is in the UK verb form, "License"', function () {
+		var tree = [
+			{
+				path:'LICENSE'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.present.should.containEql('Licence document');
+		report.missing.should.not.containEql('Licence document');
 	});
 
 	it('should return presence of a contributing with a markdown extension', function () {
@@ -107,6 +124,7 @@ describe('lintFiles', function () {
 		var report = lintFiles(tree);
 
 		report.present.should.containEql('Contributing document');
+		report.missing.should.not.containEql('Contributing document');
 	});
 
 	it('should return presence of a contributing with a txt extension', function () {
