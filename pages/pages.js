@@ -17,7 +17,9 @@ $(document).ready(function() {
 		if (error) {
 			// an error occurred while attempting login
 			console.log(error);
+			$('.sign-out').hide();
 		} else if (user) {
+			$('.sign-out').show();
 			currentUser = user;
 			// user authenticated with Firebase
 			console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
@@ -31,6 +33,11 @@ $(document).ready(function() {
 		} else {
 			showSignIn();
 		}
+	});
+
+	$('.sign-out').click(function () {
+		authClient.logout();
+		$(this).hide();
 	});
 
 	function renderByID(id, o) {
@@ -49,6 +56,7 @@ $(document).ready(function() {
 				scope: 'user'
 			});
 		});
+		$('.sign-out').hide();
 	}
 
 	function showRepoPicker(model, o) {

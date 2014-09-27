@@ -98,6 +98,14 @@
 			.sticky-footer__info li:last-child {
 				margin-right:0;
 			}
+
+			.navigation-controls {
+				text-align: right;
+			}
+
+			.navigation-controls .btn {
+				margin-top:20px;
+			}
 		</style>
 		<div class="handlebar-template" id="sign-in-template" type="text/x-handlebars-template">
 			<div class="row">
@@ -201,11 +209,14 @@
 	</head>
 	<body>
 		<div class="container" id="main-content">
-			<div class="row header">
-				<div class="col-md-12">
+			<nav class="row header">
+				<div class="col-md-10">
 					<h1>Forkability</h1>
 				</div>
-			</div>
+				<div class="col-md-2 navigation-controls">
+					<button type="button" style="display:none;" class="btn btn-default sign-out">Sign out</button>
+				</div>
+			</nav>
 			<div class="main-body">
 			</div>
 		</div>
