@@ -16,14 +16,11 @@
     "commander": "^2.3.0",
     "github": "^0.2.2",
     "q": "^1.0.1",
-    "request": "^2.42.0",
-    "request-promise": "^0.1.2"
+    "request": "^2.42.0"
   },
   "devDependencies": {
     "interfake": "^1.9.2",
     "nock": "^0.47.0",
-    "proxyquire": "^1.0.1",
-    "should": "^4.0.4",
-    "sinon": "^1.10.3"
+    "should": "^4.0.4"
   }
 }
