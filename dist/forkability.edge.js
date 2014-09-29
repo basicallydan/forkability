@@ -114,7 +114,7 @@ module.exports = function(tree, languages) {
 	var points = {
 		'Contributing document': /^contributing/i,
 		'Readme document': /^readme/i,
-		'Licence document': /^licence/i,
+		'Licence document': /^licen[cs]e/i,
 		'Changelog document': /^change(s|log)/i,
 		'Test suite': {
 			type: 'tree',
