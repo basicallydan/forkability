@@ -3,10 +3,6 @@ forkability
 
 A linter for your repository.
 
-## Warning
-
-This project is a work in progress :)
-
 ## How to use
 
 ### Web App
@@ -80,6 +76,12 @@ forkability(options, function(err, report) {
 	* `token`: If you're using OAuth or something, put the authentication token here. Check out `pages/pages.js` to see this badassery in action!
 
 Thankfully, that's it.
+
+## Contributing
+
+The thing about what makes a project forkable is that there are probably various ways to look at a project and thus many opinions.
+
+So I'd like to invite anybody reading this to [open an issue](https://github.com/basicallydan/forkability/issues), and/or make a pull request - pull requests are all the hotness right now - which details in some way what could be done to make this a *more useful tool*.
 
 ## Long-term goals of this project
 
