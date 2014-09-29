@@ -108,6 +108,6 @@ Make sure you `npm install -g mocha`, then `npm tests` this repo.
 
 ## Disclaimer
 
-You should not use Forkability as the sole way to judge how forkable your project is. After all, it is not in any way intelligent, it is merely looking for the presence of certain features in your project in order to nudge you in the right direction.
+You should not use forkability as the sole way to judge how forkable your project is. After all, it is not in any way intelligent, it is merely looking for the presence of certain features in your project in order to nudge you in the right direction.
 
 Your best bet to make your project as forkable as possible is to ask your friends, or your friendly neighbourhood open-source community!
