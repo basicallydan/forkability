@@ -23,7 +23,7 @@
 		var repo = options.repository;
 		var firstCommitSha;
 		var repoLanguages;
-		var get;
+		var get, r;
 		var defaults = {
 			json: true,
 			headers: headers
@@ -40,8 +40,8 @@
 			defaults.headers.Authorization = 'Token ' + options.auth.token;
 		}
 
-		request = request.defaults(defaults);
-		get = Q.denodeify(request.get);
+		r = request.defaults(defaults);
+		get = Q.denodeify(r.get);
 
 		get('https://api.github.com/repos/' + username + '/' + repo + '/commits')
 			.then(function(response) {
