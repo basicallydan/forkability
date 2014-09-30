@@ -5,34 +5,15 @@ function getParameterByName(name) {
 	return results == null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
-$(document).ready(function() {
-	var myRef = new Firebase('https://blistering-inferno-9575.firebaseio.com');
+var myRef = new Firebase('https://blistering-inferno-9575.firebaseio.com');
+
+var loadPage = function() {
 	var currentUser;
 	var repoOptions = {};
 	var repos = [];
 
 	repoOptions.username = getParameterByName('u');
 	repoOptions.repository = getParameterByName('r');
-
-	function getRepositories(username, cb) {
-		$.ajax(
-			'https://api.github.com/users/' + username + '/repos',
-			{
-				dataType:'json',
-				method:'GET',
-				headers: {
-					Authorization:'Token ' + currentUser.accessToken
-				},
-				success: function (data, textStatus, jqXHR) {
-					$('#repositories').html('');
-					$.each(data, function (i, repo) {
-						$('#repositories').append('<option value="' + repo.name + '">' + repo.name + '</option>');
-					});
-					console.log(data);
-					// $('#repositories').
-				}
-			});
-	}
 
 	var authClient = new FirebaseSimpleLogin(myRef, function(error, user) {
 		if (error) {
@@ -47,7 +28,6 @@ $(document).ready(function() {
 			if (repoOptions.username && repoOptions.repository) {
 				checkRepo(repoOptions.username, repoOptions.repository, currentUser.accessToken);
 			} else {
-				getRepositories(repoOptions.username || currentUser.username);
 				showRepoPicker({
 					defaultUsername: currentUser.username
 				}, repoOptions);
@@ -83,6 +63,29 @@ $(document).ready(function() {
 
 	function showRepoPicker(model, o) {
 		var hero = renderByID('#choose-repo-template', model);
+		getRepositories(repoOptions.username || currentUser.username);
+
+		function getRepositories(username, cb) {
+			var repositoryElement = hero.find('#repository');
+			repositoryElement.attr('placeholder', 'Loading ' + username + '\'s repositories...');
+			$.ajax(
+				'https://api.github.com/users/' + username + '/repos',
+				{
+					dataType:'json',
+					method:'GET',
+					headers: {
+						Authorization:'Token ' + currentUser.accessToken
+					},
+					success: function (data, textStatus, jqXHR) {
+						hero.find('#repositories').html('');
+						repositoryElement.attr('placeholder', 'Pick one of ' + username + '\'s repositories');
+						$.each(data, function (i, repo) {
+							hero.find('#repositories').append('<option value="' + repo.name + '">' + repo.name + '</option>');
+						});
+						console.log(data);
+					}
+				});
+		}
 
 		var submit = function(e) {
 			e.preventDefault();
@@ -93,6 +96,10 @@ $(document).ready(function() {
 			}
 			checkRepo(user, repo, currentUser.accessToken);
 		};
+
+		hero.find('#username').change(function () {
+			getRepositories(hero.find('#username').val() || currentUser.username);
+		});
 
 		if (o) {
 			hero.find('#username').val(o.username);
@@ -150,4 +157,10 @@ $(document).ready(function() {
 			// $('#warnings-modal').modal();
 		});
 	}
-});
+};
+
+$(document).ready(loadPage);
+
+window.onpopstate = function () {
+	loadPage();
+};

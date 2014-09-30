@@ -116,7 +116,7 @@
 				color:red;
 			}*/
 		</style>
-		<div class="handlebar-template" id="sign-in-template" type="text/x-handlebars-template">
+		<script class="handlebar-template" id="sign-in-template" type="text/x-handlebars-template">
 			<div class="row">
 				<div class="hero col-md-12">
 					<h2 class="summary">A linter for your repository.</h2>
@@ -126,8 +126,8 @@
 					<p class="login-explanation col-md-6 col-md-offset-3">The prompt will ask you for write access to your GitHub User Profile. <strong>Don't worry, Forkability won't use it.</strong> You need to login just to prevent GitHub API request limits being hit.</p>
 				</div>
 			</div>
-		</div>
-		<div class="handlebar-template" id="choose-repo-template" type="text/x-handlebars-template">
+		</script>
+		<script class="handlebar-template" id="choose-repo-template" type="text/x-handlebars-template">
 			<div class="row">
 				<div class="hero col-md-12">
 					<h3>Enter the username of the repo owner and the repo to lint.</h3>
@@ -150,7 +150,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="handlebar-template" id="repo-info-template" type="text/x-handlebars-template">
+		<script class="handlebar-template" id="repo-info-template" type="text/x-handlebars-template">
 			<h2>{{repoName}}</h2>
 			<div class="row">
 				<div class="col-md-4 found-list">
@@ -169,7 +169,7 @@
 					</ul>
 				</div>
 			</div>
-		</div>
+		</script>
 
 		<div class="modal fade" id="warnings-modal" tabindex="-1" role="dialog" aria-labelledby="warnings-modal-label" aria-hidden="true">
 			<div class="modal-dialog">
