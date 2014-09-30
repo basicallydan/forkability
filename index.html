@@ -131,9 +131,10 @@
 							<label for="username">Repository owner</label>
 							<input type="text" id="username" placeholder="Default: {{defaultUsername}}" class="username form-control left-of-slash">
 						</div>
+						<datalist id="repositories"></datalist>
 						<div class="form-group">
 							<label for="repository">Repository name</label>
-							<input type="text" id="repository" class="repository form-control right-of-slash">
+							<input type="text" id="repository" class="repository form-control right-of-slash" list="repositories">
 						</div>
 						<button class="btn btn-primary btn-block" id="check-forkability">Check Forkability</button>
 					</form>

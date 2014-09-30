@@ -9,9 +9,30 @@ $(document).ready(function() {
 	var myRef = new Firebase('https://blistering-inferno-9575.firebaseio.com');
 	var currentUser;
 	var repoOptions = {};
+	var repos = [];
 
 	repoOptions.username = getParameterByName('u');
 	repoOptions.repository = getParameterByName('r');
+
+	function getRepositories(username, cb) {
+		$.ajax(
+			'https://api.github.com/users/' + username + '/repos',
+			{
+				dataType:'json',
+				method:'GET',
+				headers: {
+					Authorization:'Token ' + currentUser.accessToken
+				},
+				success: function (data, textStatus, jqXHR) {
+					$('#repositories').html('');
+					$.each(data, function (i, repo) {
+						$('#repositories').append('<option value="' + repo.name + '">' + repo.name + '</option>');
+					});
+					console.log(data);
+					// $('#repositories').
+				}
+			});
+	}
 
 	var authClient = new FirebaseSimpleLogin(myRef, function(error, user) {
 		if (error) {
@@ -26,6 +47,7 @@ $(document).ready(function() {
 			if (repoOptions.username && repoOptions.repository) {
 				checkRepo(repoOptions.username, repoOptions.repository, currentUser.accessToken);
 			} else {
+				getRepositories(repoOptions.username || currentUser.username);
 				showRepoPicker({
 					defaultUsername: currentUser.username
 				}, repoOptions);
