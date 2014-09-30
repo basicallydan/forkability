@@ -106,6 +106,15 @@
 			.navigation-controls .btn {
 				margin-top:20px;
 			}
+
+			/*input::-webkit-calendar-picker-indicator {
+				color: red;
+			}
+
+			input::-webkit-textfield-decoration-container {
+				font-weight: bold;
+				color:red;
+			}*/
 		</style>
 		<div class="handlebar-template" id="sign-in-template" type="text/x-handlebars-template">
 			<div class="row">
@@ -142,6 +151,7 @@
 			</div>
 		</div>
 		<div class="handlebar-template" id="repo-info-template" type="text/x-handlebars-template">
+			<h2>{{repoName}}</h2>
 			<div class="row">
 				<div class="col-md-4 found-list">
 					<h2>Found <a href="#" class="explanation-link found-explanation pull-right" data-toggle="modal" data-target="#features-modal"><i class="fa fa-question-circle"></i></a></h2>

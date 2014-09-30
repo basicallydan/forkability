@@ -122,7 +122,7 @@ $(document).ready(function() {
 		history.pushState({}, 'Forkability of ' + user + '/' + repository, '?u=' + user + '&r=' + repository);
 
 		forkability(forkabilityOpts, function(err, report) {
-			var reportElement = renderByID('#repo-info-template');
+			var reportElement = renderByID('#repo-info-template', { repoName : user + '/' + repository });
 			if (!report.files.present.length) {
 				$('<li class="message"><strong>Oops!</strong> You don\'t have any of the recommended features for your open source project!</li>').appendTo('.missing-files');
 			}
