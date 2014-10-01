@@ -1,0 +1,20 @@
+<script type="text/javascript">
+	function getParameterByName(name) {
+		name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+		var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+		var results = regex.exec(location.search);
+		return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+	}
+	var accessToken = getParameterByName('accessToken');
+	var tokenType = getParameterByName('tokenType');
+	var scope = getParameterByName('scope');
+	if (window.opener) {
+		window.opener.window.useGitHubCodes({
+			accessToken: accessToken,
+			tokenType: tokenType,
+			scope: scope
+		});
+	} else {
+		alert('No parent window!');
+	}
+</script>

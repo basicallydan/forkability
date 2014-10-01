@@ -15,30 +15,32 @@ var loadPage = function() {
 	repoOptions.username = getParameterByName('u');
 	repoOptions.repository = getParameterByName('r');
 
-	var authClient = new FirebaseSimpleLogin(myRef, function(error, user) {
-		if (error) {
-			// an error occurred while attempting login
-			console.log(error);
-			$('.sign-out').hide();
-		} else if (user) {
-			$('.sign-out').show();
-			currentUser = user;
-			// user authenticated with Firebase
-			console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-			if (repoOptions.username && repoOptions.repository) {
-				checkRepo(repoOptions.username, repoOptions.repository, currentUser.accessToken);
-			} else {
-				showRepoPicker({
-					defaultUsername: currentUser.username
-				}, repoOptions);
-			}
-		} else {
-			showSignIn();
-		}
-	});
+	// var authClient = new FirebaseSimpleLogin(myRef, function(error, user) {
+	// 	if (error) {
+	// 		// an error occurred while attempting login
+	// 		console.log(error);
+	// 		$('.sign-out').hide();
+	// 	} else if (user) {
+	// 		$('.sign-out').show();
+	// 		currentUser = user;
+	// 		// user authenticated with Firebase
+	// 		console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+	// 		if (repoOptions.username && repoOptions.repository) {
+	// 			checkRepo(repoOptions.username, repoOptions.repository, currentUser.accessToken);
+	// 		} else {
+	// 			showRepoPicker({
+	// 				defaultUsername: currentUser.username
+	// 			}, repoOptions);
+	// 		}
+	// 	} else {
+	// 		showSignIn();
+	// 	}
+	// });
+	
+	showSignIn();
 
 	$('.sign-out').click(function () {
-		authClient.logout();
+		// authClient.logout();
 		$(this).hide();
 	});
 
@@ -48,15 +50,26 @@ var loadPage = function() {
 		return $('.main-body').html(template(o));
 	}
 
+	window.useGitHubCodes = function () {
+		alert('Got it!');
+		console.log(arguments);
+	};
+
 	function showSignIn() {
 		var hero = renderByID('#sign-in-template');
 
 		hero.find('.sign-in').click(function(e) {
 			e.preventDefault();
-			authClient.login('github', {
-				rememberMe: true,
-				scope: 'user'
-			});
+			// authClient.login('github', {
+			// 	rememberMe: true,
+			// 	scope: 'user'
+			// });
+			var githubOAuthWindow = window.open(
+				'https://github.com/login/oauth/authorize?client_id=ca8bf7cc025dd97fc008',
+				'githubOAuthWindow',
+				'location=0,status=0,dependent=true,menubar=false,toolbar=false,personalbar=false,directories=false,dialog=true,resizable=false,width=600,height=600');
+			// 'outerWidth=600,width=500,innerWidth=400,resizable,scrollbars,status'
+			// window.location.href = 'https://github.com/login/oauth/authorize?client_id=ca8bf7cc025dd97fc008';
 		});
 		$('.sign-out').hide();
 	}
