@@ -48,10 +48,8 @@ var loadPage = function() {
 		}
 	});
 
-	showSignIn();
-
 	$('.sign-out').click(function() {
-		// authClient.logout();
+		authClient.logout();
 		$(this).hide();
 	});
 
