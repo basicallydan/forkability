@@ -20,7 +20,7 @@ var loadPage = function() {
 			// an error occurred while attempting login
 			console.log(error);
 			$('.sign-out').hide();
-		} else if (user) {
+		} else if (user || !user.accessToken) {
 			$('.sign-out').show();
 			currentUser = user;
 			$.ajax(
