@@ -8,6 +8,12 @@
 		<link rel="stylesheet" type="text/css" href="pages/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="pages/bootstrap-social/bootstrap-social.css">
 		<style type="text/css">
+			body {
+				min-height: 100%;
+				position: absolute;
+				min-width: 100%;
+				padding-bottom: 12rem;
+			}
 			.results-list, .results-list li {
 				list-style: none;
 				text-indent: 0;
@@ -46,7 +52,7 @@
 				display:inline-block;
 			}
 			.login-explanation {
-				color:#555;
+				color:#666;
 				font-size:1.2rem;
 				margin-top:1rem;
 			}
@@ -60,17 +66,17 @@
 				color:orange;
 			}
 			.explanation-link {
-				font-size:0.5em;
-			}
-			.explanation-link i {
-				margin-top:0.6em;
+				font-size:0.4em;
+				font-weight:normal;
+				display:block;
 			}
 
 			.sticky-footer {
-				position: fixed;
+				position: absolute;
 				left:0;
 				right:0;
 				bottom:0;
+				margin-top:2rem;
 			}
 
 			.sticky-footer__info, .sticky-footer__info li {
@@ -120,10 +126,11 @@
 			<div class="row">
 				<div class="hero col-md-12">
 					<h2 class="summary">A linter for your repository.</h2>
+					<p class="col-md-6 col-md-offset-3">Forkability helps you to make your project more open-source-friendly by pointing out missing features and useful tips.</p>
 					<div class="col-md-6 col-md-offset-3">
 						<a class="btn btn-social btn-large btn-github sign-in"><i class="fa fa-github"></i> Sign in with GitHub</a>
 					</div>
-					<p class="login-explanation col-md-6 col-md-offset-3">The prompt will ask you for write access to your GitHub User Profile. <strong>Don't worry, Forkability won't use it.</strong> You need to login just to prevent GitHub API request limits being hit.</p>
+					<p class="login-explanation col-md-6 col-md-offset-3">The prompt will ask you read-only access to your public GitHub info. <strong>Forkability cannot change your profile at all.</strong> You need to login just to prevent GitHub API request limits being hit.</p>
 				</div>
 			</div>
 		</script>
@@ -154,17 +161,17 @@
 			<h2>{{repoName}}</h2>
 			<div class="row">
 				<div class="col-md-4 found-list">
-					<h2>Found <a href="#" class="explanation-link found-explanation pull-right" data-toggle="modal" data-target="#features-modal"><i class="fa fa-question-circle"></i></a></h2>
+					<h2>Found <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#features-modal">(Explanation)</a></h2>
 					<ul class="results-list present-files">
 					</ul>
 				</div>
 				<div class="col-md-4 missing-list">
-					<h2>Missing <a href="#" class="explanation-link found-explanation pull-right" data-toggle="modal" data-target="#features-modal"><i class="fa fa-question-circle"></i></a></h2>
+					<h2>Missing <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#features-modal">(Explanation)</a></h2>
 					<ul class="results-list  missing-files">
 					</ul>
 				</div>
 				<div class="col-md-4 warnings-list">
-					<h2>Warnings <a href="#" class="explanation-link found-explanation pull-right" data-toggle="modal" data-target="#warnings-modal"><i class="fa fa-question-circle"></i></a></h2>
+					<h2>Warnings <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#warnings-modal">(Explanation)</a></h2>
 					<ul class="results-list warnings">
 					</ul>
 				</div>
@@ -237,8 +244,8 @@
 					<li>Hacked together by <a href="https://github.com/basicallydan" title="Dan Hough on GitHub">@basicallydan</a></li>
 					<li>You can <a href="https://github.com/basicallydan/forkability" title="Forkability on GitHub">fork this on GitHub</a>, obviously</li>
 					<li><a href="?u=basicallydan&amp;r=forkability" title="Forkability of Forkability">Forkability of basicallydan/forkability</a></li>
-					<br>
-					<p style="font-size:1.1em"><strong>Hey there! Think this is a cool idea? Brilliant, me too! I'd love to hear your opinions and ideas for how to improve the linter - community involvement is the best way for it to be more useful. I'd really appreciate it if you could <a href="https://github.com/basicallydan/forkability/issues/new" target="_blank">go raise an issue on GitHub</a>. Thanks!</strong></p>
+					<li>Got a suggestion? <a href="https://github.com/basicallydan/forkability/issues/new" target="_blank">Raise an issue</a></li>
+					<!-- <p style="font-size:1.1em"><strong>Hey there! Think this is a cool idea? Brilliant, me too! I'd love to hear your opinions and ideas for how to improve the linter - community involvement is the best way for it to be more useful. I'd really appreciate it if you could <a href="https://github.com/basicallydan/forkability/issues/new" target="_blank">go raise an issue on GitHub</a>. Thanks!</strong></p> -->
 				</ul>
 			</div>
 		</footer>

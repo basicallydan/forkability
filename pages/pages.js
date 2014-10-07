@@ -20,7 +20,7 @@ var loadPage = function() {
 			// an error occurred while attempting login
 			console.log(error);
 			$('.sign-out').hide();
-		} else if (user || !user.accessToken) {
+		} else if (user && user.accessToken) {
 			$('.sign-out').show();
 			currentUser = user;
 			$.ajax(
@@ -50,6 +50,7 @@ var loadPage = function() {
 
 	$('.sign-out').click(function() {
 		authClient.logout();
+		history.pushState({}, 'Forkability', '/');
 		$(this).hide();
 	});
 
