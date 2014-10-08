@@ -114,6 +114,19 @@ describe('lintFiles', function () {
 		report.missing.should.not.containEql('Licence document');
 	});
 
+	it('should return presence of licence when COPYING file exists', function () {
+		var tree = [
+			{
+				path:'COPYING'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.present.should.containEql('Licence document');
+		report.missing.should.not.containEql('Licence document');
+	});
+
 	it('should return presence of a contributing with a markdown extension', function () {
 		var tree = [
 			{
