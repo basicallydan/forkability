@@ -14,7 +14,7 @@ var loadPage = function() {
 	repoOptions.repository = getParameterByName('r');
 
 	var authClient = new GetAPI.GitHubClient({
-		clientId: 'ca8bf7cc025dd97fc008'
+		clientId: '9dddfb154feb2d02d35c'
 	}, function(error, user) {
 		if (error) {
 			// an error occurred while attempting login
