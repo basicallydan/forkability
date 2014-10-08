@@ -50,7 +50,7 @@ var loadPage = function() {
 
 	$('.sign-out').click(function() {
 		authClient.logout();
-		history.pushState({}, 'Forkability', '/');
+		history.pushState({}, 'Forkability', '/forkability');
 		$(this).hide();
 	});
 
