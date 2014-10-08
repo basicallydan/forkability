@@ -1,0 +1,110 @@
+body {
+	min-height: 100%;
+	position: absolute;
+	min-width: 100%;
+	padding-bottom: 12rem;
+}
+
+h1 img {
+	height:1em;
+	vertical-align:bottom;
+}
+
+.results-list, .results-list li {
+	list-style: none;
+	text-indent: 0;
+	margin-left:0;
+	padding: 0;
+}
+.handlebar-template {
+	display: none;
+}
+.btn-github {
+	background-color:#444;
+	background-image:none;
+	color:white;
+	text-shadow:none;
+	line-height: 1.5em;
+	vertical-align: top;
+}
+.btn-github:hover {
+	background-color:#555;
+	background-image:none;
+	color:white;
+	text-shadow:none;
+	line-height: 1.5em;
+	vertical-align: top;
+}
+.hero {
+	text-align: center;
+}
+.repo-form {
+	width:;
+}
+.form-inline.form-control .left-of-slash, .form-inline.form-control .right-of-slash {
+	width:40%;
+}
+.slash {
+	display:inline-block;
+}
+.login-explanation {
+	color:#666;
+	font-size:1.2rem;
+	margin-top:1rem;
+}
+.present-files .tick {
+	color:green;
+}
+.missing-files .cross {
+	color:red;
+}
+.warnings .exclaimation {
+	color:orange;
+}
+.explanation-link {
+	font-size:0.4em;
+	font-weight:normal;
+	display:block;
+}
+
+.sticky-footer {
+	position: absolute;
+	left:0;
+	right:0;
+	bottom:0;
+	margin-top:2rem;
+}
+
+.sticky-footer__info, .sticky-footer__info li {
+	list-style:none;
+	text-indent:none;
+	text-align:center;
+}
+
+.sticky-footer__info li {
+	display: inline-block;
+}
+
+.sticky-footer__info li:before {
+	color:rgb(34, 156, 236);
+	color:rgba(34, 156, 236, 0.77);
+	content:'\2022';
+	margin:0.5em 0.5em 0.5em 0.2em;
+}
+
+.sticky-footer__info li:first-child:before {
+	content:'';
+	margin-left:0;
+}
+
+.sticky-footer__info li:last-child {
+	margin-right:0;
+}
+
+.navigation-controls {
+	text-align: right;
+}
+
+.navigation-controls .btn {
+	margin-top:20px;
+}

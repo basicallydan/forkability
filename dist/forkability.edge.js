@@ -59,6 +59,7 @@
 			})
 			.then(function(response) {
 				repoLanguages = Object.keys(response[1] || []);
+				console.log('Language: ', repoLanguages);
 				var url = 'https://api.github.com/repos/' + username + '/' + repo + '/git/trees/' + firstCommitSha;
 				return get(url);
 			})
@@ -114,7 +115,7 @@ module.exports = function(tree, languages) {
 	var points = {
 		'Contributing document': /^contributing/i,
 		'Readme document': /^readme/i,
-		'Licence document': /^licen[cs]e/i,
+		'Licence document': /^(licen[cs]e|copying)/i,
 		'Changelog document': /^change(s|log)/i,
 		'Test suite': {
 			type: 'tree',
