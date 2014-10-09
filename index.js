@@ -10,6 +10,7 @@ program
 	.version(packageInfo.version)
 	.option('-u, --username [user]', 'Username to use for auth')
 	.option('-p, --password [pass]', 'Password to use for auth')
+	.option('-l, --lang [lang,lang,lang]', 'Language(s) to lint use for lint config. Comma-separated')
 	.parse(process.argv);
 
 if (!program.args[0] || !repoRegex.test(program.args[0])) {
@@ -20,7 +21,8 @@ repoInfo = program.args[0].match(repoRegex);
 
 var options = {
 	user: repoInfo[1],
-	repository: repoInfo[2]
+	repository: repoInfo[2],
+	languages: (program.lang || '').split(',')
 };
 
 if (program.username && program.password) {
