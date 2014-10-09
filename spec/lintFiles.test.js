@@ -265,4 +265,94 @@ describe('lintFiles', function () {
 		report.present.should.containEql('Changelog document');
 		report.missing.should.not.containEql('Changelog document');
 	});
+
+	it('should return presence of a feature specified in options', function () {
+		var tree = [
+			{
+				path:'package.json'
+			}
+		];
+
+		var report = lintFiles(tree, {
+			features: {
+				'package.json file':/^package\.json/i
+			}
+		});
+
+		report.present.should.containEql('package.json file');
+		report.missing.should.not.containEql('package.json file');
+	});
+
+	it('should return presence of a feature specified in options to not exist', function () {
+		var tree = [];
+
+		var report = lintFiles(tree, {
+			features: {
+				'No node_modules folder':{
+					path:/^node_modules/i,
+					type:'tree',
+					shouldExist:false
+				}
+			}
+		});
+
+		report.present.should.containEql('No node_modules folder');
+		report.missing.should.not.containEql('No node_modules folder');
+	});
+
+	it('should return failure of a feature specified in options to not exist', function () {
+		var tree = [
+			{
+				path:'node_modules',
+				type:'tree'
+			}
+		];
+
+		var report = lintFiles(tree, {
+			features: {
+				'No node_modules folder':{
+					path:/^node_modules/i,
+					type:'tree',
+					shouldExist:false
+				}
+			}
+		});
+
+		report.present.should.not.containEql('No node_modules folder');
+		report.missing.should.containEql('No node_modules folder');
+	});
+
+	it('should return allow two features of the same name but different type where one is allowed but not another', function () {
+		var tree = [
+			{
+				path:'node_modules',
+				type:'tree'
+			},
+			{
+				path:'node_modules',
+				type:'blob'
+			}
+		];
+
+		var report = lintFiles(tree, {
+			features: {
+				'No node_modules folder':{
+					path:/^node_modules/i,
+					type:'tree',
+					shouldExist:false
+				},
+				'A node_modules file':{
+					path:/^node_modules/i,
+					type:'blob',
+					shouldExist:true
+				}
+			}
+		});
+
+		report.present.should.not.containEql('No node_modules folder');
+		report.missing.should.containEql('No node_modules folder');
+		
+		report.present.should.containEql('A node_modules file');
+		report.missing.should.not.containEql('A node_modules file');
+	});
 });
