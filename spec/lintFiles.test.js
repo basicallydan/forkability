@@ -204,7 +204,9 @@ describe('lintFiles', function () {
 			}
 		];
 
-		var report = lintFiles(tree, ['JavaScript']);
+		var report = lintFiles(tree, {
+			containsCode: true
+		});
 
 		report.present.should.containEql('Test suite');
 	});
@@ -217,7 +219,9 @@ describe('lintFiles', function () {
 			}
 		];
 
-		var report = lintFiles(tree, []);
+		var report = lintFiles(tree, {
+			containsCode: false
+		});
 
 		report.present.should.containEql('Contributing document');
 		report.present.should.not.containEql('Test suite');
