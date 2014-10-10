@@ -18,6 +18,8 @@ var loadPage = function() {
 
 	repoOptions.username = getParameterByName('u');
 	repoOptions.repository = getParameterByName('r');
+	repoOptions.languages = (getParameterByName('l') || '').trim();
+	repoOptions.languages = repoOptions.languages.length > 0 ? repoOptions.languages.split(',') : [];
 
 	var authClient = new GetAPI.GitHubClient({
 		clientId: '9dddfb154feb2d02d35c'
@@ -46,7 +48,8 @@ var loadPage = function() {
 								repository: repoOptions.repository,
 								auth: {
 									token: currentUser.accessToken
-								}
+								},
+								languages: repoOptions.languages
 							});
 						} else {
 							showRepoPicker({
@@ -158,7 +161,13 @@ var loadPage = function() {
 			return showSignIn();
 		}
 
-		history.pushState({}, 'Forkability of ' + forkabilityOpts.user + '/' + forkabilityOpts.repository, '?u=' + forkabilityOpts.user + '&r=' + forkabilityOpts.repository);
+		var stateURL = '?u=' + forkabilityOpts.user + '&r=' + forkabilityOpts.repository;
+
+		if (forkabilityOpts.languages && forkabilityOpts.languages.length > 0) {
+			stateURL += '&l=' + forkabilityOpts.languages.join(',');
+		}
+
+		history.pushState({}, 'Forkability of ' + forkabilityOpts.user + '/' + forkabilityOpts.repository, stateURL);
 
 		forkability(forkabilityOpts, function(err, report) {
 			var reportElement = renderByID('#repo-info-template', {
