@@ -13,7 +13,7 @@ program
 	.option('-u, --username [user]', 'Username to use for auth')
 	.option('-p, --password [pass]', 'Password to use for auth')
 	.option('-l, --lang [lang,lang,lang]', 'Language(s) to lint use for lint config. Comma-separated')
-	.option('-r, --reporter (list|json|prettyjson)', 'The format to output the report in. Default is list (more readable)', null, 'list');
+	.option('-r, --reporter [list|json|prettyjson]', 'The format to output the report in. Default is list (more readable)', 'list');
 
 program.on('--help', function () {
 	console.log('  Supported languages for --lang:');
@@ -33,8 +33,6 @@ if (!program.args[0] || !repoRegex.test(program.args[0])) {
 	throw new Error('You need to specify a repo in the format username/repository');
 }
 
-console.log(program.reporter);
-
 repoInfo = program.args[0].match(repoRegex);
 
 var options = {
@@ -50,7 +48,7 @@ if (program.username && program.password) {
 	};
 }
 
-forkability(options, function(err, report) {
+function listReporter(err, report) {
 	console.log('# Recommended files'.magenta);
 	report.files.present.forEach(function(thing) {
 		console.log('✓'.green, thing);
@@ -66,4 +64,28 @@ forkability(options, function(err, report) {
 			console.log(((i === report.warnings.length - 1 ? '└' : '├') + '──').cyan, w.details.title ? (w.details.title + ':') : '', w.details.url);
 		}
 	});
+}
+
+function jsonReporter(err, report) {
+	if (err) {
+		return console.error(err);
+	}
+	console.log(JSON.stringify(report));
+}
+
+function prettyJSONReporter(err, report) {
+	if (err) {
+		return console.error(err);
+	}
+	console.log(JSON.stringify(report, null, 4));
+}
+
+var reporters = {
+	list : listReporter,
+	json : jsonReporter,
+	prettyjson : prettyJSONReporter
+};
+
+forkability(options, function(err, report) {
+	reporters[program.reporter](err, report);
 });
