@@ -45,7 +45,7 @@ var loadPage = function() {
 								user: repoOptions.username,
 								repository: repoOptions.repository,
 								auth: {
-									accessToken: currentUser.accessToken
+									token: currentUser.accessToken
 								}
 							});
 						} else {
@@ -128,7 +128,7 @@ var loadPage = function() {
 				repository: repo,
 				languages: [lang.trim() || undefined],
 				auth: {
-					accessToken: currentUser.accessToken
+					token: currentUser.accessToken
 				}
 			});
 		};
@@ -154,7 +154,7 @@ var loadPage = function() {
 		// 	repository: repository
 		// };
 
-		if (!forkabilityOpts.auth && !forkabilityOpts.auth.accessToken) {
+		if (!forkabilityOpts.auth && !forkabilityOpts.auth.token) {
 			return showSignIn();
 		}
 
