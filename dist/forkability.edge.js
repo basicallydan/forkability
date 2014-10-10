@@ -39,7 +39,7 @@
 			if (languages[options.languages[i]]) {
 				lintOptions = merge(lintOptions, languages[options.languages[i]]);
 			} else {
-				console.warn('Sorry, Forkability doesn\'t support the language', options.languages[i], '. If you\'re keen you can open a pull request at https://github.com/basicallydan/forkability/issues');
+				console.warn('Sorry, Forkability doesn\'t support the language', options.languages[i] + '. If you\'re keen you can open a pull request at https://github.com/basicallydan/forkability/issues');
 			}
 		}
 
