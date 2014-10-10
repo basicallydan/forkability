@@ -9,7 +9,7 @@ A linter for your repository.
 
 https://basicallydan.github.io/forkability runs the code in its client-side form (works just fine), but it requires you to log in using GitHub OAuth. It will ask for access to write to your profile, which I promise will not be exploited. This is merely a limitation of Firebase. You can't ask for no scope.
 
-### Node Module
+### Node Module/Command Line
 
 ```bash
 npm install forkability -g
@@ -45,6 +45,12 @@ forkability basicallydan/interfake
 | Uncommented issue
 └── Media Responses: https://github.com/basicallydan/interfake/issues/19
 ```
+
+#### Other Options
+
+* `--reporter` (`-r`): Specify how the lint report should be output (`list` (default), `json` or `prettyjson`)
+* `--lang` (`-l`): Specify languages to use for extra features to test. Comma-separated list. ([available languages](https://github.com/basicallydan/forkability/tree/master/lib/langs))
+* `--help` (`-h`): How to use the module, and will list available languages
 
 ### JavaScript API
 
