@@ -12,7 +12,8 @@ program
 	.usage('[username]/[repository]')
 	.option('-u, --username [user]', 'Username to use for auth')
 	.option('-p, --password [pass]', 'Password to use for auth')
-	.option('-l, --lang [lang,lang,lang]', 'Language(s) to lint use for lint config. Comma-separated');
+	.option('-l, --lang [lang,lang,lang]', 'Language(s) to lint use for lint config. Comma-separated')
+	.option('-r, --reporter (list|json|prettyjson)', 'The format to output the report in. Default is list (more readable)', null, 'list');
 
 program.on('--help', function () {
 	console.log('  Supported languages for --lang:');
@@ -31,6 +32,8 @@ program.parse(process.argv);
 if (!program.args[0] || !repoRegex.test(program.args[0])) {
 	throw new Error('You need to specify a repo in the format username/repository');
 }
+
+console.log(program.reporter);
 
 repoInfo = program.args[0].match(repoRegex);
 
