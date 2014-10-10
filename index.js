@@ -5,7 +5,6 @@ var forkability = require('./lib/app');
 var packageInfo = require('./package.json');
 var colors = require('colors');
 var repoRegex = /([^\/]*)\/([^\/]*)/;
-var languages = require('./lib/languages');
 var repoInfo;
 program
 	.version(packageInfo.version)
@@ -17,9 +16,9 @@ program
 
 program.on('--help', function () {
 	console.log('  Supported languages for --lang:');
-	var languageKeys = Object.keys(languages);
+	var languageKeys = Object.keys(forkability.languages);
 	for (var i = languageKeys.length - 1; i >= 0; i--) {
-		console.log('    -', languageKeys[i]);
+		console.log('    -', languageKeys[i], '(' + forkability.languages[languageKeys[i]].name + ')');
 	}
 	console.log('\n    If you wish to contribute support for a new language, please see our CONTRIBUTING guidelines:');
 	console.log('    https://github.com/basicallydan/forkability/blob/master/CONTRIBUTING.md\n');
@@ -49,11 +48,11 @@ if (program.username && program.password) {
 }
 
 function listReporter(err, report) {
-	console.log('# Recommended files'.magenta);
-	report.files.present.forEach(function(thing) {
+	console.log('# Recommended features'.magenta);
+	report.features.passes.forEach(function(thing) {
 		console.log('✓'.green, thing);
 	});
-	report.files.missing.forEach(function(thing) {
+	report.features.failures.forEach(function(thing) {
 		console.log('✘'.red, thing);
 	});
 	console.log('');

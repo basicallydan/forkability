@@ -59,10 +59,10 @@ If you're really, really into this jazz you can use the JS API. This is how it l
 ```
 forkability(options, function(err, report) {
 	console.log('# Recommended files'.magenta);
-	report.files.present.forEach(function(thing) {
+	report.features.passes.forEach(function(thing) {
 		console.log('✓'.green, thing);
 	});
-	report.files.missing.forEach(function(thing) {
+	report.files.failures.forEach(function(thing) {
 		console.log('✘'.red, thing);
 	});
 	report.warnings.forEach(function (w, i) {

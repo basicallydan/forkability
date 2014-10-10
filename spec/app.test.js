@@ -8,7 +8,7 @@ describe('forkability', function() {
 	// 	nock.cleanAll();
 	// });
 
-	it('should identify that the repo has all recommended files', function(done) {
+	it('should identify that the repo has all recommended features', function(done) {
 		mockResponses();
 
 		forkability({
@@ -17,19 +17,19 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.files.present.should.containEql('Contributing document');
-			report.files.present.should.containEql('Readme document');
-			report.files.present.should.containEql('Licence document');
-			report.files.present.should.containEql('Test suite');
-			report.files.present.should.containEql('Changelog document');
-			report.files.present.should.have.a.lengthOf(5);
-			report.files.missing.should.be.empty;
+			report.features.passes.should.containEql('Contributing document');
+			report.features.passes.should.containEql('Readme document');
+			report.features.passes.should.containEql('Licence document');
+			report.features.passes.should.containEql('Test suite');
+			report.features.passes.should.containEql('Changelog document');
+			report.features.passes.should.have.a.lengthOf(5);
+			report.features.failures.should.be.empty;
 			done();
 		});
 	});
 
 	// Fairly sure this test is a false positive
-	it('should identify that the repo has all recommended files when basic auth specified', function(done) {
+	it('should identify that the repo has all recommended features when basic auth specified', function(done) {
 		mockResponses({
 			firstCommitTreeRequestHeaders: {
 				auth: {
@@ -50,19 +50,19 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.files.present.should.containEql('Contributing document');
-			report.files.present.should.containEql('Readme document');
-			report.files.present.should.containEql('Licence document');
-			report.files.present.should.containEql('Test suite');
-			report.files.present.should.containEql('Changelog document');
-			report.files.present.should.have.a.lengthOf(5);
-			report.files.missing.should.be.empty;
+			report.features.passes.should.containEql('Contributing document');
+			report.features.passes.should.containEql('Readme document');
+			report.features.passes.should.containEql('Licence document');
+			report.features.passes.should.containEql('Test suite');
+			report.features.passes.should.containEql('Changelog document');
+			report.features.passes.should.have.a.lengthOf(5);
+			report.features.failures.should.be.empty;
 			done();
 		});
 	});
 
 	// Fairly sure this test is a false positive
-	it('should identify that the repo has all recommended files when an auth token is provided', function(done) {
+	it('should identify that the repo has all recommended features when an auth token is provided', function(done) {
 		mockResponses({
 			firstCommitTreeRequestHeaders: {
 				auth: {
@@ -81,13 +81,13 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.files.present.should.containEql('Contributing document');
-			report.files.present.should.containEql('Readme document');
-			report.files.present.should.containEql('Licence document');
-			report.files.present.should.containEql('Test suite');
-			report.files.present.should.containEql('Changelog document');
-			report.files.present.should.have.a.lengthOf(5);
-			report.files.missing.should.be.empty;
+			report.features.passes.should.containEql('Contributing document');
+			report.features.passes.should.containEql('Readme document');
+			report.features.passes.should.containEql('Licence document');
+			report.features.passes.should.containEql('Test suite');
+			report.features.passes.should.containEql('Changelog document');
+			report.features.passes.should.have.a.lengthOf(5);
+			report.features.failures.should.be.empty;
 			done();
 		});
 	});

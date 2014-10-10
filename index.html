@@ -39,6 +39,11 @@
 							<label for="repository">Repository name</label>
 							<input type="text" id="repository" class="repository form-control right-of-slash" list="repositories">
 						</div>
+						<datalist id="languages"></datalist>
+						<div class="form-group">
+							<label for="Languages">Language (optional)</label>
+							<input type="text" placeholder="Default: none" id="language" class="language form-control right-of-slash" list="languages">
+						</div>
 						<button class="btn btn-primary btn-block" id="check-forkability">Check Forkability</button>
 					</form>
 				</div>
@@ -46,15 +51,16 @@
 		</script>
 		<script class="handlebar-template" id="repo-info-template" type="text/x-handlebars-template">
 			<h2>{{repoName}}</h2>
+			<span class="go-back"><a href="{{rootPath}}"><i class="fa fa-arrow-circle-left"></i> Try another</a></span>
 			<div class="row">
-				<div class="col-md-4 found-list">
-					<h2>Found <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#features-modal">(Explanation)</a></h2>
-					<ul class="results-list present-files">
+				<div class="col-md-4 passed-list">
+					<h2>Passes <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#features-modal">(Explanation)</a></h2>
+					<ul class="results-list passed-features">
 					</ul>
 				</div>
-				<div class="col-md-4 missing-list">
-					<h2>Missing <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#features-modal">(Explanation)</a></h2>
-					<ul class="results-list  missing-files">
+				<div class="col-md-4 failed-list">
+					<h2>Failures <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#features-modal">(Explanation)</a></h2>
+					<ul class="results-list  failed-features">
 					</ul>
 				</div>
 				<div class="col-md-4 warnings-list">
@@ -95,7 +101,7 @@
 					</div>
 					<div class="modal-body">
 					<p>Forkability recommends a few files, folders and features for open-source projects, and this project has the ones with ticks by them.</p>
-					<p>You can click on any of the found or missing features in the list to get an explanation of why it's recommended, or read below for each of them.</p>
+					<p>You can click on any of the passed or failed features in the list to get an explanation of why it's recommended, or read below for each of them.</p>
 					<h5>Contributing Guide</h5>
 					<p>The contributing guide is a file which explains to any would-be contributors some important things they should know before they open an issue, fork the repo or create pull request. It is often simply called <code>CONTRIBUTING</code> without an extension, but some people prefer to use Markdown (<code>.md</code> or <code>.markdown</code>) or <code>.txt</code>.</p>
 					<p>Some of the things which should be included in your contributing guide are:</p>

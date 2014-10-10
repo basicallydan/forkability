@@ -3,7 +3,11 @@ var should = require('should');
 var mockResponses = require('../helper.mockResponses.js');
 
 describe('forkability with nodejs', function () {
-	it('should identify that the repo also has recommended files for nodejs', function(done) {
+	it('should return the correct name for the nodejs language', function() {
+		forkability.languages.nodejs.name.should.eql('Node JS');
+	});
+
+	it('should identify that the repo also has recommended features for nodejs', function(done) {
 		mockResponses({
 			firstCommitTreeBody: {
 				tree : [{
@@ -19,14 +23,14 @@ describe('forkability with nodejs', function () {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.files.present.should.containEql('package.json file');
-			report.files.present.should.containEql('No node_modules folder');
-			report.files.present.should.have.a.lengthOf(2);
-			report.files.missing.should.containEql('Contributing document');
-			report.files.missing.should.containEql('Readme document');
-			report.files.missing.should.containEql('Licence document');
-			report.files.missing.should.containEql('Test suite');
-			report.files.missing.should.containEql('Changelog document');
+			report.features.passes.should.containEql('package.json file');
+			report.features.passes.should.containEql('No node_modules folder');
+			report.features.passes.should.have.a.lengthOf(2);
+			report.features.failures.should.containEql('Contributing document');
+			report.features.failures.should.containEql('Readme document');
+			report.features.failures.should.containEql('Licence document');
+			report.features.failures.should.containEql('Test suite');
+			report.features.failures.should.containEql('Changelog document');
 			done();
 		});
 	});

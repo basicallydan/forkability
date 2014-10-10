@@ -5,6 +5,12 @@ function getParameterByName(name) {
 	return results == null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
+var rootPath = '/forkability';
+
+if (/localhost/i.test(window.location.href)) {
+	rootPath = '/';
+}
+
 var loadPage = function() {
 	var currentUser;
 	var repoOptions = {};
@@ -35,7 +41,13 @@ var loadPage = function() {
 						// user authenticated with GetAPI
 						console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
 						if (repoOptions.username && repoOptions.repository) {
-							checkRepo(repoOptions.username, repoOptions.repository, currentUser.accessToken);
+							checkRepo({
+								user: repoOptions.username,
+								repository: repoOptions.repository,
+								auth: {
+									accessToken: currentUser.accessToken
+								}
+							});
 						} else {
 							showRepoPicker({
 								defaultUsername: currentUser.login
@@ -50,7 +62,7 @@ var loadPage = function() {
 
 	$('.sign-out').click(function() {
 		authClient.logout();
-		history.pushState({}, 'Forkability', '/forkability');
+		history.pushState({}, 'Forkability', rootPath);
 		$(this).hide();
 	});
 
@@ -77,6 +89,11 @@ var loadPage = function() {
 		var hero = renderByID('#choose-repo-template', model);
 		getRepositories(repoOptions.username || currentUser.login);
 
+		hero.find('#languages').html('');
+		$.each(forkability.languages, function(langKey, lang) {
+			hero.find('#languages').append('<option value="' + langKey + '">' + lang.name + '</option>');
+		});
+
 		function getRepositories(username, cb) {
 			var repositoryElement = hero.find('#repository');
 			repositoryElement.attr('placeholder', 'Loading ' + username + '\'s repositories...');
@@ -102,10 +119,18 @@ var loadPage = function() {
 			e.preventDefault();
 			var user = hero.find('#username').val() || currentUser.login;
 			var repo = hero.find('#repository').val();
+			var lang = hero.find('#language').val();
 			if (!repo) {
 				return alert('You really do need to enter a repository name');
 			}
-			checkRepo(user, repo, currentUser.accessToken);
+			checkRepo({
+				user: user,
+				repository: repo,
+				languages: [lang.trim() || undefined],
+				auth: {
+					accessToken: currentUser.accessToken
+				}
+			});
 		};
 
 		hero.find('#username').change(function() {
@@ -121,41 +146,38 @@ var loadPage = function() {
 		hero.find('#check-forkability').click(submit);
 	}
 
-	function checkRepo(user, repository, accessToken) {
+	function checkRepo(forkabilityOpts) {
 		repoOptions = {};
 
-		var forkabilityOpts = {
-			user: user,
-			repository: repository
-		};
+		// var forkabilityOpts = {
+		// 	user: user,
+		// 	repository: repository
+		// };
 
-		if (accessToken) {
-			forkabilityOpts.auth = {
-				token: accessToken
-			};
-		} else {
+		if (!forkabilityOpts.auth && !forkabilityOpts.auth.accessToken) {
 			return showSignIn();
 		}
 
-		history.pushState({}, 'Forkability of ' + user + '/' + repository, '?u=' + user + '&r=' + repository);
+		history.pushState({}, 'Forkability of ' + forkabilityOpts.user + '/' + forkabilityOpts.repository, '?u=' + forkabilityOpts.user + '&r=' + forkabilityOpts.repository);
 
 		forkability(forkabilityOpts, function(err, report) {
 			var reportElement = renderByID('#repo-info-template', {
-				repoName: user + '/' + repository
+				repoName: forkabilityOpts.user + '/' + forkabilityOpts.repository,
+				rootPath: rootPath
 			});
-			if (!report.files.present.length) {
-				$('<li class="message"><strong>Oops!</strong> You don\'t have any of the recommended features for your open source project!</li>').appendTo('.missing-files');
+			if (!report.features.passes.length) {
+				$('<li class="message"><strong>Oops!</strong> You don\'t have any of the recommended features for your open source project!</li>').appendTo('.failed-features');
 			}
 
-			if (!report.files.missing.length) {
-				$('<li class="message"><strong>Congrats!</strong> You have all the recommended features for your open source project!</li>').appendTo('.missing-files');
+			if (!report.features.failures.length) {
+				$('<li class="message"><strong>Congrats!</strong> You have all the recommended features for your open source project!</li>').appendTo('.failed-features');
 			}
 
-			report.files.present.forEach(function(thing) {
-				$('<li><i class="fa fa-check tick"></i> ' + thing + '</li>').appendTo(reportElement.find('.present-files'));
+			report.features.passes.forEach(function(thing) {
+				$('<li><i class="fa fa-check tick"></i> ' + thing + '</li>').appendTo(reportElement.find('.passed-features'));
 			});
-			report.files.missing.forEach(function(thing) {
-				$('<li><i class="fa fa-times cross"></i> ' + thing + '</li>').appendTo(reportElement.find('.missing-files'));
+			report.features.failures.forEach(function(thing) {
+				$('<li><i class="fa fa-times cross"></i> ' + thing + '</li>').appendTo(reportElement.find('.failed-features'));
 			});
 			report.warnings.forEach(function(w, i) {
 				var warningMessage = w.message;

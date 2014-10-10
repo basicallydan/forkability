@@ -52,10 +52,10 @@ h1 img {
 	font-size:1.2rem;
 	margin-top:1rem;
 }
-.present-files .tick {
+.passed-features .tick {
 	color:green;
 }
-.missing-files .cross {
+.failed-features .cross {
 	color:red;
 }
 .warnings .exclaimation {
@@ -107,4 +107,8 @@ h1 img {
 
 .navigation-controls .btn {
 	margin-top:20px;
+}
+
+.go-back {
+	display:block;
 }
