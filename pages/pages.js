@@ -40,21 +40,24 @@ var loadPage = function() {
 						Authorization: 'Token ' + currentUser.accessToken
 					},
 					success: function(data, textStatus, jqXHR) {
+						var o = {
+							user: repoOptions.username,
+							repository: repoOptions.repository,
+							languages: repoOptions.languages
+						};
+						if (currentUser && currentUser.accessToken) {
+							o.auth = {
+								token: currentUser.accessToken
+							};
+						}
 						currentUser = $.extend(currentUser, data);
 						// user authenticated with GetAPI
 						console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
 						if (repoOptions.username && repoOptions.repository) {
-							checkRepo({
-								user: repoOptions.username,
-								repository: repoOptions.repository,
-								auth: {
-									token: currentUser.accessToken
-								},
-								languages: repoOptions.languages
-							});
+							checkRepo(o);
 						} else {
 							showRepoPicker({
-								defaultUsername: currentUser.login
+								defaultUsername: (currentUser && currentUser.login) ? currentUser.login : undefined
 							}, repoOptions);
 						}
 					}
@@ -89,12 +92,19 @@ var loadPage = function() {
 				scope: undefined
 			});
 		});
+
+		hero.find('.skip-for-now').click(function(e) {
+			e.preventDefault();
+			showRepoPicker();
+		});
 		$('.sign-out').hide();
 	}
 
 	function showRepoPicker(model, o) {
 		var hero = renderByID('#choose-repo-template', model);
-		getRepositories(repoOptions.username || currentUser.login);
+		if (currentUser && currentUser.login) {
+			getRepositories(repoOptions.username || currentUser.login);
+		}
 
 		hero.find('#languages').html('');
 		$.each(forkability.languages, function(langKey, lang) {
@@ -104,13 +114,17 @@ var loadPage = function() {
 		function getRepositories(username, cb) {
 			var repositoryElement = hero.find('#repository');
 			repositoryElement.attr('placeholder', 'Loading ' + username + '\'s repositories...');
+			var headers = {};
+			if (currentUser && currentUser.accessToken) {
+				headers = {
+					Authorization: 'Token ' + currentUser.accessToken
+				};
+			}
 			$.ajax(
 				'https://api.github.com/users/' + username + '/repos', {
 					dataType: 'json',
 					method: 'GET',
-					headers: {
-						Authorization: 'Token ' + currentUser.accessToken
-					},
+					headers: headers,
 					success: function(data, textStatus, jqXHR) {
 						hero.find('#repositories').html('');
 						repositoryElement.attr('placeholder', 'Pick one of ' + username + '\'s repositories');
@@ -130,14 +144,17 @@ var loadPage = function() {
 			if (!repo) {
 				return alert('You really do need to enter a repository name');
 			}
-			checkRepo({
+			var o = {
 				user: user,
 				repository: repo,
-				languages: [lang.trim() || undefined],
-				auth: {
+				languages: [lang.trim() || undefined]
+			};
+			if (currentUser && currentUser.accessToken) {
+				o.auth = {
 					token: currentUser.accessToken
-				}
-			});
+				};
+			}
+			checkRepo(o);
 		};
 
 		hero.find('#username').change(function() {
@@ -161,9 +178,9 @@ var loadPage = function() {
 		// 	repository: repository
 		// };
 
-		if (!forkabilityOpts.auth && !forkabilityOpts.auth.token) {
-			return showSignIn();
-		}
+		// if (!forkabilityOpts.auth || !forkabilityOpts.auth.token) {
+		// 	return showSignIn();
+		// }
 
 		var stateURL = '?u=' + forkabilityOpts.user + '&r=' + forkabilityOpts.repository;
 
@@ -180,6 +197,9 @@ var loadPage = function() {
 
 		forkability(forkabilityOpts, function(err, report) {
 			if (err) {
+				if (err.errorName === 'request-limit-hit') {
+					showSignIn();
+				}
 				alert('Sorry, something went wrong getting ' + forkabilityOpts.user + '/' + forkabilityOpts.repository + ':\n' + err.message);
 				return showRepoPicker({
 					defaultUsername: currentUser.login
