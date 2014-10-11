@@ -22,6 +22,7 @@
 					{{/if}}
 					<div class="col-md-6 col-md-offset-3">
 						<a class="btn btn-social btn-large btn-github sign-in"><i class="fa fa-github"></i> Sign in with GitHub</a>
+						<p class="skip-for-now">or <a href="#">skip for now</a></p>
 					</div>
 					<p class="login-explanation col-md-6 col-md-offset-3">Why sign in? You need to sign in just to prevent GitHub API request limits being hit. The prompt will ask you for <strong>read-only</strong> access to your public GitHub info. <strong>Forkability cannot change your profile at all.</strong></p>
 				</div>
@@ -48,7 +49,11 @@
 					<form class="repo-form">
 						<div class="form-group">
 							<label for="username">Repository owner</label>
+							{{#if defaultUsername}}
 							<input type="text" id="username" placeholder="Default: {{defaultUsername}}" class="username form-control left-of-slash">
+							{{else}}
+							<input type="text" id="username" class="username form-control left-of-slash">
+							{{/if}}
 						</div>
 						<datalist id="repositories"></datalist>
 						<div class="form-group">
