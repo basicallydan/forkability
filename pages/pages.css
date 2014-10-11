@@ -145,6 +145,22 @@ h1 img {
 	margin-right:0;
 }
 
+@media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
+	.forkability-header {
+		display: inline-block;
+		font-size: 2rem;
+		float: left;
+	}
+
+	.navigation-controls {
+		float: right;
+	}
+
+	.navigation-controls .btn {
+		margin-top:1.3rem;
+	}
+}
+
 .navigation-controls {
 	text-align: right;
 }

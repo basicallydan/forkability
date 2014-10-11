@@ -50,7 +50,7 @@
 			</div>
 		</script>
 		<script class="handlebar-template" id="repo-info-template" type="text/x-handlebars-template">
-			<h2>{{repoName}}</h2>
+			<h2>{{repoUser}}/<wbr>{{repoName}}</h2>
 			<span class="go-back"><a href="{{rootPath}}"><i class="fa fa-arrow-circle-left"></i> Try another</a></span>
 			<div class="row">
 				<div class="col-md-6 passed-list">
@@ -100,7 +100,7 @@
 	<body>
 		<div class="container" id="main-content">
 			<nav class="row header">
-				<div class="col-sm-10">
+				<div class="col-sm-10 forkability-header">
 					<h1>
 						<img src="pages/logo.svg">
 						Forkability

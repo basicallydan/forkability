@@ -171,7 +171,8 @@ var loadPage = function() {
 
 		forkability(forkabilityOpts, function(err, report) {
 			var reportElement = renderByID('#repo-info-template', {
-				repoName: forkabilityOpts.user + '/' + forkabilityOpts.repository,
+				repoUser: forkabilityOpts.user,
+				repoName: forkabilityOpts.repository,
 				rootPath: rootPath
 			});
 			if (!report.features.passes.length) {
