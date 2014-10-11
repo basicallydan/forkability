@@ -101,7 +101,6 @@ var loadPage = function() {
 			e.preventDefault();
 			showRepoPicker();
 		});
-
 		$('.sign-out').hide();
 		$('nav .sign-in').show();
 	}
