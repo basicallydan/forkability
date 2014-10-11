@@ -1,0 +1,1 @@
+The `pages` directory exists to store files needed by the `gh-pages` branch of this repository. Don't modify stuff in here unless you're changing the page at https://basicallydan.github.io/forkability.
