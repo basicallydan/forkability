@@ -145,25 +145,6 @@ h1 img {
 	margin-right:0;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
-	.forkability-header {
-		display: inline-block;
-		float: left;
-	}
-
-	.forkability-header h1 {
-		font-size:2rem;
-	}
-
-	.navigation-controls {
-		float: right;
-	}
-
-	.navigation-controls .btn {
-		margin-top:1.3rem;
-	}
-}
-
 .navigation-controls {
 	text-align: right;
 }
@@ -174,4 +155,22 @@ h1 img {
 
 .go-back {
 	display:block;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
+	.forkability-header {
+		display: inline-block;
+		float: left;
+	}
+
+	.forkability-header h1 {
+	}
+
+	.navigation-controls {
+		float: right;
+	}
+
+	.navigation-controls .btn {
+		margin-top:1.3rem;
+	}
 }
