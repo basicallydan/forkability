@@ -194,6 +194,10 @@ var loadPage = function() {
 		// 	return showSignIn();
 		// }
 
+		if (typeof ga !== 'undefined') {
+			ga('send', 'screenview', $.extend({'screenName': 'Check Repo'}, forkabilityOpts));
+		}
+
 		var stateURL = '?u=' + forkabilityOpts.user + '&r=' + forkabilityOpts.repository;
 
 		if (forkabilityOpts.languages && forkabilityOpts.languages.length > 0) {
