@@ -148,8 +148,11 @@ h1 img {
 @media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
 	.forkability-header {
 		display: inline-block;
-		font-size: 2rem;
 		float: left;
+	}
+
+	.forkability-header h1 {
+		font-size:2rem;
 	}
 
 	.navigation-controls {
