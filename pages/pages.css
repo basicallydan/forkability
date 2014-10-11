@@ -40,6 +40,10 @@ h1 img {
 	vertical-align:bottom;
 }
 
+.loading h2 {
+	color:#999;
+}
+
 .results-list, .results-list li {
 	list-style: none;
 	text-indent: 0;

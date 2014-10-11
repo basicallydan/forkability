@@ -31,6 +31,7 @@ var loadPage = function() {
 		} else if (user && user.accessToken) {
 			$('.sign-out').show();
 			currentUser = user;
+			renderByID('#logging-in-template');
 			$.ajax(
 				'https://api.github.com/user', {
 					dataType: 'json',
@@ -168,6 +169,11 @@ var loadPage = function() {
 		}
 
 		history.pushState({}, 'Forkability of ' + forkabilityOpts.user + '/' + forkabilityOpts.repository, stateURL);
+
+		renderByID('#loading-repo-template', {
+			repoUser: forkabilityOpts.user,
+			repoName: forkabilityOpts.repository
+		});
 
 		forkability(forkabilityOpts, function(err, report) {
 			var reportElement = renderByID('#repo-info-template', {
