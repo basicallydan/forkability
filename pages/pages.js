@@ -16,6 +16,14 @@ var loadPage = function() {
 	var repoOptions = {};
 	var repos = [];
 
+	$(document).on('click', '.sign-in', function(e) {
+		e.preventDefault();
+		authClient.login({
+			rememberMe: true,
+			scope: undefined
+		});
+	});
+
 	repoOptions.username = getParameterByName('u');
 	repoOptions.repository = getParameterByName('r');
 	repoOptions.languages = (getParameterByName('l') || '').trim();
@@ -28,8 +36,10 @@ var loadPage = function() {
 			// an error occurred while attempting login
 			console.log(error);
 			$('.sign-out').hide();
+			$('nav .sign-in').show();
 		} else if (user && user.accessToken) {
 			$('.sign-out').show();
+			$('nav .sign-in').hide();
 			currentUser = user;
 			renderByID('#logging-in-template');
 			$.ajax(
@@ -63,14 +73,16 @@ var loadPage = function() {
 					}
 				});
 		} else {
-			showSignIn();
+			showRepoPicker();
 		}
 	});
 
 	$('.sign-out').click(function() {
 		authClient.logout();
 		history.pushState({}, 'Forkability', rootPath);
+		showSignIn();
 		$(this).hide();
+		$('nav .sign-in').show();
 	});
 
 	function renderByID(id, o) {
@@ -79,25 +91,19 @@ var loadPage = function() {
 		return $('.main-body').html(template(o));
 	}
 
-	function showSignIn() {
+	function showSignIn(showAlert) {
 		var hero = renderByID('#sign-in-template', {
 			repoOptions: repoOptions,
-			showAlert: repoOptions.username || repoOptions.repository
-		});
-
-		hero.find('.sign-in').click(function(e) {
-			e.preventDefault();
-			authClient.login({
-				rememberMe: true,
-				scope: undefined
-			});
+			showAlert: showAlert || repoOptions.username || repoOptions.repository
 		});
 
 		hero.find('.skip-for-now').click(function(e) {
 			e.preventDefault();
 			showRepoPicker();
 		});
+
 		$('.sign-out').hide();
+		$('nav .sign-in').show();
 	}
 
 	function showRepoPicker(model, o) {
@@ -198,11 +204,11 @@ var loadPage = function() {
 		forkability(forkabilityOpts, function(err, report) {
 			if (err) {
 				if (err.errorName === 'request-limit-hit') {
-					showSignIn();
+					return showSignIn(true);
 				}
 				alert('Sorry, something went wrong getting ' + forkabilityOpts.user + '/' + forkabilityOpts.repository + ':\n' + err.message);
 				return showRepoPicker({
-					defaultUsername: currentUser.login
+					defaultUsername: (currentUser ? currentUser.login : undefined)
 				}, repoOptions);
 			}
 

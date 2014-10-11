@@ -173,7 +173,7 @@ h1 a:link,h1 a:visited,h1 a:hover {
 	}
 
 	.forkability-header h1 {
-		font-size:2rem;
+		font-size:1.6rem;
 	}
 
 	.navigation-controls {
@@ -181,7 +181,7 @@ h1 a:link,h1 a:visited,h1 a:hover {
 	}
 
 	.navigation-controls .btn {
-		margin-top:1.3rem;
+		margin-top:0.9rem;
 	}
 
 	.sticky-footer__info li:before {
