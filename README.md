@@ -28,21 +28,27 @@ forkability jashkenas/backbone --username myusername --password totallynotmypass
 # Basic auth!
 ```
 
-This will give you a pretty, colourful (if your terminal supports it), UTF-8-tastic (if your terminal supports it) list of present or missing features, plus some "warnings" which at the moment are all issue-related. It looks a bit like this:
+This will give you a pretty, colourful (if your terminal supports it), UTF-8-tastic (if your terminal supports it) list of features and suggested features. It looks a bit like this:
 
 
 ```bash
 forkability basicallydan/interfake
 
-# Recommended features
+# Forkability found 6 recommended features, and has 4 suggestions
+
+# Features
 ✓ Contributing document
 ✓ Readme document
 ✓ Licence document
 ✓ Test suite
-✘ Changelog document
 
-# 1 Warning
-| Uncommented issue
+# Suggestions
+! Changelog document
+! Uncommented issue: Comment on the issue to indicate acknowledgement
+├── Support other Content-Types: https://github.com/basicallydan/interfake/issues/31
+! Untouched issue: Comment or label the issue to indicate acknowledgement
+├── Support other Content-Types: https://github.com/basicallydan/interfake/issues/31
+! Uncommented issue: Comment on the issue to indicate acknowledgement
 └── Media Responses: https://github.com/basicallydan/interfake/issues/19
 ```
 
@@ -64,10 +70,6 @@ forkability(options, function(err, report) {
 	});
 	report.features.failures.forEach(function(thing) {
 		console.log('✘'.red, thing);
-	});
-	report.warnings.forEach(function (w, i) {
-		console.log('|'.cyan, w.message);
-		// Also w.details, w.details.url, w.details.title
 	});
 });
 ```
