@@ -77,7 +77,10 @@ var loadPage = function() {
 	}
 
 	function showSignIn() {
-		var hero = renderByID('#sign-in-template');
+		var hero = renderByID('#sign-in-template', {
+			repoOptions: repoOptions,
+			showAlert: repoOptions.username || repoOptions.repository
+		});
 
 		hero.find('.sign-in').click(function(e) {
 			e.preventDefault();
@@ -176,6 +179,13 @@ var loadPage = function() {
 		});
 
 		forkability(forkabilityOpts, function(err, report) {
+			if (err) {
+				alert('Sorry, something went wrong getting ' + forkabilityOpts.user + '/' + forkabilityOpts.repository + ':\n' + err.message);
+				return showRepoPicker({
+					defaultUsername: currentUser.login
+				}, repoOptions);
+			}
+
 			var reportElement = renderByID('#repo-info-template', {
 				repoUser: forkabilityOpts.user,
 				repoName: forkabilityOpts.repository,

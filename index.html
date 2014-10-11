@@ -14,23 +14,29 @@
 				<div class="hero col-md-12">
 					<h2 class="summary">A linter for your repository.</h2>
 					<p class="col-md-6 col-md-offset-3">Forkability helps you to make your project more open-source-friendly by pointing out missing features and useful tips.</p>
+					{{#if showAlert}}
+					<div class="alert alert-info alert-dismissible" role="alert" style="clear:both">
+						<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						Sorry, to prevent GitHub API request limits being hit you need to sign in to continue.
+					</div>
+					{{/if}}
 					<div class="col-md-6 col-md-offset-3">
 						<a class="btn btn-social btn-large btn-github sign-in"><i class="fa fa-github"></i> Sign in with GitHub</a>
 					</div>
-					<p class="login-explanation col-md-6 col-md-offset-3">The prompt will ask you read-only access to your public GitHub info. <strong>Forkability cannot change your profile at all.</strong> You need to login just to prevent GitHub API request limits being hit.</p>
+					<p class="login-explanation col-md-6 col-md-offset-3">Why sign in? You need to sign in just to prevent GitHub API request limits being hit. The prompt will ask you for <strong>read-only</strong> access to your public GitHub info. <strong>Forkability cannot change your profile at all.</strong></p>
 				</div>
 			</div>
 		</script>
-		<div class="handlebar-template" id="loading-repo-template" type="text/x-handlebars-template">
+		<script class="handlebar-template" id="loading-repo-template" type="text/x-handlebars-template">
 			<div class="loading">
 				<h2>{{repoUser}}/<wbr>{{repoName}} is being linted&hellip;</h2>
 			</div>
-		</div>
-		<div class="handlebar-template" id="logging-in-template" type="text/x-handlebars-template">
+		</script>
+		<script class="handlebar-template" id="logging-in-template" type="text/x-handlebars-template">
 			<div class="loading">
 				<h2>Logging you in</h2>
 			</div>
-		</div>
+		</script>
 		<script class="handlebar-template" id="choose-repo-template" type="text/x-handlebars-template">
 			<div class="row">
 				<div class="hero col-md-12">
@@ -111,10 +117,10 @@
 		<div class="container" id="main-content">
 			<nav class="row header">
 				<div class="col-sm-10 forkability-header">
-					<h1>
+					<h1><a href="/forkability">
 						<img src="pages/logo.svg">
 						Forkability
-					</h1>
+					</a></h1>
 				</div>
 				<div class="col-sm-2 navigation-controls">
 					<button type="button" style="display:none;" class="btn btn-default sign-out">Sign out</button>

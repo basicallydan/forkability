@@ -40,6 +40,11 @@ h1 img {
 	vertical-align:bottom;
 }
 
+h1 a:link,h1 a:visited,h1 a:hover {
+	color:inherit;
+	text-decoration:inherit;
+}
+
 .loading h2 {
 	color:#999;
 }
