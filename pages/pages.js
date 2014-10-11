@@ -190,7 +190,7 @@ var loadPage = function() {
 				$('<li><i class="fa fa-check tick"></i> ' + thing + '</li>').appendTo(reportElement.find('.passed-features'));
 			});
 			report.features.failures.forEach(function(thing) {
-				$('<li><i class="fa fa-times cross"></i> ' + thing + '</li>').appendTo(reportElement.find('.failed-features'));
+				$('<li><i class="fa fa-plus cross"></i> ' + thing + '</li>').appendTo(reportElement.find('.failed-features'));
 			});
 			report.warnings.forEach(function(w, i) {
 				var warningMessage = w.message;
