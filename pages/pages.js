@@ -160,9 +160,11 @@ var loadPage = function() {
 			}
 			var o = {
 				user: user,
-				repository: repo,
-				languages: [lang.trim() || undefined]
+				repository: repo
 			};
+			if (lang.trim()) {
+				o.languages = lang.trim();
+			}
 			if (currentUser && currentUser.accessToken) {
 				o.auth = {
 					token: currentUser.accessToken
@@ -203,7 +205,7 @@ var loadPage = function() {
 		if (forkabilityOpts.languages && forkabilityOpts.languages.length > 0) {
 			stateURL += '&l=' + forkabilityOpts.languages.join(',');
 		} else {
-			forkabilityOpts.languages = undefined;
+			delete forkabilityOpts.languages;
 		}
 
 		history.pushState({}, 'Forkability of ' + forkabilityOpts.user + '/' + forkabilityOpts.repository, stateURL);
