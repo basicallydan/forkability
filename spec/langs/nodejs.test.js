@@ -23,14 +23,14 @@ describe('forkability with nodejs', function () {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.features.passes.should.containEql('package.json file');
-			report.features.passes.should.containEql('No node_modules folder');
+			report.features.passes.should.containEql({ message : 'package.json file' });
+			report.features.passes.should.containEql({ message : 'No node_modules folder' });
 			report.features.passes.should.have.a.lengthOf(2);
-			report.features.failures.should.containEql('Contributing document');
-			report.features.failures.should.containEql('Readme document');
-			report.features.failures.should.containEql('Licence document');
-			report.features.failures.should.containEql('Test suite');
-			report.features.failures.should.containEql('Changelog document');
+			report.features.failures.should.containEql({ message : 'Contributing document' });
+			report.features.failures.should.containEql({ message : 'Readme document' });
+			report.features.failures.should.containEql({ message : 'Licence document' });
+			report.features.failures.should.containEql({ message : 'Test suite' });
+			report.features.failures.should.containEql({ message : 'Changelog document' });
 			done();
 		});
 	});

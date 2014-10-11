@@ -17,11 +17,11 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.features.passes.should.containEql('Contributing document');
-			report.features.passes.should.containEql('Readme document');
-			report.features.passes.should.containEql('Licence document');
-			report.features.passes.should.containEql('Test suite');
-			report.features.passes.should.containEql('Changelog document');
+			report.features.passes.should.containEql({ message : 'Contributing document' });
+			report.features.passes.should.containEql({ message : 'Readme document' });
+			report.features.passes.should.containEql({ message : 'Licence document' });
+			report.features.passes.should.containEql({ message : 'Test suite' });
+			report.features.passes.should.containEql({ message : 'Changelog document' });
 			report.features.passes.should.have.a.lengthOf(5);
 			report.features.failures.should.be.empty;
 			done();
@@ -50,11 +50,11 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.features.passes.should.containEql('Contributing document');
-			report.features.passes.should.containEql('Readme document');
-			report.features.passes.should.containEql('Licence document');
-			report.features.passes.should.containEql('Test suite');
-			report.features.passes.should.containEql('Changelog document');
+			report.features.passes.should.containEql({ message : 'Contributing document' });
+			report.features.passes.should.containEql({ message : 'Readme document' });
+			report.features.passes.should.containEql({ message : 'Licence document' });
+			report.features.passes.should.containEql({ message : 'Test suite' });
+			report.features.passes.should.containEql({ message : 'Changelog document' });
 			report.features.passes.should.have.a.lengthOf(5);
 			report.features.failures.should.be.empty;
 			done();
@@ -81,11 +81,11 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.features.passes.should.containEql('Contributing document');
-			report.features.passes.should.containEql('Readme document');
-			report.features.passes.should.containEql('Licence document');
-			report.features.passes.should.containEql('Test suite');
-			report.features.passes.should.containEql('Changelog document');
+			report.features.passes.should.containEql({ message : 'Contributing document' });
+			report.features.passes.should.containEql({ message : 'Readme document' });
+			report.features.passes.should.containEql({ message : 'Licence document' });
+			report.features.passes.should.containEql({ message : 'Test suite' });
+			report.features.passes.should.containEql({ message : 'Changelog document' });
 			report.features.passes.should.have.a.lengthOf(5);
 			report.features.failures.should.be.empty;
 			done();

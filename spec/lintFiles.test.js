@@ -10,7 +10,7 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Readme document');
+		report.passes.should.containEql({ message : 'Readme document' });
 	});
 
 	it('should return presence of a readme with a txt extension', function () {
@@ -22,7 +22,7 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Readme document');
+		report.passes.should.containEql({ message : 'Readme document' });
 	});
 
 	it('should return presence of an upper-case readme with a txt extension', function () {
@@ -34,7 +34,7 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Readme document');
+		report.passes.should.containEql({ message : 'Readme document' });
 	});
 
 	it('should return presence of an upper-case readme with no extension at all', function () {
@@ -46,7 +46,7 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Readme document');
+		report.passes.should.containEql({ message : 'Readme document' });
 	});
 
 	it('should return presence of a licence with a markdown extension', function () {
@@ -58,8 +58,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Licence document');
-		report.failures.should.not.containEql('Licence document');
+		report.passes.should.containEql({ message : 'Licence document' });
+		report.failures.should.not.containEql({ message : 'Licence document' });
 	});
 
 	it('should return presence of a licence with a txt extension', function () {
@@ -71,8 +71,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Licence document');
-		report.failures.should.not.containEql('Licence document');
+		report.passes.should.containEql({ message : 'Licence document' });
+		report.failures.should.not.containEql({ message : 'Licence document' });
 	});
 
 	it('should return presence of an upper-case licence with a txt extension', function () {
@@ -84,8 +84,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Licence document');
-		report.failures.should.not.containEql('Licence document');
+		report.passes.should.containEql({ message : 'Licence document' });
+		report.failures.should.not.containEql({ message : 'Licence document' });
 	});
 
 	it('should return presence of an upper-case licence with no extension at all', function () {
@@ -97,8 +97,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Licence document');
-		report.failures.should.not.containEql('Licence document');
+		report.passes.should.containEql({ message : 'Licence document' });
+		report.failures.should.not.containEql({ message : 'Licence document' });
 	});
 
 	it('should return presence of licence where the spelling is in the UK verb form, "License"', function () {
@@ -110,8 +110,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Licence document');
-		report.failures.should.not.containEql('Licence document');
+		report.passes.should.containEql({ message : 'Licence document' });
+		report.failures.should.not.containEql({ message : 'Licence document' });
 	});
 
 	it('should return presence of licence when COPYING file exists', function () {
@@ -123,8 +123,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Licence document');
-		report.failures.should.not.containEql('Licence document');
+		report.passes.should.containEql({ message : 'Licence document' });
+		report.failures.should.not.containEql({ message : 'Licence document' });
 	});
 
 	it('should return presence of a contributing with a markdown extension', function () {
@@ -136,8 +136,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Contributing document');
-		report.failures.should.not.containEql('Contributing document');
+		report.passes.should.containEql({ message : 'Contributing document' });
+		report.failures.should.not.containEql({ message : 'Contributing document' });
 	});
 
 	it('should return presence of a contributing with a txt extension', function () {
@@ -149,7 +149,7 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Contributing document');
+		report.passes.should.containEql({ message : 'Contributing document' });
 	});
 
 	it('should return presence of an upper-case contributing with a txt extension', function () {
@@ -161,7 +161,7 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Contributing document');
+		report.passes.should.containEql({ message : 'Contributing document' });
 	});
 
 	it('should return presence of an upper-case contributing with no extension at all', function () {
@@ -173,7 +173,7 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Contributing document');
+		report.passes.should.containEql({ message : 'Contributing document' });
 	});
 
 	it('should not return presence of features which merely contain the words contributing, readme or licence', function () {
@@ -191,9 +191,9 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.not.containEql('Contributing document');
-		report.passes.should.not.containEql('Readme document');
-		report.passes.should.not.containEql('Licence document');
+		report.passes.should.not.containEql({ message : 'Contributing document' });
+		report.passes.should.not.containEql({ message : 'Readme document' });
+		report.passes.should.not.containEql({ message : 'Licence document' });
 	});
 
 	it('should return presence of test suite if the repo has any code in it and a spec folder', function () {
@@ -208,7 +208,7 @@ describe('lintFiles', function () {
 			containsCode: true
 		});
 
-		report.passes.should.containEql('Test suite');
+		report.passes.should.containEql({ message : 'Test suite' });
 	});
 
 	it('should disregard presence of a test suite if the repo has no code in it and no spec folder', function () {
@@ -223,9 +223,9 @@ describe('lintFiles', function () {
 			containsCode: false
 		});
 
-		report.passes.should.containEql('Contributing document');
-		report.passes.should.not.containEql('Test suite');
-		report.failures.should.not.containEql('Test suite');
+		report.passes.should.containEql({ message : 'Contributing document' });
+		report.passes.should.not.containEql({ message : 'Test suite' });
+		report.failures.should.not.containEql({ message : 'Test suite' });
 	});
 
 	it('should return presence of a changelog called changes with a markdown extension', function () {
@@ -237,8 +237,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Changelog document');
-		report.failures.should.not.containEql('Changelog document');
+		report.passes.should.containEql({ message : 'Changelog document' });
+		report.failures.should.not.containEql({ message : 'Changelog document' });
 	});
 
 	it('should return presence of a changelog called changelog with a markdown extension', function () {
@@ -250,7 +250,7 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Changelog document');
+		report.passes.should.containEql({ message : 'Changelog document' });
 	});
 
 	it('should return presence of a changelog called changelog with no extension', function () {
@@ -262,8 +262,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql('Changelog document');
-		report.failures.should.not.containEql('Changelog document');
+		report.passes.should.containEql({ message : 'Changelog document' });
+		report.failures.should.not.containEql({ message : 'Changelog document' });
 	});
 
 	it('should return presence of a feature specified in options', function () {
@@ -279,8 +279,8 @@ describe('lintFiles', function () {
 			}
 		});
 
-		report.passes.should.containEql('package.json file');
-		report.failures.should.not.containEql('package.json file');
+		report.passes.should.containEql({ message : 'package.json file' });
+		report.failures.should.not.containEql({ message : 'package.json file' });
 	});
 
 	it('should return presence of a feature specified in options to not exist', function () {
@@ -296,8 +296,8 @@ describe('lintFiles', function () {
 			}
 		});
 
-		report.passes.should.containEql('No node_modules folder');
-		report.failures.should.not.containEql('No node_modules folder');
+		report.passes.should.containEql({ message : 'No node_modules folder' });
+		report.failures.should.not.containEql({ message : 'No node_modules folder' });
 	});
 
 	it('should return failure of a feature specified in options to not exist', function () {
@@ -318,8 +318,8 @@ describe('lintFiles', function () {
 			}
 		});
 
-		report.passes.should.not.containEql('No node_modules folder');
-		report.failures.should.containEql('No node_modules folder');
+		report.passes.should.not.containEql({ message : 'No node_modules folder' });
+		report.failures.should.containEql({ message : 'No node_modules folder' });
 	});
 
 	it('should return allow two features of the same name but different type where one is allowed but not another', function () {
@@ -349,10 +349,10 @@ describe('lintFiles', function () {
 			}
 		});
 
-		report.passes.should.not.containEql('No node_modules folder');
-		report.failures.should.containEql('No node_modules folder');
+		report.passes.should.not.containEql({ message : 'No node_modules folder' });
+		report.failures.should.containEql({ message : 'No node_modules folder' });
 		
-		report.passes.should.containEql('A node_modules file');
-		report.failures.should.not.containEql('A node_modules file');
+		report.passes.should.containEql({ message : 'A node_modules file' });
+		report.failures.should.not.containEql({ message : 'A node_modules file' });
 	});
 });
