@@ -65,11 +65,11 @@
 					err.errorName = 'invalid-credentials';
 					throw err;
 				} else if (response[0] && response[0].statusCode == 403) {
-					new Error('The GitHub API is refusing requests, probably because of lack of authentication. See forkablity --help for more');
+					err = new Error('The GitHub API is refusing requests, probably because of lack of authentication. See forkablity --help for more');
 					err.errorName = 'request-limit-hit';
 					throw err;
 				} else if (response[0] && response[0].statusCode == 404) {
-					new Error('The GitHub Repository ' + username + '/' + repo + ' does not exist');
+					err = new Error('The GitHub Repository ' + username + '/' + repo + ' does not exist');
 					err.errorName = 'repo-not-found';
 					throw err;
 				}

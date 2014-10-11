@@ -73,7 +73,15 @@ var loadPage = function() {
 					}
 				});
 		} else {
-			showRepoPicker();
+			if (repoOptions.username && repoOptions.repository) {
+				checkRepo({
+					user: repoOptions.username,
+					repository: repoOptions.repository,
+					languages: repoOptions.languages
+				});
+			} else {
+				showRepoPicker();
+			}
 		}
 	});
 
@@ -192,6 +200,8 @@ var loadPage = function() {
 
 		if (forkabilityOpts.languages && forkabilityOpts.languages.length > 0) {
 			stateURL += '&l=' + forkabilityOpts.languages.join(',');
+		} else {
+			forkabilityOpts.languages = undefined;
 		}
 
 		history.pushState({}, 'Forkability of ' + forkabilityOpts.user + '/' + forkabilityOpts.repository, stateURL);
