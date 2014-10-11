@@ -81,6 +81,7 @@ var loadPage = function() {
 		authClient.logout();
 		history.pushState({}, 'Forkability', rootPath);
 		showSignIn();
+		currentUser = undefined;
 		$(this).hide();
 		$('nav .sign-in').show();
 	});
