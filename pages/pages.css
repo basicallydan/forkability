@@ -138,6 +138,10 @@ h1 a:link,h1 a:visited,h1 a:hover {
 	display: inline-block;
 }
 
+.sticky-footer__info li iframe {
+	vertical-align: bottom;
+}
+
 .sticky-footer__info li:before {
 	color:rgb(34, 156, 236);
 	color:rgba(34, 156, 236, 0.77);
