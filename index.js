@@ -49,20 +49,20 @@ if (program.username && program.password) {
 
 function listReporter(err, report) {
 	console.log('# Recommended features'.magenta);
-	report.features.passes.forEach(function(thing) {
-		console.log('✓'.green, thing);
+	report.features.passes.forEach(function(pass) {
+		console.log('✓'.green, pass.message);
 	});
-	report.features.failures.forEach(function(thing) {
-		console.log('✘'.red, thing);
-	});
-	console.log('');
-	console.log(('# ' + report.warnings.length + (' Warning' + (report.warnings.length === 1 ? '' : 's')))[report.warnings.length ? 'magenta' : 'green']);
-	report.warnings.forEach(function (w, i) {
-		console.log('|'.cyan, w.message);
-		if (w.details && w.details.url) {
-			console.log(((i === report.warnings.length - 1 ? '└' : '├') + '──').cyan, w.details.title ? (w.details.title + ':') : '', w.details.url);
+	report.features.failures.forEach(function(failure, i) {
+		console.log('✘'.red, failure.message);
+		if (failure.details && failure.details.url) {
+			console.log(((i === report.features.failures.length - 1 ? '└' : '├') + '──').cyan, failure.details.title ? (failure.details.title + ':') : '', failure.details.url);
 		}
 	});
+	// console.log('');
+	// console.log(('# ' + report.warnings.length + (' Warning' + (report.warnings.length === 1 ? '' : 's')))[report.warnings.length ? 'magenta' : 'green']);
+	// report.warnings.forEach(function (w, i) {
+	// 	console.log('|'.cyan, w.message);
+	// });
 }
 
 function jsonReporter(err, report) {
