@@ -188,7 +188,10 @@ var loadPage = function() {
 			report.features.failures.forEach(function(failure) {
 				var failureMessage = failure.message;
 				if (failure.details && failure.details.url && failure.details.title) {
-					failureMessage += '<br><i class="fa fa-long-arrow-right"></i><a href="' + failure.details.url + '" target="_blank">' + failure.details.title + '</a>';
+					failureMessage += ': <span class="failure-details"><a href="' + failure.details.url + '" target="_blank">' + failure.details.title + '</a></span>';
+				}
+				if (failure.details && failure.details.suggestion) {
+					failureMessage += '<span class="failure-suggestion">' + failure.details.suggestion + '</span>';
 				}
 				$('<li><i class="fa fa-exclamation-triangle cross"></i> ' + failureMessage + '</li>').appendTo(reportElement.find('.failed-features'));
 			});

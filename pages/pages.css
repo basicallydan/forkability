@@ -28,6 +28,7 @@ h1 img {
 	text-indent: 0;
 	margin-left:0;
 	padding: 0;
+	margin-bottom: 0.2em;
 }
 .handlebar-template {
 	display: none;
@@ -71,6 +72,14 @@ h1 img {
 .failed-features .cross {
 	color:red;
 }
+
+.failure-suggestion {
+	display:block;
+	box-sizing:border-box;
+	padding-left:1.3em;
+	color:#777;
+}
+
 .warnings .exclaimation {
 	color:orange;
 }

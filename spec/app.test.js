@@ -22,7 +22,8 @@ describe('forkability', function() {
 			report.features.passes.should.containEql({ message : 'Licence document' });
 			report.features.passes.should.containEql({ message : 'Test suite' });
 			report.features.passes.should.containEql({ message : 'Changelog document' });
-			report.features.passes.should.have.a.lengthOf(5);
+			report.features.passes.should.containEql({ message : 'All open issues have been acknowledged' });
+			report.features.passes.should.have.a.lengthOf(6);
 			report.features.failures.should.be.empty;
 			done();
 		});
@@ -55,7 +56,8 @@ describe('forkability', function() {
 			report.features.passes.should.containEql({ message : 'Licence document' });
 			report.features.passes.should.containEql({ message : 'Test suite' });
 			report.features.passes.should.containEql({ message : 'Changelog document' });
-			report.features.passes.should.have.a.lengthOf(5);
+			report.features.passes.should.containEql({ message : 'All open issues have been acknowledged' });
+			report.features.passes.should.have.a.lengthOf(6);
 			report.features.failures.should.be.empty;
 			done();
 		});
@@ -86,7 +88,8 @@ describe('forkability', function() {
 			report.features.passes.should.containEql({ message : 'Licence document' });
 			report.features.passes.should.containEql({ message : 'Test suite' });
 			report.features.passes.should.containEql({ message : 'Changelog document' });
-			report.features.passes.should.have.a.lengthOf(5);
+			report.features.passes.should.containEql({ message : 'All open issues have been acknowledged' });
+			report.features.passes.should.have.a.lengthOf(6);
 			report.features.failures.should.be.empty;
 			done();
 		});

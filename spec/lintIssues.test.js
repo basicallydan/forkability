@@ -62,6 +62,38 @@ describe('lintIssues', function () {
 		var report = lintIssues(issues, 'joebloggs');
 
 		report.failures.length.should.eql(0);
+		report.passes.length.should.eql(1);
+		report.passes.should.containEql({
+			message: 'All open issues have been acknowledged'
+		});
+	});
+
+	it('should return no warnings if all untouched issues were commented on or labeled', function () {
+		var issues = [
+			{
+				user: {
+					login: 'jimbob'
+				},
+				comments: 1,
+				labels: [],
+				title: 'This issue has no comments',
+				html_url: 'This is a URL'
+			},
+			{
+				user: {
+					login: 'jimbob'
+				},
+				comments: 1,
+				labels: ['alabel'],
+				title: 'This issue has no comments',
+				html_url: 'This is a URL'
+			}
+		];
+
+		var report = lintIssues(issues, 'joebloggs');
+
+		report.failures.length.should.eql(0);
+		report.passes.length.should.eql(1);
 		report.passes.should.containEql({
 			message: 'All open issues have been acknowledged'
 		});

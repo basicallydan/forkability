@@ -35,7 +35,6 @@ describe('forkability with python', function () {
 			report.features.passes.should.containEql({ message : 'requirements.txt file' });
 			report.features.passes.should.containEql({ message : 'Documentation' });
 			report.features.passes.should.containEql({ message : 'Test suite' });
-			report.features.passes.should.have.a.lengthOf(4);
 			report.features.failures.should.containEql({ message : 'Contributing document' });
 			report.features.failures.should.containEql({ message : 'Readme document' });
 			report.features.failures.should.containEql({ message : 'Licence document' });
