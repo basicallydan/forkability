@@ -115,6 +115,10 @@ h1 img {
 	margin-top:2rem;
 }
 
+.sticky-footer__info {
+	padding:0;
+}
+
 .sticky-footer__info, .sticky-footer__info li {
 	list-style:none;
 	text-indent:none;
