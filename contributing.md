@@ -32,8 +32,52 @@ Forkability should undergo frequent reviews to keep up with opinion about what m
 
 # Requesting language support
 
+It would be absolutely brilliant if all the programming languages and their various platforms could be covered by Forkability for linting. So, if there's a language you'd like to see covered which isn't covered yet, you could [open an issue](https://github.com/basicallydan/forkability/issues) to request it. Hopefully somebody will pick it up! If you could provide some information about the kinds of features that an open-source project in your chosen language should have, that would be extra helpful.
+
+The most helpful thing you could do, however, is...
+
 # Adding language support
+
+Currently, language support covers checking the contents of the file tree at the root of the repository in it's state at the most recent commit. To see more about how it works, see the [lintFiles.test.js](https://github.com/basicallydan/forkability/blob/master/lib/lintFiles.js).
+
+However, just to add support, you just need to follow these steps:
+
+## 1. Create a file for your language - let's say for the example that it's Ruby (it's just an example so don't read too much into it). In here we're going to put feature tests, essentially checking for the existence - or lack of existence - of files in the repo.
+
+```js
+module.exports = {
+	// The human-readable name should go here
+	name: 'Ruby',
+	features: {
+		// The simplest thing is to check for the existence of a file using a regular expression
+		'gemfile':/^gemfile/i,
+		// You can also test against the type (blob for file or tree for folder)
+		'bin folder': {
+			path: /^bin/i,
+			type:'tree'
+		},
+		// And you can check for the *lack* of existence of a file or folder with shouldExist = false
+		'No .sass_cache folder': {
+			path: /^\.sass_cache/i,
+			shouldExist: false,
+			type:'tree'
+		}
+	}
+};
+```
+
+Put that file in `lib/langs` with the lower-case, space-free version of the name.
+
+## 2. Include the file in `lib/languages.js` so it can be used by Forkability.
+
+## 3. Write tests to make sure your feature tests continue to work
+
+You can follow the examples in `spec/langs` for this. Remember, you need to write a test for this AND check that existing tests do not fail before making a pull request. Very important!
 
 # Contributing code
 
+In general, I am open to anybody wishing to improve Forkability, either in terms of code or features, so if you'd like to make a pull request please do - just remember to follow [the golden rule](#the-golden–rule–of-pull-requests) and write tests for your changes first.
+
 # Suggesting general changes
+
+The nature of this project means that it is opinionated. However, the nature of open-source means that a general community consensus about what makes a good open source project is preferable to a single person's ideas. So if you disagree with anything, feel free to open a new issue about it for discussion.
