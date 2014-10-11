@@ -20,7 +20,8 @@ describe('lintIssues', function () {
 			message: 'Uncommented issue',
 			details: {
 				url: 'This is a URL',
-				title: 'This issue has no comments'
+				title: 'This issue has no comments',
+				suggestion: 'Comment on the issue to indicate acknowledgement'
 			}
 		});
 
@@ -61,6 +62,9 @@ describe('lintIssues', function () {
 		var report = lintIssues(issues, 'joebloggs');
 
 		report.failures.length.should.eql(0);
+		report.passes.should.containEql({
+			message: 'All open issues have been acknowledged'
+		});
 	});
 
 	it('should return warning of an untouched issue and uncommented issue', function () {
@@ -82,7 +86,8 @@ describe('lintIssues', function () {
 			message: 'Uncommented issue',
 			details: {
 				url: 'This is a URL',
-				title: 'This issue has no comments or labels'
+				title: 'This issue has no comments or labels',
+				suggestion: 'Comment on the issue to indicate acknowledgement'
 			}
 		});
 
@@ -90,7 +95,8 @@ describe('lintIssues', function () {
 			message: 'Untouched issue',
 			details: {
 				url: 'This is a URL',
-				title: 'This issue has no comments or labels'
+				title: 'This issue has no comments or labels',
+				suggestion: 'Comment or label the issue to indicate acknowledgement'
 			}
 		});
 

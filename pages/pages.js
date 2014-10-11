@@ -182,27 +182,16 @@ var loadPage = function() {
 				$('<li class="message"><strong>Congrats!</strong> You have all the recommended features for your open source project!</li>').appendTo('.failed-features');
 			}
 
-			if (!report.warnings.length) {
-				$('<li class="message"><strong>Congrats!</strong> You have no warnings for your open source project!</li>').appendTo('.warnings');
-			}
-
-			report.features.passes.forEach(function(thing) {
-				$('<li><i class="fa fa-check tick"></i> ' + thing + '</li>').appendTo(reportElement.find('.passed-features'));
+			report.features.passes.forEach(function(pass) {
+				$('<li><i class="fa fa-check tick"></i> ' + pass.message + '</li>').appendTo(reportElement.find('.passed-features'));
 			});
-			report.features.failures.forEach(function(thing) {
-				$('<li><i class="fa fa-plus cross"></i> ' + thing + '</li>').appendTo(reportElement.find('.failed-features'));
-			});
-			report.warnings.forEach(function(w, i) {
-				var warningMessage = w.message;
-				if (w.details && w.details.url && w.details.title) {
-					warningMessage += '<br><i class="fa fa-long-arrow-right"></i><a href="' + w.details.url + '" target="_blank">' + w.details.title + '</a>';
+			report.features.failures.forEach(function(failure) {
+				var failureMessage = failure.message;
+				if (failure.details && failure.details.url && failure.details.title) {
+					failureMessage += '<br><i class="fa fa-long-arrow-right"></i><a href="' + failure.details.url + '" target="_blank">' + failure.details.title + '</a>';
 				}
-				var warning = $('<li class="warning"><i class="fa fa-exclamation exclaimation"></i> ' + warningMessage + '</li>').appendTo(reportElement.find('.warnings'));
+				$('<li><i class="fa fa-exclamation-triangle cross"></i> ' + failureMessage + '</li>').appendTo(reportElement.find('.failed-features'));
 			});
-
-			// Now initialise all the pretty bootstrap stuff
-			// $('.explanation-link').popover();
-			// $('#warnings-modal').modal();
 		});
 	}
 };

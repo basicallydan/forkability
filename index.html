@@ -53,44 +53,18 @@
 			<h2>{{repoName}}</h2>
 			<span class="go-back"><a href="{{rootPath}}"><i class="fa fa-arrow-circle-left"></i> Try another</a></span>
 			<div class="row">
-				<div class="col-md-4 passed-list">
+				<div class="col-md-6 passed-list">
 					<h2>Features <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#features-modal">(Explanation)</a></h2>
 					<ul class="results-list passed-features">
 					</ul>
 				</div>
-				<div class="col-md-4 failed-list">
+				<div class="col-md-6 failed-list">
 					<h2>Suggestions <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#features-modal">(Explanation)</a></h2>
 					<ul class="results-list  failed-features">
 					</ul>
 				</div>
-				<div class="col-md-4 warnings-list">
-					<h2>Warnings <a href="#" class="explanation-link found-explanation" data-toggle="modal" data-target="#warnings-modal">(Explanation)</a></h2>
-					<ul class="results-list warnings">
-					</ul>
-				</div>
 			</div>
 		</script>
-
-		<div class="modal fade" id="warnings-modal" tabindex="-1" role="dialog" aria-labelledby="warnings-modal-label" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title" id="myModalLabel">Warnings</h4>
-					</div>
-					<div class="modal-body">
-					<h5>Untouched &amp; Uncommented Issues</h5>
-					<p>GitHub's issue tracker is a feature commonly used both by users of open-source code and the code's owners or contributors for keeping track of bugs and new features.</p>
-					<p>Forkability looks for any <strong>open</strong> issues which weren't created by the repository owner which haven't been commented, and labels these as <strong>Uncommented Issues</strong>.</p>
-					<p><strong>Untouched Issues</strong> on the other hand are <strong>open</strong>, non-owner issues which haven't been commented on and haven't been labeled, suggesting that no contributor has even acknowledged the issue.</p>
-					<p>As an open-source project contributor, it's important to keep on top of issues by organising them, responding to the issue openers. If you do, you're less likely to have people opening up duplicate issues, and less likely to miss important, high-priority bugs or great new ideas.</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<div class="modal fade" id="features-modal" tabindex="-1" role="dialog" aria-labelledby="features-modal-label" aria-hidden="true">
 			<div class="modal-dialog">
@@ -110,6 +84,11 @@
 						<li>Coding style guidelines. E.g. variable naming conventions, architectural patterns used, indent characters used.</li>
 						<li>Test-writing guidelines. E.g. BDD-style, end-to-end, extent of coverage.</li>
 					</ul>
+					<h5>Untouched &amp; Uncommented Issues</h5>
+					<p>GitHub's issue tracker is a feature commonly used both by users of open-source code and the code's owners or contributors for keeping track of bugs and new features.</p>
+					<p>Forkability looks for any <strong>open</strong> issues which weren't created by the repository owner which haven't been commented, and labels these as <strong>Uncommented Issues</strong>.</p>
+					<p><strong>Untouched Issues</strong> on the other hand are <strong>open</strong>, non-owner issues which haven't been commented on and haven't been labeled, suggesting that no contributor has even acknowledged the issue.</p>
+					<p>As an open-source project contributor, it's important to keep on top of issues by organising them, responding to the issue openers. If you do, you're less likely to have people opening up duplicate issues, and less likely to miss important, high-priority bugs or great new ideas.</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

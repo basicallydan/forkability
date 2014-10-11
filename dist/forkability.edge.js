@@ -81,17 +81,18 @@
 			})
 			.then(function(response) {
 				var tree = response[1].tree;
-				var result = lintFiles(tree, lintOptions);
+				var report = lintFiles(tree, lintOptions);
 
-				passes = passes.concat(result.passes);
-				failures = failures.concat(result.failures);
+				passes = passes.concat(report.passes);
+				failures = failures.concat(report.failures);
 
 				return get('https://api.github.com/repos/' + username + '/' + repo + '/issues?state=open');
 			})
 			.then(function(response) {
-				var issueWarnings = lintIssues(response[1], username);
+				var report = lintIssues(response[1], username);
 
-				warnings = warnings.concat(issueWarnings);
+				passes = passes.concat(report.passes);
+				failures = failures.concat(report.failures);
 
 				return;
 			})
@@ -100,8 +101,7 @@
 					features: {
 						passes: passes,
 						failures: failures
-					},
-					warnings: warnings
+					}
 				});
 			})
 			.fail(function(err) {
@@ -220,11 +220,11 @@ module.exports = function(tree, options) {
 		}
 
 		if (passed) {
-			passes.push(p);
+			passes.push({ message : p });
 		// Is this confusing? Either there's no opinion about relevancy, or it's a function.
 		// If no opinion, failures. If function, use that to determine.
 		} else if (!features[p].relevant || features[p].relevant(tree)) {
-			failures.push(p);
+			failures.push({ message : p });
 		}
 	});
 
@@ -235,10 +235,11 @@ module.exports = function(tree, options) {
 };
 },{"merge":9}],6:[function(require,module,exports){
 module.exports = function(issues, username) {
-	var warnings = [];
+	var passes = [];
+	var failures = [];
 	issues.forEach(function(issue) {
 		if (issue.user.login !== username && issue.comments === 0) {
-			warnings.push({
+			failures.push({
 				message: 'Uncommented issue',
 				details: {
 					title: issue.title,
@@ -248,7 +249,7 @@ module.exports = function(issues, username) {
 		}
 
 		if (issue.user.login !== username && issue.labels.length === 0 && issue.comments === 0) {
-			warnings.push({
+			failures.push({
 				message: 'Untouched issue',
 				details: {
 					title: issue.title,
@@ -258,7 +259,10 @@ module.exports = function(issues, username) {
 		}
 	});
 
-	return warnings;
+	return {
+		passes: passes,
+		failures: failures
+	};
 };
 },{}],7:[function(require,module,exports){
 if (typeof XMLHttpRequest !== 'undefined') {

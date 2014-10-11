@@ -141,7 +141,8 @@ describe('forkability', function() {
 				message: 'Uncommented issue',
 				details: {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
-					title: 'Your repo sucks'
+					title: 'Your repo sucks',
+					suggestion: 'Comment on the issue to indicate acknowledgement'
 				}
 			});
 
@@ -149,7 +150,8 @@ describe('forkability', function() {
 				message: 'Uncommented issue',
 				details: {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/2345',
-					title: 'This is the worst open source project ever'
+					title: 'This is the worst open source project ever',
+					suggestion: 'Comment on the issue to indicate acknowledgement'
 				}
 			});
 
@@ -194,7 +196,8 @@ describe('forkability', function() {
 				message: 'Untouched issue',
 				details: {
 					title: 'This issue has no comments and no labels',
-					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234'
+					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
+					suggestion: 'Comment or label the issue to indicate acknowledgement'
 				}
 			});
 			done();
