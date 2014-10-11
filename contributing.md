@@ -8,6 +8,15 @@ Some of the things a would-be contributor might want to do are:
 4. [Contribute actual code](#contributing-code)
 5. [Raise an issue with what makes a project forkable at all](#suggesting-general-changes)
 
+But first, the golden rule:
+
+# The golden rule of pull requests
+
+If you're going to make a pull request, make sure you've done two things before making it:
+
+1. You've run `npm test` to ensure that you haven't broken anything. Any pull requests which have caused tests to fail will probably be rejected.
+2. You've written tests to cover your additions, and that includes, where possible, testing bug fixes.
+
 # Raising a bug report
 
 If in your use of the program you find something that looks unexpected or broken, take the following steps:
