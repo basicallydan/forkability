@@ -11,7 +11,7 @@ program
 	.usage('[username]/[repository]')
 	.option('-u, --username [user]', 'Username to use for auth')
 	.option('-p, --password [pass]', 'Password to use for auth')
-	.option('-l, --lang [lang,lang,lang]', 'Language(s) to lint use for lint config. Comma-separated')
+	.option('-l, --lang [lang,lang,lang]', 'Language(s) to lint use for lint config. Comma-separated', '')
 	.option('-r, --reporter [list|json|prettyjson]', 'The format to output the report in. Default is list (more readable)', 'list');
 
 program.on('--help', function () {
@@ -34,10 +34,14 @@ if (!program.args[0] || !repoRegex.test(program.args[0])) {
 
 repoInfo = program.args[0].match(repoRegex);
 
+if (program.lang.trim().length > 0) {
+	program.lang = program.lang.split(',');
+}
+
 var options = {
 	user: repoInfo[1],
 	repository: repoInfo[2],
-	languages: (program.lang || '').split(',')
+	languages: program.lang
 };
 
 if (program.username && program.password) {
@@ -48,6 +52,9 @@ if (program.username && program.password) {
 }
 
 function listReporter(err, report) {
+	if (err) {
+		return console.error('Error: ', err.message);
+	}
 	console.log('# Forkability found'.cyan, (report.features.passes.length + '').magenta, 'recommended features, and has'.cyan, (report.features.failures.length + '').magenta, 'suggestions'.cyan);
 	console.log('');
 	console.log('# Features'.magenta);
@@ -70,14 +77,14 @@ function listReporter(err, report) {
 
 function jsonReporter(err, report) {
 	if (err) {
-		return console.error(err);
+		return console.error('Error: ' + err.message);
 	}
 	console.log(JSON.stringify(report));
 }
 
 function prettyJSONReporter(err, report) {
 	if (err) {
-		return console.error(err);
+		return console.error('Error: ' + err.message);
 	}
 	console.log(JSON.stringify(report, null, 4));
 }
