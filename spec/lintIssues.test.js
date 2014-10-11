@@ -14,9 +14,9 @@ describe('lintIssues', function () {
 			}
 		];
 
-		var warnings = lintIssues(issues, 'joebloggs');
+		var report = lintIssues(issues, 'joebloggs');
 
-		warnings.should.containEql({
+		report.failures.should.containEql({
 			message: 'Uncommented issue',
 			details: {
 				url: 'This is a URL',
@@ -24,7 +24,7 @@ describe('lintIssues', function () {
 			}
 		});
 
-		warnings.length.should.eql(1);
+		report.failures.length.should.eql(1);
 	});
 
 	it('should return no warnings if all issues are commented upon', function () {
@@ -40,9 +40,9 @@ describe('lintIssues', function () {
 			}
 		];
 
-		var warnings = lintIssues(issues, 'joebloggs');
+		var report = lintIssues(issues, 'joebloggs');
 
-		warnings.length.should.eql(0);
+		report.failures.length.should.eql(0);
 	});
 
 	it('should return no warnings if all untouched issues were opened by the repo author', function () {
@@ -58,9 +58,9 @@ describe('lintIssues', function () {
 			}
 		];
 
-		var warnings = lintIssues(issues, 'joebloggs');
+		var report = lintIssues(issues, 'joebloggs');
 
-		warnings.length.should.eql(0);
+		report.failures.length.should.eql(0);
 	});
 
 	it('should return warning of an untouched issue and uncommented issue', function () {
@@ -76,9 +76,9 @@ describe('lintIssues', function () {
 			}
 		];
 
-		var warnings = lintIssues(issues, 'joebloggs');
+		var report = lintIssues(issues, 'joebloggs');
 
-		warnings.should.containEql({
+		report.failures.should.containEql({
 			message: 'Uncommented issue',
 			details: {
 				url: 'This is a URL',
@@ -86,7 +86,7 @@ describe('lintIssues', function () {
 			}
 		});
 
-		warnings.should.containEql({
+		report.failures.should.containEql({
 			message: 'Untouched issue',
 			details: {
 				url: 'This is a URL',
@@ -94,6 +94,6 @@ describe('lintIssues', function () {
 			}
 		});
 
-		warnings.length.should.eql(2);
+		report.failures.length.should.eql(2);
 	});
 });

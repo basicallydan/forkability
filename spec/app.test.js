@@ -137,7 +137,7 @@ describe('forkability', function() {
 		function (err, report) {
 			should(err).eql(null);
 
-			report.warnings.should.containEql({
+			report.features.failures.should.containEql({
 				message: 'Uncommented issue',
 				details: {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
@@ -145,7 +145,7 @@ describe('forkability', function() {
 				}
 			});
 
-			report.warnings.should.containEql({
+			report.features.failures.should.containEql({
 				message: 'Uncommented issue',
 				details: {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/2345',
@@ -190,7 +190,7 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.warnings.should.containEql({
+			report.features.failures.should.containEql({
 				message: 'Untouched issue',
 				details: {
 					title: 'This issue has no comments and no labels',
