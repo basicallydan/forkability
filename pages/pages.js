@@ -185,8 +185,6 @@ var loadPage = function() {
 	}
 
 	function checkRepo(forkabilityOpts) {
-		repoOptions = {};
-
 		// var forkabilityOpts = {
 		// 	user: user,
 		// 	repository: repository
@@ -221,6 +219,7 @@ var loadPage = function() {
 					defaultUsername: (currentUser ? currentUser.login : undefined)
 				}, repoOptions);
 			}
+			repoOptions = {};
 
 			var reportElement = renderByID('#repo-info-template', {
 				repoUser: forkabilityOpts.user,
