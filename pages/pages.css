@@ -174,4 +174,9 @@ h1 img {
 	.navigation-controls .btn {
 		margin-top:1.3rem;
 	}
+
+	.sticky-footer__info li:before {
+		content:'';
+		margin:0;
+	}
 }
