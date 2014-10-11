@@ -34,7 +34,7 @@ This will give you a pretty, colourful (if your terminal supports it), UTF-8-tas
 ```bash
 forkability basicallydan/interfake
 
-# Recommended files
+# Recommended features
 ✓ Contributing document
 ✓ Readme document
 ✓ Licence document
@@ -62,7 +62,7 @@ forkability(options, function(err, report) {
 	report.features.passes.forEach(function(thing) {
 		console.log('✓'.green, thing);
 	});
-	report.files.failures.forEach(function(thing) {
+	report.features.failures.forEach(function(thing) {
 		console.log('✘'.red, thing);
 	});
 	report.warnings.forEach(function (w, i) {
@@ -85,9 +85,18 @@ Thankfully, that's it.
 
 ## Contributing
 
+For more info on this see [contributing.md](https://github.com/basicallydan/forkability/blob/master/contributing.md)
+
 The thing about what makes a project forkable is that there are probably various ways to look at a project and thus many opinions.
 
 So I'd like to invite anybody reading this to [open an issue](https://github.com/basicallydan/forkability/issues), and/or make a pull request - pull requests are all the hotness right now - which details in some way what could be done to make this a *more useful tool*.
+
+### Contributors
+
+Thanks to everybody who has helped. So far this includes:
+
+* [kirang89](https://github.com/kirang89)
+* [basicallydan](https://github.com/basicallydan), obviously
 
 ## Long-term goals of this project
 
@@ -96,20 +105,11 @@ So I'd like to invite anybody reading this to [open an issue](https://github.com
 * Educate people on the benefits of open-sourcing their code
 * Tell people about how they can improve the "forkability" of their project
 
-## Currently supported measures
-
-* Presence of files
-  * licence.md
-  * readme.md
-  * contributing.md
-* Warnings issued for:
-  * Uncommented issues which were not opened by the owner of the repo
-
 ## Tests
 
 Make sure you `npm install -g mocha`, then `npm tests` this repo.
 
-### Suggested domains:
+### Possible domains for this project:
 
 * forkability.org
 * forkability.io
