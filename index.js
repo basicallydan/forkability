@@ -48,21 +48,24 @@ if (program.username && program.password) {
 }
 
 function listReporter(err, report) {
-	console.log('# Recommended features'.magenta);
+	console.log('# Forkability found'.cyan, (report.features.passes.length + '').magenta, 'recommended features, and has'.cyan, (report.features.failures.length + '').magenta, 'suggestions'.cyan);
+	console.log('');
+	console.log('# Features'.magenta);
 	report.features.passes.forEach(function(pass) {
 		console.log('✓'.green, pass.message);
 	});
+	console.log('');
+	console.log('# Suggestions'.magenta);
 	report.features.failures.forEach(function(failure, i) {
-		console.log('✘'.red, failure.message);
+		var message = failure.message;
+		if (failure.details && failure.details.suggestion) {
+			message = message + ': ' + failure.details.suggestion;
+		}
+		console.log('!'.yellow, message);
 		if (failure.details && failure.details.url) {
-			console.log(((i === report.features.failures.length - 1 ? '└' : '├') + '──').cyan, failure.details.title ? (failure.details.title + ':') : '', failure.details.url);
+			console.log(((i === report.features.failures.length - 1 ? '└' : '├') + '──').cyan, failure.details.title ? (failure.details.title + ':') : '', failure.details.url.cyan);
 		}
 	});
-	// console.log('');
-	// console.log(('# ' + report.warnings.length + (' Warning' + (report.warnings.length === 1 ? '' : 's')))[report.warnings.length ? 'magenta' : 'green']);
-	// report.warnings.forEach(function (w, i) {
-	// 	console.log('|'.cyan, w.message);
-	// });
 }
 
 function jsonReporter(err, report) {
