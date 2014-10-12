@@ -166,7 +166,7 @@ var loadPage = function() {
 				o.languages = lang.trim();
 			}
 			if (o.languages.length > 0) {
-				o.languages.split(',');
+				o.languages = o.languages.split(',');
 			}
 			if (currentUser && currentUser.accessToken) {
 				o.auth = {
