@@ -165,6 +165,9 @@ var loadPage = function() {
 			if (lang.trim()) {
 				o.languages = lang.trim();
 			}
+			if (o.languages.length > 0) {
+				o.languages.split(',');
+			}
 			if (currentUser && currentUser.accessToken) {
 				o.auth = {
 					token: currentUser.accessToken
