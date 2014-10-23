@@ -206,4 +206,27 @@ describe('forkability', function() {
 			done();
 		});
 	});
+
+	it('should warn about tag failures', function (done) {
+		mockResponses({
+			tagsBody: []
+		});
+
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo'
+		},
+		function (err, report) {
+			console.log('Report!', report);
+			should(err).eql(null);
+			report.features.failures.should.containEql({
+				message: 'No tags',
+				details: {
+					title: 'The project does not make use of git tags',
+					suggestion: 'Before releasing a new version, create a tag to represent the code at the point of that release.'
+				}
+			});
+			done();
+		});
+	});
 });

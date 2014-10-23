@@ -41,6 +41,12 @@ function mockResponses(responses) {
 	nock('https://api.github.com')
 		.get('/repos/thatoneguy/thatonerepo/languages')
 		.reply(responses.languagesStatus || 200, responses.languagesBody || { JavaScript : 1000 });
+
+	nock('https://api.github.com')
+		.get('/repos/thatoneguy/thatonerepo/tags')
+		.reply(responses.tagsStatus || 200, responses.tagsBody || [{
+			name: 'v1.0.0'
+		}]);
 }
 
 module.exports = mockResponses;
