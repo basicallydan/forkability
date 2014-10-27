@@ -1,4 +1,4 @@
-VERSION = edge
+VERSION ?= edge
 
 CFLAGS = -c -g -D $(VERSION)
 
