@@ -274,7 +274,7 @@ describe('lintFiles', function () {
 		];
 
 		var report = lintFiles(tree, {
-			features: {
+			files: {
 				'package.json file':/^package\.json/i
 			}
 		});
@@ -287,7 +287,7 @@ describe('lintFiles', function () {
 		var tree = [];
 
 		var report = lintFiles(tree, {
-			features: {
+			files: {
 				'No node_modules folder':{
 					path:/^node_modules/i,
 					type:'tree',
@@ -309,7 +309,7 @@ describe('lintFiles', function () {
 		];
 
 		var report = lintFiles(tree, {
-			features: {
+			files: {
 				'No node_modules folder':{
 					path:/^node_modules/i,
 					type:'tree',
@@ -335,7 +335,7 @@ describe('lintFiles', function () {
 		];
 
 		var report = lintFiles(tree, {
-			features: {
+			files: {
 				'No node_modules folder':{
 					path:/^node_modules/i,
 					type:'tree',

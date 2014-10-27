@@ -48,7 +48,7 @@ However, just to add support, you just need to follow these steps:
 module.exports = {
 	// The human-readable name should go here
 	name: 'Ruby',
-	features: {
+	files: {
 		// The simplest thing is to check for the existence of a file using a regular expression
 		'gemfile':/^gemfile/i,
 		// You can also test against the type (blob for file or tree for folder)

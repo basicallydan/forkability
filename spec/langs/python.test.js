@@ -31,14 +31,14 @@ describe('forkability with python', function () {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.features.passes.should.containEql({ message : 'setup.py file' });
-			report.features.passes.should.containEql({ message : 'requirements.txt file' });
-			report.features.passes.should.containEql({ message : 'Documentation' });
-			report.features.passes.should.containEql({ message : 'Test suite' });
-			report.features.failures.should.containEql({ message : 'Contributing document' });
-			report.features.failures.should.containEql({ message : 'Readme document' });
-			report.features.failures.should.containEql({ message : 'Licence document' });
-			report.features.failures.should.containEql({ message : 'Changelog document' });
+			report.passes.should.containEql({ message : 'setup.py file' });
+			report.passes.should.containEql({ message : 'requirements.txt file' });
+			report.passes.should.containEql({ message : 'Documentation' });
+			report.passes.should.containEql({ message : 'Test suite' });
+			report.failures.should.containEql({ message : 'Contributing document' });
+			report.failures.should.containEql({ message : 'Readme document' });
+			report.failures.should.containEql({ message : 'Licence document' });
+			report.failures.should.containEql({ message : 'Changelog document' });
 			done();
 		});
 	});

@@ -17,14 +17,14 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.features.passes.should.containEql({ message : 'Contributing document' });
-			report.features.passes.should.containEql({ message : 'Readme document' });
-			report.features.passes.should.containEql({ message : 'Licence document' });
-			report.features.passes.should.containEql({ message : 'Test suite' });
-			report.features.passes.should.containEql({ message : 'Changelog document' });
-			report.features.passes.should.containEql({ message : 'All open issues have been acknowledged' });
-			report.features.passes.should.have.a.lengthOf(6);
-			report.features.failures.should.be.empty;
+			report.passes.should.containEql({ message : 'Contributing document' });
+			report.passes.should.containEql({ message : 'Readme document' });
+			report.passes.should.containEql({ message : 'Licence document' });
+			report.passes.should.containEql({ message : 'Test suite' });
+			report.passes.should.containEql({ message : 'Changelog document' });
+			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
+			report.passes.should.have.a.lengthOf(6);
+			report.failures.should.be.empty;
 			done();
 		});
 	});
@@ -51,14 +51,14 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.features.passes.should.containEql({ message : 'Contributing document' });
-			report.features.passes.should.containEql({ message : 'Readme document' });
-			report.features.passes.should.containEql({ message : 'Licence document' });
-			report.features.passes.should.containEql({ message : 'Test suite' });
-			report.features.passes.should.containEql({ message : 'Changelog document' });
-			report.features.passes.should.containEql({ message : 'All open issues have been acknowledged' });
-			report.features.passes.should.have.a.lengthOf(6);
-			report.features.failures.should.be.empty;
+			report.passes.should.containEql({ message : 'Contributing document' });
+			report.passes.should.containEql({ message : 'Readme document' });
+			report.passes.should.containEql({ message : 'Licence document' });
+			report.passes.should.containEql({ message : 'Test suite' });
+			report.passes.should.containEql({ message : 'Changelog document' });
+			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
+			report.passes.should.have.a.lengthOf(6);
+			report.failures.should.be.empty;
 			done();
 		});
 	});
@@ -83,14 +83,14 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.features.passes.should.containEql({ message : 'Contributing document' });
-			report.features.passes.should.containEql({ message : 'Readme document' });
-			report.features.passes.should.containEql({ message : 'Licence document' });
-			report.features.passes.should.containEql({ message : 'Test suite' });
-			report.features.passes.should.containEql({ message : 'Changelog document' });
-			report.features.passes.should.containEql({ message : 'All open issues have been acknowledged' });
-			report.features.passes.should.have.a.lengthOf(6);
-			report.features.failures.should.be.empty;
+			report.passes.should.containEql({ message : 'Contributing document' });
+			report.passes.should.containEql({ message : 'Readme document' });
+			report.passes.should.containEql({ message : 'Licence document' });
+			report.passes.should.containEql({ message : 'Test suite' });
+			report.passes.should.containEql({ message : 'Changelog document' });
+			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
+			report.passes.should.have.a.lengthOf(6);
+			report.failures.should.be.empty;
 			done();
 		});
 	});
@@ -140,7 +140,7 @@ describe('forkability', function() {
 		function (err, report) {
 			should(err).eql(null);
 
-			report.features.failures.should.containEql({
+			report.failures.should.containEql({
 				message: 'Uncommented issue',
 				details: {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
@@ -149,7 +149,7 @@ describe('forkability', function() {
 				}
 			});
 
-			report.features.failures.should.containEql({
+			report.failures.should.containEql({
 				message: 'Uncommented issue',
 				details: {
 					url: 'https://github.com/thatoneguy/thatonerepo/issues/2345',
@@ -195,7 +195,7 @@ describe('forkability', function() {
 		},
 		function (err, report) {
 			should(err).eql(null);
-			report.features.failures.should.containEql({
+			report.failures.should.containEql({
 				message: 'Untouched issue',
 				details: {
 					title: 'This issue has no comments and no labels',
@@ -219,7 +219,7 @@ describe('forkability', function() {
 		function (err, report) {
 			console.log('Report!', report);
 			should(err).eql(null);
-			report.features.failures.should.containEql({
+			report.failures.should.containEql({
 				message: 'No tags',
 				details: {
 					title: 'The project does not make use of git tags',

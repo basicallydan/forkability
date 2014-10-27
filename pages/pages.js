@@ -235,18 +235,18 @@ var loadPage = function() {
 				repoName: forkabilityOpts.repository,
 				rootPath: rootPath
 			});
-			if (!report.features.passes.length) {
+			if (!report.passes.length) {
 				$('<li class="message"><strong>Oops!</strong> You don\'t have any of the recommended features for your open source project!</li>').appendTo('.failed-features');
 			}
 
-			if (!report.features.failures.length) {
+			if (!report.failures.length) {
 				$('<li class="message"><strong>Congrats!</strong> You have all the recommended features for your open source project!</li>').appendTo('.failed-features');
 			}
 
-			report.features.passes.forEach(function(pass) {
+			report.passes.forEach(function(pass) {
 				$('<li><i class="fa fa-check tick"></i> ' + pass.message + '</li>').appendTo(reportElement.find('.passed-features'));
 			});
-			report.features.failures.forEach(function(failure) {
+			report.failures.forEach(function(failure) {
 				var failureMessage = failure.message;
 				if (failure.details && failure.details.url && failure.details.title) {
 					failureMessage += ': <span class="failure-details"><a href="' + failure.details.url + '" target="_blank">' + failure.details.title + '</a></span>';
