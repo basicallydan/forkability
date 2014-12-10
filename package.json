@@ -4,8 +4,12 @@
   "description": "A JS module for determining the open-source-friendliness of a GitHub repository.",
   "main": "./lib/app.js",
   "bin": "./index.js",
+  "watch":{
+    "test": "*.js"
+  },
   "scripts": {
-    "test": "mocha spec/*.test.js spec/**/*.test.js --reporter spec"
+    "test": "mocha spec/*.test.js spec/**/*.test.js --reporter spec",
+    "watch": "npm-watch"
   },
   "author": "Dan Hough <dan@danhough.com>",
   "license": "MIT",
