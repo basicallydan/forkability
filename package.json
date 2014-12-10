@@ -4,7 +4,7 @@
   "description": "A JS module for determining the open-source-friendliness of a GitHub repository.",
   "main": "./lib/app.js",
   "bin": "./index.js",
-  "watch":{
+  "watch": {
     "test": "*.js"
   },
   "scripts": {
@@ -26,6 +26,7 @@
   "devDependencies": {
     "interfake": "^1.9.2",
     "nock": "^0.47.0",
-    "should": "^4.0.4"
+    "should": "^4.0.4",
+    "npm-watch": "0.0.0"
   }
 }
