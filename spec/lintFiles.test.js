@@ -266,6 +266,31 @@ describe('lintFiles', function () {
 		report.failures.should.not.containEql({ message : 'Changelog document' });
 	});
 
+	it('should return presence of a .gitignore file called .gitignore', function () {
+		var tree = [
+			{
+				path:'.gitignore'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.passes.should.containEql({ message : '.gitignore file' });
+	});
+
+	it('should disregard presence  of a .gitignore file called .GITIGNORE in all caps', function () {
+		var tree = [
+			{
+				path:'.GITIGNORE'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.passes.should.not.containEql({ message : '.gitignore file' });
+		report.failures.should.containEql({ message : '.gitignore file' });
+	});
+
 	it('should return presence of a feature specified in options', function () {
 		var tree = [
 			{
