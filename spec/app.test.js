@@ -24,7 +24,8 @@ describe('forkability', function() {
 			report.passes.should.containEql({ message : 'Changelog document' });
 			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
 			report.passes.should.containEql({ message : 'Tags are being used' });
-			report.passes.should.have.a.lengthOf(7);
+			report.passes.should.containEql({ message : '.gitignore file' });
+			report.passes.should.have.a.lengthOf(8);
 			report.failures.should.be.empty;
 			done();
 		});
@@ -59,7 +60,8 @@ describe('forkability', function() {
 			report.passes.should.containEql({ message : 'Changelog document' });
 			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
 			report.passes.should.containEql({ message : 'Tags are being used' });
-			report.passes.should.have.a.lengthOf(7);
+			report.passes.should.containEql({ message : '.gitignore file' });
+			report.passes.should.have.a.lengthOf(8);
 			report.failures.should.be.empty;
 			done();
 		});
@@ -92,7 +94,8 @@ describe('forkability', function() {
 			report.passes.should.containEql({ message : 'Changelog document' });
 			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
 			report.passes.should.containEql({ message : 'Tags are being used' });
-			report.passes.should.have.a.lengthOf(7);
+			report.passes.should.containEql({ message : '.gitignore file' });
+			report.passes.should.have.a.lengthOf(8);
 			report.failures.should.be.empty;
 			done();
 		});

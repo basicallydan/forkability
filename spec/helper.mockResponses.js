@@ -28,6 +28,8 @@ function mockResponses(responses) {
 				path: 'licence.md'
 			}, {
 				path: 'changelog.md'
+			},{
+				path: '.gitignore'
 			}, {
 				path: 'spec',
 				type: 'tree'
