@@ -98,8 +98,11 @@ So I'd like to invite anybody reading this to [open an issue](https://github.com
 
 Thanks to everybody who has helped. So far this includes:
 
+* [@JJ](https://github.com/JJ)
 * [kirang89](https://github.com/kirang89)
-* [basicallydan](https://github.com/basicallydan), obviously
+* [basicallydan](https://github.com/basicallydan)
+* [hpoom](https://github.com/hpoom)
+* [@M-Zuber](https://github.com/M-Zuber)
 
 ## Long-term goals of this project
 
