@@ -1,3 +1,4 @@
+* 20/12/2014: 0.13.0: `.gitignore` now a requirement thanks to (@matiassingers)[https://github.com/matiassingers]
 * 20/12/2014: 0.12.0: Added Perl support thanks to [@JJ](https://github.com/JJ)
 * 11/12/2014: 0.11.0: Added C# support thanks to [@M-Zuber](https://github.com/M-Zuber)
 * 11/12/2014: 0.10.0: `.DS_Store` made to be a globally-not-needed file thanks to (@matiassingers)[https://github.com/matiassingers]
