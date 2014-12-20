@@ -19,7 +19,7 @@ describe('forkability with nodejs', function () {
 		forkability({
 			user: 'thatoneguy',
 			repository: 'thatonerepo',
-			languages: ['nodejs']
+			languages: ['perl']
 		},
 		function (err, report) {
 			should(err).eql(null);
