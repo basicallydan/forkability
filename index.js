@@ -52,6 +52,13 @@ if (program.username && program.password) {
 }
 
 function listReporter(err, report) {
+
+	var successSymbol = '✓'
+
+	if (process.platform === 'win32') {
+		successSymbol = '√';
+	}
+
 	if (err) {
 		return console.error('Error: ', err.message);
 	}
@@ -59,7 +66,7 @@ function listReporter(err, report) {
 	console.log('');
 	console.log('# Features'.magenta);
 	report.passes.forEach(function(pass) {
-		console.log('✓'.green, pass.message);
+		console.log(successSymbol.green, pass.message);
 	});
 	console.log('');
 	console.log('# Suggestions'.magenta);
