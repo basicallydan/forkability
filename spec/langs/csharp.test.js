@@ -41,8 +41,17 @@ describe('forkability with c#', function () {
 		it('should return the presence of a .csproj file with a name from lowercase letters and numbers', function(done){
 			mockResponses({
 				firstCommitTreeBody: {
-					tree : [{
-						path: 'first1.csproj'
+					tree : [
+					{
+						path: 'source',
+						type: 'tree'
+					},
+					{
+						path: 'source/main',
+						type: 'tree'
+					},
+					{
+						path: 'source/main/first1.csproj'
 					},{
 						path:'source/Unit Tests',
 						type: 'tree'
@@ -55,7 +64,7 @@ describe('forkability with c#', function () {
 				repository: 'thatonerepo',
 				languages: ['csharp']
 			},
-			function (err, report) {		
+			function (err, report) {	
 				should(err).eql(null);
 				report.passes.should.containEql({ message : 'Test suite' });
 				report.passes.should.containEql({ message : 'Project file' });
