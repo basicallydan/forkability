@@ -1,6 +1,6 @@
 var lintFiles = require('../lib/lintFiles');
 
-xdescribe('lintFiles', function () {
+describe('lintFiles', function () {
 	it('should return presence of a readme with a markdown extension', function () {
 		var tree = [
 			{

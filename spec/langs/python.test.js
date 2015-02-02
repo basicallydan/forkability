@@ -2,7 +2,7 @@ var forkability = require('../..');
 var should = require('should');
 var mockResponses = require('../helper.mockResponses.js');
 
-xdescribe('forkability with python', function () {
+describe('forkability with python', function () {
 	it('should return the correct name for the python language', function() {
 		forkability.languages.python.name.should.eql('Python');
 	});

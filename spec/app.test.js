@@ -3,7 +3,7 @@ var should = require('should');
 var mockResponses = require('./helper.mockResponses.js');
 // var nock = require('nock');
 
-xdescribe('forkability', function() {
+describe('forkability', function() {
 	// beforeEach(function () {
 	// 	nock.cleanAll();
 	// });

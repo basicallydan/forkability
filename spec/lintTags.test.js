@@ -1,6 +1,6 @@
 var lintTags = require('../lib/lintTags');
 
-xdescribe('lintTags', function () {
+describe('lintTags', function () {
 	it('should return warning of no tags found', function () {
 		var tags = [];
 

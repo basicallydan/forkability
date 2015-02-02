@@ -4,13 +4,13 @@ var mockResponses = require('../helper.mockResponses.js');
 var nock = require('nock');
 
 describe('forkability with c#', function () {
-	xit('should return the correct name for the c# language', function() {
+	it('should return the correct name for the c# language', function() {
 		forkability.languages.csharp.name.should.eql('C#');
 	});
 
 	describe('.csproj file', function() {
 
-		xit('should return the presence of a .csproj file with a name from lowercase letters (no numbers)', function(done){
+		it('should return the presence of a .csproj file with a name from lowercase letters (no numbers)', function(done){
 			mockResponses({
 				firstCommitTreeBody: {
 					tree : [{
@@ -39,7 +39,7 @@ describe('forkability with c#', function () {
 			});
 		});
 
-		xit('should return the presence of a .csproj file with a name from lowercase letters and numbers', function(done){
+		it('should return the presence of a .csproj file with a name from lowercase letters and numbers', function(done){
 			mockResponses({
 				firstCommitTreeBody: {
 					tree : [
@@ -77,7 +77,7 @@ describe('forkability with c#', function () {
 			});
 		});
 
-		xit('should return the presence of a .csproj file with a name from uppercase letters (no numbers)', function(done){
+		it('should return the presence of a .csproj file with a name from uppercase letters (no numbers)', function(done){
 			mockResponses({
 				firstCommitTreeBody: {
 					tree : [{
@@ -106,7 +106,7 @@ describe('forkability with c#', function () {
 			});
 		});
 
-		xit('should return the presence of a .csproj file with a name from uppercase letters and numbers', function(done){
+		it('should return the presence of a .csproj file with a name from uppercase letters and numbers', function(done){
 			mockResponses({
 				firstCommitTreeBody: {
 					tree : [{
@@ -135,7 +135,7 @@ describe('forkability with c#', function () {
 			});
 		});
 
-		xit('should return the presence of a .csproj file with a name from numbers', function(done){
+		it('should return the presence of a .csproj file with a name from numbers', function(done){
 			mockResponses({
 				firstCommitTreeBody: {
 					tree : [{
@@ -183,7 +183,7 @@ describe('forkability with c#', function () {
 			.get('/repos/thatoneguy/thatonerepo/git/trees/secondSha')
 			.reply(200, {
 				tree: [{
-									path: 'source/main/myProj.csproj'
+					path: 'source/main/myProj.csproj'
 				}]
 			});
 			
@@ -193,12 +193,8 @@ describe('forkability with c#', function () {
 				languages: ['csharp']
 			},
 			function(err, report){
-				// console.log('------------------------');
-				// console.log(report);
-				// console.log('------------------------');
-
 				should(err).eql(null);
-				// report.passes.should.containEql({ message : 'Project file' });
+				report.passes.should.containEql({ message : 'Project file' });
 				report.failures.should.containEql({ message : 'Contributing document' });
 				report.failures.should.containEql({ message : 'Readme document' });
 				report.failures.should.containEql({ message : 'Licence document' });
@@ -208,7 +204,7 @@ describe('forkability with c#', function () {
 			});
 		});
 
-		xit('should indicate the lack of a .csproj file', function(done){
+		it('should indicate the lack of a .csproj file', function(done){
 			mockResponses({
 				firstCommitTreeBody: {
 					tree : [{

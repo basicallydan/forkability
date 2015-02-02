@@ -2,7 +2,7 @@ var forkability = require('../..');
 var should = require('should');
 var mockResponses = require('../helper.mockResponses.js');
 
-xdescribe('forkability with perl', function () {
+describe('forkability with perl', function () {
 	it('should return the correct name for the Perl language', function() {
 		forkability.languages.perl.name.should.eql('Perl');
 	});
