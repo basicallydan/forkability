@@ -1,6 +1,6 @@
 var lintIssues = require('../lib/lintIssues');
 
-describe('lintIssues', function () {
+xdescribe('lintIssues', function () {
 	it('should return warning of an uncommented issue', function () {
 		var issues = [
 			{
