@@ -4,8 +4,9 @@ beforeEach(function () {
 	nock.cleanAll();
 });
 
-function mockResponses(responses) {
+function mockResponses(responses, recursiveParam) {
 	responses = responses || {};
+	recursiveParam = recursiveParam || 2;
 
 	nock('https://api.github.com', {
 		reqHeaders: responses.firstCommitTreeRequestHeaders || {
@@ -18,7 +19,7 @@ function mockResponses(responses) {
 		}]);
 
 	nock('https://api.github.com')
-		.get('/repos/thatoneguy/thatonerepo/git/trees/fakeshalol')
+		.get('/repos/thatoneguy/thatonerepo/git/trees/fakeshalol?recursive=' + recursiveParam)
 		.reply(responses.firstCommitTreeStatus || 200, responses.firstCommitTreeBody || {
 			tree: [{
 				path: 'contributing.md'
