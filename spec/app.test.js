@@ -223,7 +223,6 @@ describe('forkability', function() {
 			repository: 'thatonerepo'
 		},
 		function (err, report) {
-			console.log('Report!', report);
 			should(err).eql(null);
 			report.failures.should.containEql({
 				message: 'No tags',
