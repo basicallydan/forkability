@@ -79,6 +79,7 @@ forkability(options, function(err, report) {
 
 * `user`: The username of the repo owner (can be an organisation)
 * `repository`: The name of the repository
+* `fileDepth`: How deep to go into the file tree of the repo to check for files. (thanks [@M-Zuber](https://github.com/M-Zuber)!)
 * `auth`: An object which can contain these thingies:
 	* `username`: The username to authenticate with, using basic auth.
 	* `password`: The password to authenticate with, using basic auth. Needs to be supplied with `username`.
@@ -99,9 +100,9 @@ So I'd like to invite anybody reading this to [open an issue](https://github.com
 Thanks to everybody who has helped. So far this includes:
 
 * [@JJ](https://github.com/JJ)
-* [kirang89](https://github.com/kirang89)
-* [basicallydan](https://github.com/basicallydan)
-* [hpoom](https://github.com/hpoom)
+* [@kirang89](https://github.com/kirang89)
+* [@basicallydan](https://github.com/basicallydan)
+* [@hpoom](https://github.com/hpoom)
 * [@M-Zuber](https://github.com/M-Zuber)
 
 ## Long-term goals of this project
