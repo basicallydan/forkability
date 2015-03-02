@@ -126,3 +126,6 @@ Make sure you `npm install -g mocha`, then `npm test` this repo.
 You should not use forkability as the sole way to judge how forkable your project is. After all, it is not in any way intelligent, it is merely looking for the presence of certain features in your project in order to nudge you in the right direction.
 
 Your best bet to make your project as forkable as possible is to ask your friends, or your friendly neighbourhood open-source community!
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/basicallydan/forkability/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
