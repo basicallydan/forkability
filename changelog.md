@@ -1,3 +1,4 @@
+* 09/02/2015: 0.14.1: Supports newer .NET dnx style repository files, thansk again to [@M-Zuber](https://github.com/M-Zuber)
 * 09/02/2015: 0.14.0: Added support for arbitary depths, thanks for all the super hard work by [@M-Zuber](https://github.com/M-Zuber) for this one
 * 01/01/2015: 0.13.1: Windows experience much nicer thanks to (@jonfinerty)[https://github.com/jonfinerty]
 * 20/12/2014: 0.13.0: `.gitignore` now a requirement thanks to (@matiassingers)[https://github.com/matiassingers]
