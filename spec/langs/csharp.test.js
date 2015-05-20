@@ -180,5 +180,34 @@ describe('forkability with c#', function () {
 				done();
 			});
 		});
+
+		it('should pass a dnx style repo', function(done){
+			mockResponses({
+				firstCommitTreeBody: {
+					tree : [{
+						path:'source/Unit Tests',
+						type: 'tree'
+					},{
+						path: 'project.json'
+					}]
+				}
+			});
+
+			forkability({
+				user: 'thatoneguy',
+				repository: 'thatonerepo',
+				languages: ['csharp']
+			},
+			function (err, report) {		
+				should(err).eql(null);
+				report.passes.should.containEql({ message : 'Test suite' });
+				report.passes.should.containEql({ message : 'Project file' });
+				report.failures.should.containEql({ message : 'Contributing document' });
+				report.failures.should.containEql({ message : 'Readme document' });
+				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'Changelog document' });
+				done();
+			});
+		});
 	});
 });
