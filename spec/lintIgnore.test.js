@@ -22,8 +22,7 @@ describe('linting for file from .gitignore', function () {
 				user: 'thatoneguy',
 				repository: 'thatonerepo'
 			},
-			function (err, report) {	
-			console.log(err);	
+			function (err, report) {		
 				should(err).eql(null);
 				report.passes.should.containEql({ message : 'Test suite' });
 				report.failures.should.containEql({ message : 'Contributing document' });
@@ -164,6 +163,60 @@ describe('linting for file from .gitignore', function () {
 			});
 		});
 		
+		it('should pass with an empty tree and a simple value for ignore', function(done){
+			mockResponses({
+				firstCommitTreeBody: {
+					tree : []
+				}
+			});
+
+			forkability({
+				user: 'thatoneguy',
+				repository: 'thatonerepo',
+				ignore: {
+					'No debug folder': {
+						path: /^debug/i,
+						shouldExist: false,
+						type:'tree'
+					}
+				}
+			},
+			function (err, report) {
+				should(err).eql(null);
+				report.passes.should.containEql({ message : 'No debug folder' });
+				report.failures.should.containEql({ message : 'Contributing document' });
+				report.failures.should.containEql({ message : 'Readme document' });
+				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'Changelog document' });
+				done();
+			});
+		});
+		
+		it('should pass with an empty tree and a value for ignore that includes a shouldExist key', function(done){
+			mockResponses({
+				firstCommitTreeBody: {
+					tree : []
+				}
+			});
+
+			forkability({
+				user: 'thatoneguy',
+				repository: 'thatonerepo',
+				ignore: {
+					'randomExtension':/^.+\.rnd/i
+				}
+			},
+			function (err, report) {
+				should(err).eql(null);
+				report.passes.should.containEql({ message : 'randomExtension' });
+				report.failures.should.containEql({ message : 'Contributing document' });
+				report.failures.should.containEql({ message : 'Readme document' });
+				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'Changelog document' });
+				done();
+			});
+		});
+		
 		it('should lint also based on per language ignore options with no options passed in', function(done){
 			var csharp = require('../lib/langs/csharp');
 			csharp.ignore = {
@@ -196,6 +249,7 @@ describe('linting for file from .gitignore', function () {
 				report.failures.should.containEql({ message : 'Readme document' });
 				report.failures.should.containEql({ message : 'Licence document' });
 				report.failures.should.containEql({ message : 'Changelog document' });
+				delete csharp.ignore;
 				done();
 			});
 		});
