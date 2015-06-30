@@ -30,3 +30,4 @@ node_modules
 # vs code folders and files
 typings/
 settings.json
+tsd.d.ts
