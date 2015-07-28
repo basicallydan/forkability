@@ -29,5 +29,5 @@ node_modules
 
 # vs code folders and files
 typings/
-settings.json
+.settings/
 tsd.d.ts
