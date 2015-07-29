@@ -206,7 +206,8 @@ describe('linting for file from .gitignore', function () {
 				user: 'thatoneguy',
 				repository: 'thatonerepo',
 				ignore: {
-					'randomExtension': /^.+\.rnd/i
+					'randomExtension': /^.+\.rnd/i,
+					shouldExist: false
 				}
 			},
 				function (err, report) {
@@ -219,7 +220,9 @@ describe('linting for file from .gitignore', function () {
 					done();
 				});
 		});
-
+	});
+	describe('language specific ignore linting', function(){
+		
 		it('should lint also based on per language ignore options with no options passed in', function (done) {
 			var csharp = require('../lib/langs/csharp');
 			csharp.ignore = {
