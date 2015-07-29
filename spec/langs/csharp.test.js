@@ -26,7 +26,7 @@ describe('forkability with c#', function () {
 				repository: 'thatonerepo',
 				languages: ['csharp']
 			},
-			function (err, report) {		
+			function (err, report) {
 				should(err).eql(null);
 				report.passes.should.containEql({ message : 'Test suite' });
 				report.passes.should.containEql({ message : 'Project file' });
