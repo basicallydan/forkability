@@ -8,7 +8,7 @@ A linter for your repository.
 
 ### Web App
 
-https://basicallydan.github.io/forkability runs the code in its client-side form (works just fine), but it requires you to log in using GitHub OAuth. It will ask for access to write to your profile, which I promise will not be exploited. This is merely a limitation of Firebase. You can't ask for no scope.
+https://basicallydan.github.io/forkability runs the code in its client-side form (works just fine). It allows you to log in using GitHub OAuth in order to get a higher API request quota.
 
 ### Node Module/Command Line
 
