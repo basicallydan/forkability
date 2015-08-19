@@ -19,7 +19,7 @@ describe('forkability', function() {
 			should(err).eql(null);
 			report.passes.should.containEql({ message : 'Contributing document' });
 			report.passes.should.containEql({ message : 'Readme document' });
-			report.passes.should.containEql({ message : 'Licence document' });
+			report.passes.should.containEql({ message : 'License document' });
 			report.passes.should.containEql({ message : 'Test suite' });
 			report.passes.should.containEql({ message : 'Changelog document' });
 			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
@@ -55,7 +55,7 @@ describe('forkability', function() {
 			should(err).eql(null);
 			report.passes.should.containEql({ message : 'Contributing document' });
 			report.passes.should.containEql({ message : 'Readme document' });
-			report.passes.should.containEql({ message : 'Licence document' });
+			report.passes.should.containEql({ message : 'License document' });
 			report.passes.should.containEql({ message : 'Test suite' });
 			report.passes.should.containEql({ message : 'Changelog document' });
 			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
@@ -89,7 +89,7 @@ describe('forkability', function() {
 			should(err).eql(null);
 			report.passes.should.containEql({ message : 'Contributing document' });
 			report.passes.should.containEql({ message : 'Readme document' });
-			report.passes.should.containEql({ message : 'Licence document' });
+			report.passes.should.containEql({ message : 'License document' });
 			report.passes.should.containEql({ message : 'Test suite' });
 			report.passes.should.containEql({ message : 'Changelog document' });
 			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });

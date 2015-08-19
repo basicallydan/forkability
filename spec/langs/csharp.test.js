@@ -32,7 +32,7 @@ describe('forkability with c#', function () {
 				report.passes.should.containEql({ message : 'Project file' });
 				report.failures.should.containEql({ message : 'Contributing document' });
 				report.failures.should.containEql({ message : 'Readme document' });
-				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'License document' });
 				report.failures.should.containEql({ message : 'Changelog document' });
 				done();
 			});
@@ -61,7 +61,7 @@ describe('forkability with c#', function () {
 				report.passes.should.containEql({ message : 'Project file' });
 				report.failures.should.containEql({ message : 'Contributing document' });
 				report.failures.should.containEql({ message : 'Readme document' });
-				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'License document' });
 				report.failures.should.containEql({ message : 'Changelog document' });
 				done();
 			});
@@ -90,7 +90,7 @@ describe('forkability with c#', function () {
 				report.passes.should.containEql({ message : 'Project file' });
 				report.failures.should.containEql({ message : 'Contributing document' });
 				report.failures.should.containEql({ message : 'Readme document' });
-				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'License document' });
 				report.failures.should.containEql({ message : 'Changelog document' });
 				done();
 			});
@@ -119,7 +119,7 @@ describe('forkability with c#', function () {
 				report.passes.should.containEql({ message : 'Project file' });
 				report.failures.should.containEql({ message : 'Contributing document' });
 				report.failures.should.containEql({ message : 'Readme document' });
-				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'License document' });
 				report.failures.should.containEql({ message : 'Changelog document' });
 				done();
 			});
@@ -148,7 +148,7 @@ describe('forkability with c#', function () {
 				report.passes.should.containEql({ message : 'Project file' });
 				report.failures.should.containEql({ message : 'Contributing document' });
 				report.failures.should.containEql({ message : 'Readme document' });
-				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'License document' });
 				report.failures.should.containEql({ message : 'Changelog document' });
 				done();
 			});
@@ -175,7 +175,7 @@ describe('forkability with c#', function () {
 				report.failures.should.containEql({ message : 'Project file' });
 				report.failures.should.containEql({ message : 'Contributing document' });
 				report.failures.should.containEql({ message : 'Readme document' });
-				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'License document' });
 				report.failures.should.containEql({ message : 'Changelog document' });
 				done();
 			});
@@ -204,7 +204,7 @@ describe('forkability with c#', function () {
 				report.passes.should.containEql({ message : 'Project file' });
 				report.failures.should.containEql({ message : 'Contributing document' });
 				report.failures.should.containEql({ message : 'Readme document' });
-				report.failures.should.containEql({ message : 'Licence document' });
+				report.failures.should.containEql({ message : 'License document' });
 				report.failures.should.containEql({ message : 'Changelog document' });
 				done();
 			});

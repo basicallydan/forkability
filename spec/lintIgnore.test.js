@@ -27,7 +27,7 @@ describe('linting for file from .gitignore', function () {
 					report.passes.should.containEql({ message: 'Test suite' });
 					report.failures.should.containEql({ message: 'Contributing document' });
 					report.failures.should.containEql({ message: 'Readme document' });
-					report.failures.should.containEql({ message: 'Licence document' });
+					report.failures.should.containEql({ message: 'License document' });
 					report.failures.should.containEql({ message: 'Changelog document' });
 					done();
 				});
@@ -55,7 +55,7 @@ describe('linting for file from .gitignore', function () {
 					report.passes.should.containEql({ message: 'Test suite' });
 					report.failures.should.containEql({ message: 'Contributing document' });
 					report.failures.should.containEql({ message: 'Readme document' });
-					report.failures.should.containEql({ message: 'Licence document' });
+					report.failures.should.containEql({ message: 'License document' });
 					report.failures.should.containEql({ message: 'Changelog document' });
 					done();
 				});
@@ -94,7 +94,7 @@ describe('linting for file from .gitignore', function () {
 					report.failures.should.containEql({ message: 'Contributing document' });
 					report.failures.should.containEql({ message: 'No debug folder' });
 					report.failures.should.containEql({ message: 'Readme document' });
-					report.failures.should.containEql({ message: 'Licence document' });
+					report.failures.should.containEql({ message: 'License document' });
 					report.failures.should.containEql({ message: 'Changelog document' });
 					done();
 				});
@@ -127,7 +127,7 @@ describe('linting for file from .gitignore', function () {
 					report.failures.should.containEql({ message: 'Contributing document' });
 					report.failures.should.containEql({ message: 'randomExtension' });
 					report.failures.should.containEql({ message: 'Readme document' });
-					report.failures.should.containEql({ message: 'Licence document' });
+					report.failures.should.containEql({ message: 'License document' });
 					report.failures.should.containEql({ message: 'Changelog document' });
 					done();
 				});
@@ -160,7 +160,7 @@ describe('linting for file from .gitignore', function () {
 					report.passes.should.containEql({ message: 'randomExtension' });
 					report.failures.should.containEql({ message: 'Contributing document' });
 					report.failures.should.containEql({ message: 'Readme document' });
-					report.failures.should.containEql({ message: 'Licence document' });
+					report.failures.should.containEql({ message: 'License document' });
 					report.failures.should.containEql({ message: 'Changelog document' });
 					done();
 				});
@@ -189,7 +189,7 @@ describe('linting for file from .gitignore', function () {
 					report.passes.should.containEql({ message: 'No debug folder' });
 					report.failures.should.containEql({ message: 'Contributing document' });
 					report.failures.should.containEql({ message: 'Readme document' });
-					report.failures.should.containEql({ message: 'Licence document' });
+					report.failures.should.containEql({ message: 'License document' });
 					report.failures.should.containEql({ message: 'Changelog document' });
 					done();
 				});
@@ -215,7 +215,7 @@ describe('linting for file from .gitignore', function () {
 					report.passes.should.containEql({ message: 'randomExtension' });
 					report.failures.should.containEql({ message: 'Contributing document' });
 					report.failures.should.containEql({ message: 'Readme document' });
-					report.failures.should.containEql({ message: 'Licence document' });
+					report.failures.should.containEql({ message: 'License document' });
 					report.failures.should.containEql({ message: 'Changelog document' });
 					done();
 				});
@@ -253,7 +253,7 @@ describe('linting for file from .gitignore', function () {
 					report.failures.should.containEql({ message: 'randomExtension' });
 					report.failures.should.containEql({ message: 'Contributing document' });
 					report.failures.should.containEql({ message: 'Readme document' });
-					report.failures.should.containEql({ message: 'Licence document' });
+					report.failures.should.containEql({ message: 'License document' });
 					report.failures.should.containEql({ message: 'Changelog document' });
 					delete csharp.ignore;
 					done();
@@ -301,7 +301,7 @@ describe('linting for file from .gitignore', function () {
 					report.failures.should.containEql({ message: 'No debug folder' });
 					report.failures.should.containEql({ message: 'Contributing document' });
 					report.failures.should.containEql({ message: 'Readme document' });
-					report.failures.should.containEql({ message: 'Licence document' });
+					report.failures.should.containEql({ message: 'License document' });
 					report.failures.should.containEql({ message: 'Changelog document' });
 					done();
 				});

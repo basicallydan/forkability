@@ -58,8 +58,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql({ message : 'Licence document' });
-		report.failures.should.not.containEql({ message : 'Licence document' });
+		report.passes.should.containEql({ message : 'License document' });
+		report.failures.should.not.containEql({ message : 'License document' });
 	});
 
 	it('should return presence of a licence with a txt extension', function () {
@@ -71,8 +71,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql({ message : 'Licence document' });
-		report.failures.should.not.containEql({ message : 'Licence document' });
+		report.passes.should.containEql({ message : 'License document' });
+		report.failures.should.not.containEql({ message : 'License document' });
 	});
 
 	it('should return presence of an upper-case licence with a txt extension', function () {
@@ -84,8 +84,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql({ message : 'Licence document' });
-		report.failures.should.not.containEql({ message : 'Licence document' });
+		report.passes.should.containEql({ message : 'License document' });
+		report.failures.should.not.containEql({ message : 'License document' });
 	});
 
 	it('should return presence of an upper-case licence with no extension at all', function () {
@@ -97,8 +97,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql({ message : 'Licence document' });
-		report.failures.should.not.containEql({ message : 'Licence document' });
+		report.passes.should.containEql({ message : 'License document' });
+		report.failures.should.not.containEql({ message : 'License document' });
 	});
 
 	it('should return presence of licence where the spelling is in the UK verb form, "License"', function () {
@@ -110,8 +110,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql({ message : 'Licence document' });
-		report.failures.should.not.containEql({ message : 'Licence document' });
+		report.passes.should.containEql({ message : 'License document' });
+		report.failures.should.not.containEql({ message : 'License document' });
 	});
 
 	it('should return presence of licence when COPYING file exists', function () {
@@ -123,8 +123,8 @@ describe('lintFiles', function () {
 
 		var report = lintFiles(tree);
 
-		report.passes.should.containEql({ message : 'Licence document' });
-		report.failures.should.not.containEql({ message : 'Licence document' });
+		report.passes.should.containEql({ message : 'License document' });
+		report.failures.should.not.containEql({ message : 'License document' });
 	});
 
 	it('should return presence of a contributing with a markdown extension', function () {
@@ -193,7 +193,7 @@ describe('lintFiles', function () {
 
 		report.passes.should.not.containEql({ message : 'Contributing document' });
 		report.passes.should.not.containEql({ message : 'Readme document' });
-		report.passes.should.not.containEql({ message : 'Licence document' });
+		report.passes.should.not.containEql({ message : 'License document' });
 	});
 
 	it('should return presence of test suite if the repo has any code in it and a spec folder', function () {
