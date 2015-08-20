@@ -240,4 +240,47 @@ describe('forkability', function() {
 			done();
 		});
 	});
+
+	it('should include a fail badge if < 90% of the items are successes', function (done) {
+		mockResponses({
+			tagsBody: [],
+			openIssuesBody: [
+				{
+					number: 1234,
+					title: 'This issue has no comments and no labels',
+					state: 'open',
+					html_url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
+					user: {
+						login: 'notthatoneguy'
+					},
+					labels: [],
+					comments: 0
+				},
+				{
+					number: 3456,
+					html_url: 'https://github.com/thatoneguy/thatonerepo/issues/3456',
+					state: 'open',
+					user: {
+						login: 'thatoneguy'
+					},
+					labels: [],
+					comments: 0
+				}
+			]
+		});
+
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo'
+		},
+		function (err, report) {
+			should(err).eql(null);
+			report.passes.should.have.a.lengthOf(6);
+			report.failures.should.have.a.lengthOf(3);
+			report.badges.svg.should.equal('https://img.shields.io/badge/forkable-no-red.svg');
+			report.badges.markdown.should.equal('[![This repository\'s forkability could be improved](https://img.shields.io/badge/forkable-no-red.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
+			report.badges.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This repository\'s forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>');
+			done();
+		});
+	});
 });
