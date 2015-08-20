@@ -31,7 +31,12 @@
 		var repo = options.repository;
 		var firstCommitSha;
 		var repoLanguages;
+		var requiredPassPercentage = 90;
 		var get, r;
+		var badgeType = 'ok';
+		var badgeText = 'This is a forkable respository';
+		var badgeURL = 'https://img.shields.io/badge/forkable-yes-brightgreen.svg';
+		var forkabilityURL = 'https://basicallydan.github.io/forkability/?u=' + options.user + '&r=' + options.repository;
 		var defaults = {
 			json: true,
 			headers: headers
@@ -122,9 +127,23 @@
 				return;
 			})
 			.then(function() {
+				var passPercentage = Math.ceil((passes.length / (passes.length + failures.length)) * 100);
+				if (passPercentage < requiredPassPercentage) {
+					badgeURL = 'https://img.shields.io/badge/forkable-no-red.svg';
+					badgeText = 'This repository\'s forkability could be improved';
+					badgeType = 'fail';
+				}
+				var badge = {
+					type: badgeType,
+					svg: badgeURL,
+					markdown: '[![' + badgeText + '](' + badgeURL + ')](' + forkabilityURL + ')',
+					html: '<a href="' + forkabilityURL + '"><img alt="' + badgeText + '" src="' + badgeURL + '"></a>'
+				};
+
 				callback(null, {
 					passes: passes,
-					failures: failures
+					failures: failures,
+					badge: badge
 				});
 			})
 			.fail(function(err) {

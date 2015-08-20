@@ -243,6 +243,13 @@ var loadPage = function() {
 				$('<li class="message"><strong>Congrats!</strong> You have all the recommended features for your open source project!</li>').appendTo('.failed-features');
 			}
 
+			if (report.badge.type === 'ok') {
+				$('<li class="badge">' + report.badge.html + '</li>').appendTo('.failed-features');
+				$('<li class="message"><strong>Wear your badge with pride!</strong> Add a Forkable badge to your repo\'s README to show off how easy it is to work with!</li>').appendTo('.failed-features');
+				$('<li class="message"><strong>Markdown:</strong> <a href="#" class="autoselect-next">(select all)</a><textarea>' + report.badge.markdown + '</li>').appendTo('.failed-features');
+				$('<li class="message"><strong>HTML:</strong> <a href="#" class="autoselect-next">(select all)</a><textarea>' + report.badge.html + '</li>').appendTo('.failed-features');
+			}
+
 			report.passes.forEach(function(pass) {
 				$('<li><i class="fa fa-check tick"></i> ' + pass.message + '</li>').appendTo(reportElement.find('.passed-features'));
 			});
@@ -255,6 +262,18 @@ var loadPage = function() {
 					failureMessage += '<span class="failure-suggestion">' + failure.details.suggestion + '</span>';
 				}
 				$('<li><i class="fa fa-exclamation-triangle cross"></i> ' + failureMessage + '</li>').appendTo(reportElement.find('.failed-features'));
+			});
+
+			$('.autoselect-next').click(function (e) {
+				var textarea = $(this).next('textarea').get(0);
+				e.preventDefault();
+				textarea.select().focus();
+
+				// Kudos to Tim Down for this excellent solution http://stackoverflow.com/a/5797700
+				textarea.onmouseup = function() {
+					textarea.onmouseup = null;
+					return false;
+				}; 
 			});
 		});
 	}
