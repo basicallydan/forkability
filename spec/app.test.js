@@ -27,6 +27,7 @@ describe('forkability', function() {
 			report.passes.should.containEql({ message : '.gitignore file' });
 			report.passes.should.have.a.lengthOf(8);
 			report.failures.should.be.empty;
+			report.badge.type.should.equal('ok');
 			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
 			report.badge.markdown.should.equal('[![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
 			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This is a forkable respository" src="https://img.shields.io/badge/forkable-yes-brightgreen.svg"></a>');
@@ -66,6 +67,7 @@ describe('forkability', function() {
 			report.passes.should.containEql({ message : '.gitignore file' });
 			report.passes.should.have.a.lengthOf(8);
 			report.failures.should.be.empty;
+			report.badge.type.should.equal('ok');
 			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
 			report.badge.markdown.should.equal('[![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
 			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This is a forkable respository" src="https://img.shields.io/badge/forkable-yes-brightgreen.svg"></a>');
@@ -239,6 +241,7 @@ describe('forkability', function() {
 			});
 			report.passes.should.have.a.lengthOf(7);
 			report.failures.should.have.a.lengthOf(1);
+			report.badge.type.should.equal('fail');
 			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-no-red.svg');
 			report.badge.markdown.should.equal('[![This repository\'s forkability could be improved](https://img.shields.io/badge/forkable-no-red.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
 			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This repository\'s forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>');
@@ -282,6 +285,7 @@ describe('forkability', function() {
 			should(err).eql(null);
 			report.passes.should.have.a.lengthOf(6);
 			report.failures.should.have.a.lengthOf(3);
+			report.badge.type.should.equal('fail');
 			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-no-red.svg');
 			report.badge.markdown.should.equal('[![This repository\'s forkability could be improved](https://img.shields.io/badge/forkable-no-red.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
 			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This repository\'s forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>');
@@ -329,6 +333,7 @@ describe('forkability', function() {
 			should(err).eql(null);
 			report.passes.should.have.a.lengthOf(10);
 			report.failures.should.have.a.lengthOf(1);
+			report.badge.type.should.equal('ok');
 			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
 			report.badge.markdown.should.equal('[![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
 			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This is a forkable respository" src="https://img.shields.io/badge/forkable-yes-brightgreen.svg"></a>');
