@@ -373,7 +373,6 @@ describe('lintFiles', function () {
 				}
 			}
 		});
-
 		report.passes.should.not.containEql({ message : 'No node_modules folder' });
 		report.failures.should.containEql({ message : 'No node_modules folder' });
 		
