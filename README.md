@@ -1,6 +1,6 @@
 forkability
 ===========
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/basicallydan/forkability?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=basicallydan&r=forkability)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/basicallydan/forkability?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=basicallydan&amp;r=forkability&amp;l=nodejs)
 
 A linter for your repository.
 
