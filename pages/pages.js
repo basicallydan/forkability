@@ -246,8 +246,8 @@ var loadPage = function() {
 			if (report.badge.type === 'ok') {
 				$('<li class="badge">' + report.badge.html + '</li>').appendTo('.failed-features');
 				$('<li class="message"><strong>Wear your badge with pride!</strong> Add a Forkable badge to your repo\'s README to show off how easy it is to work with!</li>').appendTo('.failed-features');
-				$('<li class="message"><strong>Markdown:</strong> <a href="#" class="autoselect-next">(select all)</a><textarea>' + report.badge.markdown + '</li>').appendTo('.failed-features');
-				$('<li class="message"><strong>HTML:</strong> <a href="#" class="autoselect-next">(select all)</a><textarea>' + report.badge.html + '</li>').appendTo('.failed-features');
+				$('<li class="message"><strong>Markdown:</strong> <a href="#" class="autoselect-next">(select all)</a><textarea spellcheck="false">' + report.badge.markdown + '</li>').appendTo('.failed-features');
+				$('<li class="message"><strong>HTML:</strong> <a href="#" class="autoselect-next">(select all)</a><textarea spellcheck="false">' + report.badge.html + '</li>').appendTo('.failed-features');
 			}
 
 			report.passes.forEach(function(pass) {
