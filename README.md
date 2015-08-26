@@ -101,6 +101,8 @@ Thankfully, that's it.
 
 Thanks to the generosity of [shields.io](https://shields.io) there is in fact a Forkability badge for your repo. It will be generated in all three APIs, but I'd reccommend using the [web app](https://basicallydan.github.io/forkability) for quickest access to the badge code.
 
+*A note of caution*: Although you can easily fake it, it'd be very much against the spirit of Forkability if you either used the pass badge when your repo currently isn't passing, or if you didn't link to the Forkability report. So: please don't do that :smile:
+
 ## Contributing
 
 For more info on this see [contributing.md](https://github.com/basicallydan/forkability/blob/master/contributing.md)
