@@ -12,6 +12,13 @@
     "watch": "npm-watch"
   },
   "author": "Dan Hough <dan@danhough.com>",
+  "contributors":[{
+    "name":"Daniel Hough",
+    "email":"daniel.hough@gmail.com"
+  }, {
+    "name":"Mordechai Zuber",
+    "email":"mez613@gmail.com"
+  }],
   "license": "MIT",
   "repository": "git@github.com:basicallydan/forkability.git",
   "dependencies": {
