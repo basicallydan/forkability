@@ -1,6 +1,6 @@
 forkability
 ===========
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/basicallydan/forkability?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=basicallydan&amp;r=forkability&amp;l=nodejs)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/basicallydan/forkability?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=basicallydan&r=forkability&l=nodejs)
 
 A linter for your repository.
 
@@ -60,7 +60,7 @@ https://img.shields.io/badge/forkable-no-red.svg
 ## Markdown: 
 [![This repository's forkability could be improved](https://img.shields.io/badge/forkable-no-red.svg)](https://basicallydan.github.io/forkability/?u=basicallydan&r=interfake)
 ## HTML: 
-<a href="https://basicallydan.github.io/forkability/?u=basicallydan&amp;r=interfake"><img alt="This repository's forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>
+<a href="https://basicallydan.github.io/forkability/?u=basicallydan&r=interfake"><img alt="This repository's forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>
 ```
 
 #### Other Options
