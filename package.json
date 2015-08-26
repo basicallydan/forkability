@@ -1,6 +1,6 @@
 {
   "name": "forkability",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "A JS module for determining the open-source-friendliness of a GitHub repository.",
   "main": "./lib/app.js",
   "bin": "./index.js",
@@ -12,13 +12,16 @@
     "watch": "npm-watch"
   },
   "author": "Dan Hough <dan@danhough.com>",
-  "contributors":[{
-    "name":"Daniel Hough",
-    "email":"daniel.hough@gmail.com"
-  }, {
-    "name":"Mordechai Zuber",
-    "email":"mez613@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Daniel Hough",
+      "email": "daniel.hough@gmail.com"
+    },
+    {
+      "name": "Mordechai Zuber",
+      "email": "mez613@gmail.com"
+    }
+  ],
   "license": "MIT",
   "repository": "git@github.com:basicallydan/forkability.git",
   "dependencies": {
