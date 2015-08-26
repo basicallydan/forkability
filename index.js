@@ -52,8 +52,8 @@ if (program.username && program.password) {
 }
 
 function listReporter(err, report) {
-
-	var successSymbol = '✓'
+	var successSymbol = '✓';
+	var badgeTypeText = '(success)'.green;
 
 	if (process.platform === 'win32') {
 		successSymbol = '√';
@@ -80,6 +80,14 @@ function listReporter(err, report) {
 			console.log(((i === report.failures.length - 1 ? '└' : '├') + '──').cyan, failure.details.title ? (failure.details.title + ':') : '', failure.details.url.cyan);
 		}
 	});
+	console.log('');
+	if (report.badge.type !== forkability.badgeTypes.ok) {
+		badgeTypeText = '(failure)'.red;
+	}
+	console.log('# Forkability Badge'.cyan, badgeTypeText);
+	console.log('## Just the SVG:'.cyan, '\n' + report.badge.svg);
+	console.log('## Markdown:'.cyan, '\n' + report.badge.markdown);
+	console.log('## HTML:'.cyan, '\n' + report.badge.html);
 }
 
 function jsonReporter(err, report) {
