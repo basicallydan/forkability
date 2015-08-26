@@ -1,6 +1,6 @@
 forkability
 ===========
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/basicallydan/forkability?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/basicallydan/forkability?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=basicallydan&r=forkability)
 
 A linter for your repository.
 
@@ -29,28 +29,38 @@ forkability jashkenas/backbone --username myusername --password totallynotmypass
 # Basic auth!
 ```
 
-This will give you a pretty, colourful (if your terminal supports it), UTF-8-tastic (if your terminal supports it) list of features and suggested features. It looks a bit like this:
+This will give you a pretty, colourful (if your terminal supports it), UTF-8-tastic (if your terminal supports it) list of features and suggested features, as well as a pretty badge you can include in your README or repo's web page. It looks a bit like this:
 
 
 ```bash
 forkability basicallydan/interfake
 
-# Forkability found 6 recommended features, and has 4 suggestions
+# Forkability found 6 recommended features, and has 2 suggestions
 
-# Features
+# Features (6)
 ✓ Contributing document
 ✓ Readme document
-✓ Licence document
+✓ License document
+✓ .gitignore file
 ✓ Test suite
+✓ Tags are being used
 
-# Suggestions
+---
+
+# Suggestions (2)
 ! Changelog document
 ! Uncommented issue: Comment on the issue to indicate acknowledgement
-├── Support other Content-Types: https://github.com/basicallydan/interfake/issues/31
-! Untouched issue: Comment or label the issue to indicate acknowledgement
-├── Support other Content-Types: https://github.com/basicallydan/interfake/issues/31
-! Uncommented issue: Comment on the issue to indicate acknowledgement
 └── Media Responses: https://github.com/basicallydan/interfake/issues/19
+
+---
+
+# Forkability Badge (failure)
+## Just the SVG: 
+https://img.shields.io/badge/forkable-no-red.svg
+## Markdown: 
+[![This repository's forkability could be improved](https://img.shields.io/badge/forkable-no-red.svg)](https://basicallydan.github.io/forkability/?u=basicallydan&r=interfake)
+## HTML: 
+<a href="https://basicallydan.github.io/forkability/?u=basicallydan&amp;r=interfake"><img alt="This repository's forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>
 ```
 
 #### Other Options
@@ -87,6 +97,10 @@ forkability(options, function(err, report) {
 
 Thankfully, that's it.
 
+## Badges
+
+Thanks to the generosity of [shields.io](https://shields.io) there is in fact a Forkability badge for your repo. It will be generated in all three APIs, but I'd reccommend using the [web app](https://basicallydan.github.io/forkability) for quickest access to the badge code.
+
 ## Contributing
 
 For more info on this see [contributing.md](https://github.com/basicallydan/forkability/blob/master/contributing.md)
@@ -99,11 +113,13 @@ So I'd like to invite anybody reading this to [open an issue](https://github.com
 
 Thanks to everybody who has helped. So far this includes:
 
+* [@basicallydan](https://github.com/basicallydan)
+* [@M-Zuber](https://github.com/M-Zuber)
 * [@JJ](https://github.com/JJ)
 * [@kirang89](https://github.com/kirang89)
-* [@basicallydan](https://github.com/basicallydan)
+* [@jonfinerty](https://github.com/jonfinerty)
 * [@hpoom](https://github.com/hpoom)
-* [@M-Zuber](https://github.com/M-Zuber)
+* [@matiassingers](https://github.com/matiassingers)
 
 ## Long-term goals of this project
 
