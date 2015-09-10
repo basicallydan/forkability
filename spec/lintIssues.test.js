@@ -56,6 +56,15 @@ describe('lintIssues', function () {
 				labels: [],
 				title: 'This issue has no comments',
 				html_url: 'This is a URL'
+			},
+			{
+				user: {
+					login: 'joeBLOGGS'
+				},
+				comments: 0,
+				labels: [],
+				title: 'This issue has no comments',
+				html_url: 'This is a URL'
 			}
 		];
 
