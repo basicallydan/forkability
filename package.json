@@ -1,6 +1,6 @@
 {
   "name": "forkability",
-  "version": "0.15.1",
+  "version": "0.16.0",
   "description": "A JS module for determining the open-source-friendliness of a GitHub repository.",
   "main": "./lib/app.js",
   "bin": "./index.js",
