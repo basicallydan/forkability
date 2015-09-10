@@ -1,3 +1,4 @@
+* 11/09/2015: 0.16.0: Usernames were not being compared lower case with issues. Thanks to [@Alshie](https://github.com/Alshie) they are!
 * 26/08/2015: 0.15.1: Little trouble with badges. The url generated having HTML encoding can be troubling in the case of a markdown code being copied straight from the CLI. It's not really necessary in this case. Also I broke NPM.
 * 26/08/2015: 0.15.0: Added badges! You can now put a badge onto your readme or whatever using HTML, Markdown, or a regular ol' SVG. Thanks to [@M-Zuber](https://github.com/M-Zuber) for kicking this off and [shields.io](https://github.com/badges/shields) for providing the badge.
 * 19/08/2015: 0.14.2: Update to spelling and readme, suggestion by [@montanaflynn](https://github.com/montanaflynn)
