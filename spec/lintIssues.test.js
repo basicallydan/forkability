@@ -11,6 +11,15 @@ describe('lintIssues', function () {
 				labels: ['a label'],
 				title: 'This issue has no comments',
 				html_url: 'This is a URL'
+			},
+			{
+				user: {
+					login: 'jimBOB'
+				},
+				comments: 0,
+				labels: ['a label'],
+				title: 'This issue has no comments',
+				html_url: 'This is a URL'
 			}
 		];
 
@@ -25,7 +34,7 @@ describe('lintIssues', function () {
 			}
 		});
 
-		report.failures.length.should.eql(1);
+		report.failures.length.should.eql(2);
 	});
 
 	it('should return no warnings if all issues are commented upon', function () {
@@ -33,6 +42,15 @@ describe('lintIssues', function () {
 			{
 				user: {
 					login: 'jimbob'
+				},
+				comments: 1,
+				labels: [],
+				title: 'This issue has no comments',
+				html_url: 'This is a URL'
+			},
+			{
+				user: {
+					login: 'jimBOB'
 				},
 				comments: 1,
 				labels: [],
@@ -96,6 +114,15 @@ describe('lintIssues', function () {
 				labels: ['alabel'],
 				title: 'This issue has no comments',
 				html_url: 'This is a URL'
+			},
+			{
+				user: {
+					login: 'jimBOB'
+				},
+				comments: 1,
+				labels: ['alabel'],
+				title: 'This issue has no comments',
+				html_url: 'This is a URL'
 			}
 		];
 
@@ -113,6 +140,15 @@ describe('lintIssues', function () {
 			{
 				user: {
 					login: 'jimbob'
+				},
+				comments: 0,
+				labels: [],
+				title: 'This issue has no comments or labels',
+				html_url: 'This is a URL'
+			},
+			{
+				user: {
+					login: 'jimBOB'
 				},
 				comments: 0,
 				labels: [],
@@ -141,6 +177,6 @@ describe('lintIssues', function () {
 			}
 		});
 
-		report.failures.length.should.eql(2);
+		report.failures.length.should.eql(4);
 	});
 });
