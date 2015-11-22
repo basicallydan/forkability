@@ -64,9 +64,11 @@
 						</div>
 						<datalist id="languages"></datalist>
 						<div class="form-group">
-							<label for="Languages">Language (optional)</label>
-							<input type="text" placeholder="Default: none" id="language" class="language form-control right-of-slash" list="languages">
+							<label for="language">Language (optional)</label>
+							<input type="text" multiple placeholder="Default: none" id="language" class="language form-control right-of-slash" list="languages">
 						</div>
+						<ul id="selected-languages" class="selected-languages">
+						</ul>
 						<button class="btn btn-primary btn-block" id="check-forkability">Check Forkability</button>
 					</form>
 				</div>

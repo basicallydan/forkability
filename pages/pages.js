@@ -125,6 +125,23 @@ var loadPage = function() {
 			hero.find('#languages').append('<option value="' + langKey + '">' + lang.name + '</option>');
 		});
 
+		hero.find('#language').on('input', function() {
+			var val = this.value;
+			if (hero.find('#languages').find('option').filter(function() {
+					return this.value.toUpperCase() === val.toUpperCase();
+				}).length) {
+				$('<li></li>')
+					.text(val)
+					.on('click', function () {
+						$(this).remove();
+					})
+					.attr('class', 'btn btn-primary btn-xs')
+					.attr('title', 'Click/tap to remove')
+					.appendTo(hero.find('#selected-languages'));
+				$(this).val('');
+			}
+		});
+
 		function getRepositories(username, cb) {
 			var repositoryElement = hero.find('#repository');
 			repositoryElement.attr('placeholder', 'Loading ' + username + '\'s repositories...');
@@ -150,11 +167,19 @@ var loadPage = function() {
 				});
 		}
 
+		function getListOfLanguages() {
+			var languagesList = hero.find('#selected-languages li');
+			var languagesArray = languagesList.map(function () {
+				return $(this).text();
+			}).toArray();
+			return languagesArray.join(',');
+		}
+
 		var submit = function(e) {
 			e.preventDefault();
 			var user = hero.find('#username').val() || currentUser.login;
 			var repo = hero.find('#repository').val();
-			var lang = hero.find('#language').val();
+			var lang = getListOfLanguages();
 			if (!repo) {
 				return alert('You really do need to enter a repository name');
 			}
