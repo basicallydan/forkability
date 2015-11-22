@@ -340,4 +340,49 @@ describe('forkability', function() {
 			done();
 		});
 	});
+
+	it('should allow multiple languages to be used for linting', function (done) {
+		mockResponses({
+			tagsBody: [],
+			firstCommitTreeBody: {
+				tree: [{
+					path: 'contributing.md'
+				}, {
+					path: 'readme.md'
+				}, {
+					path: 'licence.md'
+				}, {
+					path: 'changelog.md'
+				}, {
+					path: '.gitignore'
+				}, {
+					path: 'spec',
+					type: 'tree'
+				}, {
+					path: 'setup.py'
+				}, {
+					path: 'requirements.txt'
+				}, {
+					path: 'docs',
+					type: 'tree'
+				}, {
+					path: 'tests',
+					type: 'tree'
+				}]
+			}
+		});
+
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo',
+			languages: ['python','nodejs']
+		},
+		function (err, report) {
+			should(err).eql(null);
+			report.passes.should.have.a.lengthOf(11);
+			report.failures.should.have.a.lengthOf(2);
+			report.badge.type.should.equal(forkability.badgeTypes.fail);
+			done();
+		});
+	});
 });
