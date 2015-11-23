@@ -3,40 +3,40 @@ var should = require('should');
 var mockResponses = require('./helper.mockResponses.js');
 // var nock = require('nock');
 
-describe('forkability', function() {
+describe('forkability', function () {
 	// beforeEach(function () {
 	// 	nock.cleanAll();
 	// });
 
-	it('should identify that the repo has all recommended features, and include a success badge', function(done) {
+	it('should identify that the repo has all recommended features, and include a success badge', function (done) {
 		mockResponses();
 
 		forkability({
 			user: 'thatoneguy',
 			repository: 'thatonerepo'
 		},
-		function (err, report) {
-			should(err).eql(null);
-			report.passes.should.containEql({ message : 'Contributing document' });
-			report.passes.should.containEql({ message : 'Readme document' });
-			report.passes.should.containEql({ message : 'License document' });
-			report.passes.should.containEql({ message : 'Test suite' });
-			report.passes.should.containEql({ message : 'Changelog document' });
-			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
-			report.passes.should.containEql({ message : 'Tags are being used' });
-			report.passes.should.containEql({ message : '.gitignore file' });
-			report.passes.should.have.a.lengthOf(8);
-			report.failures.should.be.empty;
-			report.badge.type.should.equal(forkability.badgeTypes.ok);
-			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
-			report.badge.markdown.should.equal('[![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
-			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This is a forkable respository" src="https://img.shields.io/badge/forkable-yes-brightgreen.svg"></a>');
-			done();
-		});
+			function (err, report) {
+				should(err).eql(null);
+				report.passes.should.containEql({ message: 'Contributing document' });
+				report.passes.should.containEql({ message: 'Readme document' });
+				report.passes.should.containEql({ message: 'License document' });
+				report.passes.should.containEql({ message: 'Test suite' });
+				report.passes.should.containEql({ message: 'Changelog document' });
+				report.passes.should.containEql({ message: 'All open issues have been acknowledged' });
+				report.passes.should.containEql({ message: 'Tags are being used' });
+				report.passes.should.containEql({ message: '.gitignore file' });
+				report.passes.should.have.a.lengthOf(8);
+				report.failures.should.be.empty;
+				report.badge.type.should.equal(forkability.badgeTypes.ok);
+				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
+				report.badge.markdown.should.equal('[![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
+				report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This is a forkable respository" src="https://img.shields.io/badge/forkable-yes-brightgreen.svg"></a>');
+				done();
+			});
 	});
 
 	// Fairly sure this test is a false positive
-	it('should identify that the repo has all recommended features when basic auth specified', function(done) {
+	it('should identify that the repo has all recommended features when basic auth specified', function (done) {
 		mockResponses({
 			firstCommitTreeRequestHeaders: {
 				auth: {
@@ -55,28 +55,28 @@ describe('forkability', function() {
 				password: 'password'
 			}
 		},
-		function (err, report) {
-			should(err).eql(null);
-			report.passes.should.containEql({ message : 'Contributing document' });
-			report.passes.should.containEql({ message : 'Readme document' });
-			report.passes.should.containEql({ message : 'License document' });
-			report.passes.should.containEql({ message : 'Test suite' });
-			report.passes.should.containEql({ message : 'Changelog document' });
-			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
-			report.passes.should.containEql({ message : 'Tags are being used' });
-			report.passes.should.containEql({ message : '.gitignore file' });
-			report.passes.should.have.a.lengthOf(8);
-			report.failures.should.be.empty;
-			report.badge.type.should.equal(forkability.badgeTypes.ok);
-			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
-			report.badge.markdown.should.equal('[![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
-			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This is a forkable respository" src="https://img.shields.io/badge/forkable-yes-brightgreen.svg"></a>');
-			done();
-		});
+			function (err, report) {
+				should(err).eql(null);
+				report.passes.should.containEql({ message: 'Contributing document' });
+				report.passes.should.containEql({ message: 'Readme document' });
+				report.passes.should.containEql({ message: 'License document' });
+				report.passes.should.containEql({ message: 'Test suite' });
+				report.passes.should.containEql({ message: 'Changelog document' });
+				report.passes.should.containEql({ message: 'All open issues have been acknowledged' });
+				report.passes.should.containEql({ message: 'Tags are being used' });
+				report.passes.should.containEql({ message: '.gitignore file' });
+				report.passes.should.have.a.lengthOf(8);
+				report.failures.should.be.empty;
+				report.badge.type.should.equal(forkability.badgeTypes.ok);
+				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
+				report.badge.markdown.should.equal('[![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
+				report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This is a forkable respository" src="https://img.shields.io/badge/forkable-yes-brightgreen.svg"></a>');
+				done();
+			});
 	});
 
 	// Fairly sure this test is a false positive
-	it('should identify that the repo has all recommended features when an auth token is provided', function(done) {
+	it('should identify that the repo has all recommended features when an auth token is provided', function (done) {
 		mockResponses({
 			firstCommitTreeRequestHeaders: {
 				auth: {
@@ -93,23 +93,23 @@ describe('forkability', function() {
 				token: 'whatevs'
 			}
 		},
-		function (err, report) {
-			should(err).eql(null);
-			report.passes.should.containEql({ message : 'Contributing document' });
-			report.passes.should.containEql({ message : 'Readme document' });
-			report.passes.should.containEql({ message : 'License document' });
-			report.passes.should.containEql({ message : 'Test suite' });
-			report.passes.should.containEql({ message : 'Changelog document' });
-			report.passes.should.containEql({ message : 'All open issues have been acknowledged' });
-			report.passes.should.containEql({ message : 'Tags are being used' });
-			report.passes.should.containEql({ message : '.gitignore file' });
-			report.passes.should.have.a.lengthOf(8);
-			report.failures.should.be.empty;
-			done();
-		});
+			function (err, report) {
+				should(err).eql(null);
+				report.passes.should.containEql({ message: 'Contributing document' });
+				report.passes.should.containEql({ message: 'Readme document' });
+				report.passes.should.containEql({ message: 'License document' });
+				report.passes.should.containEql({ message: 'Test suite' });
+				report.passes.should.containEql({ message: 'Changelog document' });
+				report.passes.should.containEql({ message: 'All open issues have been acknowledged' });
+				report.passes.should.containEql({ message: 'Tags are being used' });
+				report.passes.should.containEql({ message: '.gitignore file' });
+				report.passes.should.have.a.lengthOf(8);
+				report.failures.should.be.empty;
+				done();
+			});
 	});
 
-	it('should warn about uncommented issues', function(done) {
+	it('should warn about uncommented issues', function (done) {
 		mockResponses({
 			openIssuesBody: [
 				{
@@ -151,31 +151,31 @@ describe('forkability', function() {
 			user: 'thatoneguy',
 			repository: 'thatonerepo'
 		},
-		function (err, report) {
-			should(err).eql(null);
+			function (err, report) {
+				should(err).eql(null);
 
-			report.failures.should.containEql({
-				message: 'Uncommented issue',
-				details: {
-					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
-					title: 'Your repo sucks',
-					suggestion: 'Comment on the issue to indicate acknowledgement'
-				}
+				report.failures.should.containEql({
+					message: 'Uncommented issue',
+					details: {
+						url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
+						title: 'Your repo sucks',
+						suggestion: 'Comment on the issue to indicate acknowledgement'
+					}
+				});
+
+				report.failures.should.containEql({
+					message: 'Uncommented issue',
+					details: {
+						url: 'https://github.com/thatoneguy/thatonerepo/issues/2345',
+						title: 'This is the worst open source project ever',
+						suggestion: 'Comment on the issue to indicate acknowledgement'
+					}
+				});
+
+				done();
 			});
-
-			report.failures.should.containEql({
-				message: 'Uncommented issue',
-				details: {
-					url: 'https://github.com/thatoneguy/thatonerepo/issues/2345',
-					title: 'This is the worst open source project ever',
-					suggestion: 'Comment on the issue to indicate acknowledgement'
-				}
-			});
-
-			done();
-		});
 	});
-	
+
 	it('should warn about issues with no comments and no tags (untouched issues)', function (done) {
 		mockResponses({
 			openIssuesBody: [
@@ -207,18 +207,18 @@ describe('forkability', function() {
 			user: 'thatoneguy',
 			repository: 'thatonerepo'
 		},
-		function (err, report) {
-			should(err).eql(null);
-			report.failures.should.containEql({
-				message: 'Untouched issue',
-				details: {
-					title: 'This issue has no comments and no labels',
-					url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
-					suggestion: 'Comment or label the issue to indicate acknowledgement'
-				}
+			function (err, report) {
+				should(err).eql(null);
+				report.failures.should.containEql({
+					message: 'Untouched issue',
+					details: {
+						title: 'This issue has no comments and no labels',
+						url: 'https://github.com/thatoneguy/thatonerepo/issues/1234',
+						suggestion: 'Comment or label the issue to indicate acknowledgement'
+					}
+				});
+				done();
 			});
-			done();
-		});
 	});
 
 	it('should warn about tag failures and include a fail badge', function (done) {
@@ -230,23 +230,23 @@ describe('forkability', function() {
 			user: 'thatoneguy',
 			repository: 'thatonerepo'
 		},
-		function (err, report) {
-			should(err).eql(null);
-			report.failures.should.containEql({
-				message: 'No tags',
-				details: {
-					title: 'The project does not make use of git tags',
-					suggestion: 'Before releasing a new version, create a tag to represent the code at the point of that release.'
-				}
+			function (err, report) {
+				should(err).eql(null);
+				report.failures.should.containEql({
+					message: 'No tags',
+					details: {
+						title: 'The project does not make use of git tags',
+						suggestion: 'Before releasing a new version, create a tag to represent the code at the point of that release.'
+					}
+				});
+				report.passes.should.have.a.lengthOf(7);
+				report.failures.should.have.a.lengthOf(1);
+				report.badge.type.should.equal(forkability.badgeTypes.fail);
+				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-no-red.svg');
+				report.badge.markdown.should.equal('[![This repository\'s forkability could be improved](https://img.shields.io/badge/forkable-no-red.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
+				report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This repository\'s forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>');
+				done();
 			});
-			report.passes.should.have.a.lengthOf(7);
-			report.failures.should.have.a.lengthOf(1);
-			report.badge.type.should.equal(forkability.badgeTypes.fail);
-			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-no-red.svg');
-			report.badge.markdown.should.equal('[![This repository\'s forkability could be improved](https://img.shields.io/badge/forkable-no-red.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
-			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This repository\'s forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>');
-			done();
-		});
 	});
 
 	it('should include a fail badge if < 90% of the items are successes', function (done) {
@@ -281,16 +281,16 @@ describe('forkability', function() {
 			user: 'thatoneguy',
 			repository: 'thatonerepo'
 		},
-		function (err, report) {
-			should(err).eql(null);
-			report.passes.should.have.a.lengthOf(6);
-			report.failures.should.have.a.lengthOf(3);
-			report.badge.type.should.equal(forkability.badgeTypes.fail);
-			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-no-red.svg');
-			report.badge.markdown.should.equal('[![This repository\'s forkability could be improved](https://img.shields.io/badge/forkable-no-red.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
-			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This repository\'s forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>');
-			done();
-		});
+			function (err, report) {
+				should(err).eql(null);
+				report.passes.should.have.a.lengthOf(6);
+				report.failures.should.have.a.lengthOf(3);
+				report.badge.type.should.equal(forkability.badgeTypes.fail);
+				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-no-red.svg');
+				report.badge.markdown.should.equal('[![This repository\'s forkability could be improved](https://img.shields.io/badge/forkable-no-red.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo)');
+				report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo"><img alt="This repository\'s forkability could be improved" src="https://img.shields.io/badge/forkable-no-red.svg"></a>');
+				done();
+			});
 	});
 
 	it('should include a success badge if >= 90% of the items are successes', function (done) {
@@ -300,27 +300,27 @@ describe('forkability', function() {
 				tree: [{
 					path: 'contributing.md'
 				}, {
-					path: 'readme.md'
-				}, {
-					path: 'licence.md'
-				}, {
-					path: 'changelog.md'
-				}, {
-					path: '.gitignore'
-				}, {
-					path: 'spec',
-					type: 'tree'
-				}, {
-					path: 'setup.py'
-				}, {
-					path: 'requirements.txt'
-				}, {
-					path: 'docs',
-					type: 'tree'
-				}, {
-					path: 'tests',
-					type: 'tree'
-				}]
+						path: 'readme.md'
+					}, {
+						path: 'licence.md'
+					}, {
+						path: 'changelog.md'
+					}, {
+						path: '.gitignore'
+					}, {
+						path: 'spec',
+						type: 'tree'
+					}, {
+						path: 'setup.py'
+					}, {
+						path: 'requirements.txt'
+					}, {
+						path: 'docs',
+						type: 'tree'
+					}, {
+						path: 'tests',
+						type: 'tree'
+					}]
 			}
 		});
 
@@ -329,45 +329,43 @@ describe('forkability', function() {
 			repository: 'thatonerepo',
 			languages: ['python']
 		},
-		function (err, report) {
-			should(err).eql(null);
-			report.passes.should.have.a.lengthOf(10);
-			report.failures.should.have.a.lengthOf(1);
-			report.badge.type.should.equal(forkability.badgeTypes.ok);
-			report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
-			report.badge.markdown.should.equal('[![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo&l=python)');
-			report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo&l=python"><img alt="This is a forkable respository" src="https://img.shields.io/badge/forkable-yes-brightgreen.svg"></a>');
-			done();
-		});
+			function (err, report) {
+				should(err).eql(null);
+				report.passes.should.have.a.lengthOf(10);
+				report.failures.should.have.a.lengthOf(1);
+				report.badge.type.should.equal(forkability.badgeTypes.ok);
+				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
+				report.badge.markdown.should.equal('[![This is a forkable respository](https://img.shields.io/badge/forkable-yes-brightgreen.svg)](https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo&l=python)');
+				report.badge.html.should.equal('<a href="https://basicallydan.github.io/forkability/?u=thatoneguy&r=thatonerepo&l=python"><img alt="This is a forkable respository" src="https://img.shields.io/badge/forkable-yes-brightgreen.svg"></a>');
+				done();
+			});
 	});
 
-	it('should allow multiple languages to be used for linting', function (done) {
+	it('should allow multiple languages to be used for linting - fails due to one of the languages', function (done) {
 		mockResponses({
-			tagsBody: [],
+			tagsBody: ['tag1'],
 			firstCommitTreeBody: {
 				tree: [{
 					path: 'contributing.md'
 				}, {
-					path: 'readme.md'
-				}, {
-					path: 'licence.md'
-				}, {
-					path: 'changelog.md'
-				}, {
-					path: '.gitignore'
-				}, {
-					path: 'spec',
-					type: 'tree'
-				}, {
-					path: 'setup.py'
-				}, {
-					path: 'requirements.txt'
-				}, {
-					path: 'docs',
-					type: 'tree'
-				}, {
-					path: 'tests',
-					type: 'tree'
+						path: 'readme.md'
+					}, {
+						path: 'licence.md'
+					}, {
+						path: 'changelog.md'
+					}, {
+						path: '.gitignore'
+					}, {
+						path: 'spec',
+						type: 'tree'
+					},{
+						path: 'docs',
+						type: 'tree'
+					}, {
+						path: 'tests',
+						type: 'tree'
+					},{
+					path:'package.json'
 				}]
 			}
 		});
@@ -375,14 +373,64 @@ describe('forkability', function() {
 		forkability({
 			user: 'thatoneguy',
 			repository: 'thatonerepo',
-			languages: ['python','nodejs']
+			languages: ['python', 'nodejs']
 		},
-		function (err, report) {
-			should(err).eql(null);
-			report.passes.should.have.a.lengthOf(11);
-			report.failures.should.have.a.lengthOf(2);
-			report.badge.type.should.equal(forkability.badgeTypes.fail);
-			done();
+			function (err, report) {
+				should(err).eql(null);
+				report.passes.should.have.a.lengthOf(11);
+				report.failures.should.have.a.lengthOf(2);
+				report.failures.should.containEql({ message : 'setup.py file' });
+				report.badge.type.should.equal(forkability.badgeTypes.fail);
+				done();
+			});
+	});
+
+	it('should allow multiple languages to be used for linting - all languages pass', function (done) {
+		mockResponses({
+			tagsBody: ['tag1'],
+			firstCommitTreeBody: {
+				tree: [{
+					path: 'contributing.md'
+				}, {
+						path: 'readme.md'
+					}, {
+						path: 'licence.md'
+					}, {
+						path: 'changelog.md'
+					}, {
+						path: '.gitignore'
+					}, {
+						path: 'spec',
+						type: 'tree'
+					}, {
+						path: 'setup.py'
+					}, {
+						path: 'requirements.txt'
+					}, {
+						path: 'docs',
+						type: 'tree'
+					}, {
+						path: 'tests',
+						type: 'tree'
+					},{
+					path:'package.json'
+				}]
+			}
 		});
+
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo',
+			languages: ['python', 'nodejs']
+		},
+			function (err, report) {
+				should(err).eql(null);
+				console.log(report);
+				
+				report.passes.should.have.a.lengthOf(13);
+				report.failures.should.have.a.lengthOf(0);
+				report.badge.type.should.equal(forkability.badgeTypes.ok);
+				done();
+			});
 	});
 });
