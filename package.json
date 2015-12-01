@@ -8,7 +8,7 @@
     "test": "*.js"
   },
   "scripts": {
-    "test": "mocha spec/*.test.js spec/**/*.test.js --reporter spec -c -G",
+    "test": "./node_modules/.bin/mocha spec/*.test.js spec/**/*.test.js --reporter spec -c -G",
     "watch": "npm-watch"
   },
   "author": "Dan Hough <dan@danhough.com>",
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "interfake": "^1.9.2",
+    "mocha": "^2.3.4",
     "nock": "^0.47.0",
     "should": "^4.0.4",
     "npm-watch": "0.0.0"
