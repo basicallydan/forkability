@@ -132,7 +132,7 @@ Thanks to everybody who has helped. So far this includes:
 
 ## Tests
 
-Make sure you `npm install -g mocha`, then `npm test` this repo.
+Run `npm test` in this repo.
 
 ### Possible domains for this project:
 
