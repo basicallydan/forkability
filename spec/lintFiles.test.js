@@ -278,6 +278,30 @@ describe('lintFiles', function () {
 		report.failures.should.not.containEql({ message : 'Changelog document' });
 	});
 
+  it('should return presence of a changelog called news with no extensions', function () {
+    var tree = [
+      {
+        path:'news'
+      }
+    ];
+
+    var report = lintFiles(tree);
+
+    report.passes.should.containEql({ message : 'Changelog document' });
+  });
+
+  it('should return presence of an upper-case changelog called news with a markdown extension', function () {
+    var tree = [
+      {
+        path:'NEWS.md'
+      }
+    ];
+
+    var report = lintFiles(tree);
+
+    report.passes.should.containEql({ message : 'Changelog document' });
+  });
+
 	it('should return presence of a .gitignore file called .gitignore', function () {
 		var tree = [
 			{
