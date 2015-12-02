@@ -122,6 +122,8 @@ Thanks to everybody who has helped. So far this includes:
 * [@jonfinerty](https://github.com/jonfinerty)
 * [@hpoom](https://github.com/hpoom)
 * [@matiassingers](https://github.com/matiassingers)
+* [@algernon](https://github.com/algernon)
+* [@rowanmanning](https://github.com/rowanmanning)
 
 ## Long-term goals of this project
 
@@ -132,7 +134,7 @@ Thanks to everybody who has helped. So far this includes:
 
 ## Tests
 
-Run `npm test` in this repo.
+Clone this repo, run `npm install`, then `npm test`.
 
 ### Possible domains for this project:
 
