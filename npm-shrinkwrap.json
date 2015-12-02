@@ -1,6 +1,6 @@
 {
   "name": "forkability",
-  "version": "0.16.1",
+  "version": "0.17.0",
   "dependencies": {
     "browser-request": {
       "version": "0.3.2",
