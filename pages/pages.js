@@ -6,9 +6,15 @@ function getParameterByName(name) {
 }
 
 var rootPath = '/forkability';
+var gitHubHost = 'basicallydan.github.io';
+var onHTTPS = true;
 
 if (/localhost/i.test(window.location.href)) {
 	rootPath = '/';
+}
+
+if ((window.location.host.test(gitHubHost)) && !(/https/i.test(window.location.protocol))) {
+    onHTTPS = false;
 }
 
 var loadPage = function() {
@@ -16,12 +22,26 @@ var loadPage = function() {
 	var repoOptions = {};
 	var repos = [];
 
+	if (!onHTTPS) {
+		$('.sign-in').tooltip({
+			title: 'You can\'t sign in using unless you\'re on HTTPS. Click here to be redirected.',
+			placement: 'bottom'
+		});
+	}
+
 	$(document).on('click', '.sign-in', function(e) {
 		e.preventDefault();
-		authClient.login({
-			rememberMe: true,
-			scope: undefined
-		});
+		if (!onHTTPS) {
+			$(this).html('<i class="fa fa-github"></i> Redirecting to https...');
+			setTimeout(function () {
+				window.location.protocol = 'https';	
+			}, 700);
+		} else {
+			authClient.login({
+				rememberMe: true,
+				scope: undefined
+			});
+		}
 	});
 
 	repoOptions.username = getParameterByName('u');
