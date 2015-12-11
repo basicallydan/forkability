@@ -6,14 +6,13 @@ function getParameterByName(name) {
 }
 
 var rootPath = '/forkability';
-var gitHubHost = 'basicallydan.github.io';
 var onHTTPS = true;
 
 if (/localhost/i.test(window.location.href)) {
 	rootPath = '/';
 }
 
-if ((window.location.host.test(gitHubHost)) && !(/https/i.test(window.location.protocol))) {
+if ((/basicallydan\.github\.io/i.test(window.location.host)) && !(/https/i.test(window.location.protocol))) {
     onHTTPS = false;
 }
 
