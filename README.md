@@ -105,11 +105,13 @@ Thanks to the generosity of [shields.io](https://shields.io) there is in fact a 
 
 ## Contributing
 
-For more info on this see [contributing.md](https://github.com/basicallydan/forkability/blob/master/contributing.md)
+Clone the repo using `git clone git@github.com:basicallydan/forkability.git` or HTTPS if you'd prefer. Once it's downloaded, you can use `make deps` to install dependencies. Use `make help` to see other `makefile` commands available such as `test`, `serve` and `compile` which are all useful for developing and testing new features.
 
-The thing about what makes a project forkable is that there are probably various ways to look at a project and thus many opinions.
+For more info on contributing to Forkability including guidelines, see [contributing.md](https://github.com/basicallydan/forkability/blob/master/contributing.md).
 
-So I'd like to invite anybody reading this to [open an issue](https://github.com/basicallydan/forkability/issues), and/or make a pull request - pull requests are all the hotness right now - which details in some way what could be done to make this a *more useful tool*.
+A key consideration when making contributions is to concsider what makes a project forkable; there are many ways to look at a project and thus probably many opinions.
+
+With this in mind we'd like to invite anybody reading this to [open an issue](https://github.com/basicallydan/forkability/issues), and/or make a pull request - pull requests are all the hotness right now - which details in some way what could be done to make this a *more useful tool*.
 
 ### Contributors
 
