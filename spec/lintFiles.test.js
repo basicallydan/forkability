@@ -48,7 +48,79 @@ describe('lintFiles', function () {
 
 		report.passes.should.containEql({ message : 'Readme document' });
 	});
+    
+    it('should return presence of a code of conduct as one word with a markdown extension', function () {
+		var tree = [
+			{
+				path:'CODEOFCONDUCT.md'
+			}
+		];
 
+		var report = lintFiles(tree);
+
+		report.passes.should.containEql({ message : 'Code of Conduct' });
+	});
+
+	it('should return presence of a code of conduct as one word with a txt extension', function () {
+		var tree = [
+			{
+				path:'CODEOFCONDUCT.txt'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.passes.should.containEql({ message : 'Code of Conduct' });
+	});
+
+	it('should return presence of a lowercase code of conduct with a txt extension', function () {
+		var tree = [
+			{
+				path:'codeofconduct.txt'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.passes.should.containEql({ message : 'Code of Conduct' });
+	});
+
+	it('should return presence of a code of conduct with no extension at all', function () {
+		var tree = [
+			{
+				path:'CODEOFCONDUCT'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.passes.should.containEql({ message : 'Code of Conduct' });
+	});
+
+    it('should return presence of a code of conduct with an alternate naming convention of dashes', function () {
+		var tree = [
+			{
+				path:'CODE-OF-CONDUCT'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.passes.should.containEql({ message : 'Code of Conduct' });
+	});
+    
+    it('should return presence of a code of conduct with an alternate naming convention of underscore', function () {
+		var tree = [
+			{
+				path:'CODE_OF_CONDUCT'
+			}
+		];
+
+		var report = lintFiles(tree);
+
+		report.passes.should.containEql({ message : 'Code of Conduct' });
+	});
+    
 	it('should return presence of a licence with a markdown extension', function () {
 		var tree = [
 			{
