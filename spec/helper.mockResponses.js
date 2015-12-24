@@ -28,6 +28,8 @@ function mockResponses(responses, recursiveParam) {
 			}, {
 				path: 'licence.md'
 			}, {
+				path: 'CODEOFCONDUCT'
+			}, {
 				path: 'changelog.md'
 			},{
 				path: '.gitignore'
