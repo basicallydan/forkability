@@ -109,7 +109,7 @@ Clone the repo using `git clone git@github.com:basicallydan/forkability.git` or 
 
 For more info on contributing to Forkability including guidelines, see [contributing.md](https://github.com/basicallydan/forkability/blob/master/contributing.md).
 
-A key consideration when making contributions is to concsider what makes a project forkable; there are many ways to look at a project and thus probably many opinions.
+A key consideration when making contributions is to consider what makes a project forkable; there are many ways to look at a project and thus probably many opinions.
 
 With this in mind we'd like to invite anybody reading this to [open an issue](https://github.com/basicallydan/forkability/issues), and/or make a pull request - pull requests are all the hotness right now - which details in some way what could be done to make this a *more useful tool*.
 
