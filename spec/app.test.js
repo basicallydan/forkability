@@ -20,12 +20,13 @@ describe('forkability', function () {
 				report.passes.should.containEql({ message: 'Contributing document' });
 				report.passes.should.containEql({ message: 'Readme document' });
 				report.passes.should.containEql({ message: 'License document' });
+				report.passes.should.containEql({ message: 'Code of Conduct' });
 				report.passes.should.containEql({ message: 'Test suite' });
 				report.passes.should.containEql({ message: 'Changelog document' });
 				report.passes.should.containEql({ message: 'All open issues have been acknowledged' });
 				report.passes.should.containEql({ message: 'Tags are being used' });
 				report.passes.should.containEql({ message: '.gitignore file' });
-				report.passes.should.have.a.lengthOf(8);
+				report.passes.should.have.a.lengthOf(9);
 				report.failures.should.be.empty;
 				report.badge.type.should.equal(forkability.badgeTypes.ok);
 				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
@@ -60,12 +61,13 @@ describe('forkability', function () {
 				report.passes.should.containEql({ message: 'Contributing document' });
 				report.passes.should.containEql({ message: 'Readme document' });
 				report.passes.should.containEql({ message: 'License document' });
+				report.passes.should.containEql({ message: 'Code of Conduct' });
 				report.passes.should.containEql({ message: 'Test suite' });
 				report.passes.should.containEql({ message: 'Changelog document' });
 				report.passes.should.containEql({ message: 'All open issues have been acknowledged' });
 				report.passes.should.containEql({ message: 'Tags are being used' });
 				report.passes.should.containEql({ message: '.gitignore file' });
-				report.passes.should.have.a.lengthOf(8);
+				report.passes.should.have.a.lengthOf(9);
 				report.failures.should.be.empty;
 				report.badge.type.should.equal(forkability.badgeTypes.ok);
 				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
@@ -98,12 +100,13 @@ describe('forkability', function () {
 				report.passes.should.containEql({ message: 'Contributing document' });
 				report.passes.should.containEql({ message: 'Readme document' });
 				report.passes.should.containEql({ message: 'License document' });
+				report.passes.should.containEql({ message: 'Code of Conduct' });
 				report.passes.should.containEql({ message: 'Test suite' });
 				report.passes.should.containEql({ message: 'Changelog document' });
 				report.passes.should.containEql({ message: 'All open issues have been acknowledged' });
 				report.passes.should.containEql({ message: 'Tags are being used' });
 				report.passes.should.containEql({ message: '.gitignore file' });
-				report.passes.should.have.a.lengthOf(8);
+				report.passes.should.have.a.lengthOf(9);
 				report.failures.should.be.empty;
 				done();
 			});
@@ -239,7 +242,7 @@ describe('forkability', function () {
 						suggestion: 'Before releasing a new version, create a tag to represent the code at the point of that release.'
 					}
 				});
-				report.passes.should.have.a.lengthOf(7);
+				report.passes.should.have.a.lengthOf(8);
 				report.failures.should.have.a.lengthOf(1);
 				report.badge.type.should.equal(forkability.badgeTypes.fail);
 				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-no-red.svg');
@@ -283,7 +286,7 @@ describe('forkability', function () {
 		},
 			function (err, report) {
 				should(err).eql(null);
-				report.passes.should.have.a.lengthOf(6);
+				report.passes.should.have.a.lengthOf(7);
 				report.failures.should.have.a.lengthOf(3);
 				report.badge.type.should.equal(forkability.badgeTypes.fail);
 				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-no-red.svg');
@@ -303,6 +306,8 @@ describe('forkability', function () {
 						path: 'readme.md'
 					}, {
 						path: 'licence.md'
+					}, {
+						path: 'codeofconduct.md'
 					}, {
 						path: 'changelog.md'
 					}, {
@@ -331,7 +336,7 @@ describe('forkability', function () {
 		},
 			function (err, report) {
 				should(err).eql(null);
-				report.passes.should.have.a.lengthOf(10);
+				report.passes.should.have.a.lengthOf(11);
 				report.failures.should.have.a.lengthOf(1);
 				report.badge.type.should.equal(forkability.badgeTypes.ok);
 				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
@@ -378,7 +383,7 @@ describe('forkability', function () {
 			function (err, report) {
 				should(err).eql(null);
 				report.passes.should.have.a.lengthOf(11);
-				report.failures.should.have.a.lengthOf(2);
+				report.failures.should.have.a.lengthOf(3);
 				report.failures.should.containEql({ message : 'setup.py file' });
 				report.badge.type.should.equal(forkability.badgeTypes.fail);
 				done();
@@ -395,6 +400,8 @@ describe('forkability', function () {
 						path: 'readme.md'
 					}, {
 						path: 'licence.md'
+					}, {
+						path: 'codeofconduct.md'
 					}, {
 						path: 'changelog.md'
 					}, {
@@ -427,7 +434,7 @@ describe('forkability', function () {
 				should(err).eql(null);
 				console.log(report);
 				
-				report.passes.should.have.a.lengthOf(13);
+				report.passes.should.have.a.lengthOf(14);
 				report.failures.should.have.a.lengthOf(0);
 				report.badge.type.should.equal(forkability.badgeTypes.ok);
 				done();
