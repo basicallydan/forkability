@@ -7,7 +7,7 @@ help:
 	@echo "  test        runs tests"
 	@echo "  compile     sets up your js files for production"
 	@echo "  serve       run the webserver"
-	@echo "  shrinkwarp  resets the shrinkwrap.json file"
+	@echo "  shrinkwrap  resets the shrinkwrap.json file"
 
 deps:
 	npm install
