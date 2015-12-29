@@ -21,8 +21,21 @@ describe('getTagArray', function() {
 		});
 	});
 
-	// it('should report no git repository at all if there is no repo in a local git repository folder', function () {
-	// 	var tags = 
-	// 	should.throw(getTagArray(path.resolve('./spec/notLocalGitRepo')));
-	// });
+	it('should return an empty array if there are no tags', function() {
+		var tags = getTagArray(path.resolve('./spec/noTagsLocalGitRepo'));
+		tags.should.be.Array;
+		tags.length.should.equal(0);
+	});
+
+	it('should report no git repository at all if there is no repo in a local git repository folder', function () {
+		should(function () {
+			getTagArray(path.resolve('./spec/notLocalGitRepo'));
+		}).throw('You have specified a directory which is not a git repository');
+	});
+
+	it('should report no git repository at all if there is no repo in a local git repository folder', function () {
+		should(function () {
+			getTagArray(path.resolve('./spec/brokenLocalGitRepo'));
+		}).throw('You have specified a directory with an invalid git repository which is missing the refs folder');
+	});
 });
