@@ -425,7 +425,6 @@ describe('forkability', function () {
 		},
 			function (err, report) {
 				should(err).eql(null);
-				console.log(report);
 				
 				report.passes.should.have.a.lengthOf(13);
 				report.failures.should.have.a.lengthOf(0);
@@ -436,7 +435,7 @@ describe('forkability', function () {
 
 	it('should determine tags based a specified local repository in the file system', function (done) {
 		mockResponses({
-			tagsBody: ['tag1'],
+			tagsBody: [],
 			firstCommitTreeBody: {
 				tree: [{
 					path: 'contributing.md'
@@ -470,14 +469,14 @@ describe('forkability', function () {
 		forkability({
 			user: 'thatoneguy',
 			repository: 'thatonerepo',
-			languages: ['python', 'nodejs']
+			localDirectory: './spec/localGitRepo',
+			languages: ['python', 'nodejs'],
 		},
 			function (err, report) {
 				should(err).eql(null);
-				console.log(report);
 				
 				report.passes.should.have.a.lengthOf(13);
-				report.passes.should.containEql('Tags are being used');
+				report.passes.should.containEql({ message: 'Tags are being used' });
 				report.failures.should.have.a.lengthOf(0);
 				report.badge.type.should.equal(forkability.badgeTypes.ok);
 				done();
