@@ -38,7 +38,8 @@
     "interfake": "^1.9.2",
     "mocha": "^2.3.4",
     "nock": "^3.5.0",
-    "should": "^8.0.2",
-    "npm-watch": "^0.0.2"
+    "npm-watch": "^0.0.2",
+    "proxyquire": "^1.7.3",
+    "should": "^8.0.2"
   }
 }

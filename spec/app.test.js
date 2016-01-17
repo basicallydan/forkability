@@ -433,53 +433,53 @@ describe('forkability', function () {
 			});
 	});
 
-	it('should determine tags based a specified local repository in the file system', function (done) {
-		mockResponses({
-			tagsBody: [],
-			firstCommitTreeBody: {
-				tree: [{
-					path: 'contributing.md'
-				}, {
-						path: 'readme.md'
-					}, {
-						path: 'licence.md'
-					}, {
-						path: 'changelog.md'
-					}, {
-						path: '.gitignore'
-					}, {
-						path: 'spec',
-						type: 'tree'
-					}, {
-						path: 'setup.py'
-					}, {
-						path: 'requirements.txt'
-					}, {
-						path: 'docs',
-						type: 'tree'
-					}, {
-						path: 'tests',
-						type: 'tree'
-					},{
-					path:'package.json'
-				}]
-			}
-		});
+	// it('should determine tags based a specified local repository in the file system', function (done) {
+	// 	mockResponses({
+	// 		tagsBody: [],
+	// 		firstCommitTreeBody: {
+	// 			tree: [{
+	// 				path: 'contributing.md'
+	// 			}, {
+	// 					path: 'readme.md'
+	// 				}, {
+	// 					path: 'licence.md'
+	// 				}, {
+	// 					path: 'changelog.md'
+	// 				}, {
+	// 					path: '.gitignore'
+	// 				}, {
+	// 					path: 'spec',
+	// 					type: 'tree'
+	// 				}, {
+	// 					path: 'setup.py'
+	// 				}, {
+	// 					path: 'requirements.txt'
+	// 				}, {
+	// 					path: 'docs',
+	// 					type: 'tree'
+	// 				}, {
+	// 					path: 'tests',
+	// 					type: 'tree'
+	// 				},{
+	// 				path:'package.json'
+	// 			}]
+	// 		}
+	// 	});
 
-		forkability({
-			user: 'thatoneguy',
-			repository: 'thatonerepo',
-			localDirectory: './spec/localGitRepo',
-			languages: ['python', 'nodejs'],
-		},
-			function (err, report) {
-				should(err).eql(null);
+	// 	forkability({
+	// 		user: 'thatoneguy',
+	// 		repository: 'thatonerepo',
+	// 		localDirectory: './spec/localGitRepo',
+	// 		languages: ['python', 'nodejs'],
+	// 	},
+	// 		function (err, report) {
+	// 			should(err).eql(null);
 				
-				report.passes.should.have.a.lengthOf(13);
-				report.passes.should.containEql({ message: 'Tags are being used' });
-				report.failures.should.have.a.lengthOf(0);
-				report.badge.type.should.equal(forkability.badgeTypes.ok);
-				done();
-			});
-	});
+	// 			report.passes.should.have.a.lengthOf(13);
+	// 			report.passes.should.containEql({ message: 'Tags are being used' });
+	// 			report.failures.should.have.a.lengthOf(0);
+	// 			report.badge.type.should.equal(forkability.badgeTypes.ok);
+	// 			done();
+	// 		});
+	// });
 });
