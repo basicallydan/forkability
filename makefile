@@ -15,7 +15,9 @@ deps:
 test:
 	npm test
 
-compile:
+compile: deps
+	npm install browserify -g
+	npm install uglifyjs -g
 	browserify lib/app.js | uglifyjs -c > dist/forkability.$(VERSION).min.js
 	browserify lib/app.js > dist/forkability.$(VERSION).js
 serve:
