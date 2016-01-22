@@ -34,10 +34,12 @@
     "request": "^2.42.0"
   },
   "devDependencies": {
+    "browserify": "^13.0.0",
     "interfake": "^1.9.2",
     "mocha": "^2.3.4",
     "nock": "^3.5.0",
+    "npm-watch": "^0.0.2",
     "should": "^8.0.2",
-    "npm-watch": "^0.0.2"
+    "uglifyjs": "^2.4.10"
   }
 }
