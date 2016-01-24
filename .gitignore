@@ -31,3 +31,6 @@ node_modules
 typings/
 .settings/
 tsd.d.ts
+
+# vim files
+*.swp

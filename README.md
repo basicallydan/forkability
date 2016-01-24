@@ -107,6 +107,8 @@ Thanks to the generosity of [shields.io](https://shields.io) there is in fact a 
 
 Clone the repo using `git clone git@github.com:basicallydan/forkability.git` or HTTPS if you'd prefer. Once it's downloaded, you can use `make deps` to install dependencies. Use `make help` to see other `makefile` commands available such as `test`, `serve` and `compile` which are all useful for developing and testing new features.
 
+The default `make` task will do the job of resolving dependencies, then testing the code, then compiling the code for the browser.
+
 For more info on contributing to Forkability including guidelines, see [contributing.md](https://github.com/basicallydan/forkability/blob/master/contributing.md).
 
 A key consideration when making contributions is to consider what makes a project forkable; there are many ways to look at a project and thus probably many opinions.
