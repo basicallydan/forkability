@@ -2,10 +2,13 @@ VERSION ?= edge
 
 CFLAGS = -c -g -D $(VERSION)
 
+default: deps test compile
+
 help:
+	@echo "  [default]   installs dependencies, tests and compiles for the browser"
 	@echo "  deps        install dependencies"
 	@echo "  test        runs tests"
-	@echo "  compile     sets up your js files for production"
+	@echo "  compile     builds the JS files for use in the browser"
 	@echo "  serve       run the webserver"
 	@echo "  shrinkwrap  resets the shrinkwrap.json file"
 
