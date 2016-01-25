@@ -19,8 +19,8 @@ test:
 	npm test
 
 compile:
-	./node_modules/.bin/browserify lib/app.js | ./node_modules/.bin/uglifyjs -c > dist/forkability.$(VERSION).min.js
-	./node_modules/.bin/browserify lib/app.js > dist/forkability.$(VERSION).js
+	"./node_modules/.bin/browserify" lib/app.js | "./node_modules/.bin/uglifyjs" -c > dist/forkability.$(VERSION).min.js
+	"./node_modules/.bin/browserify" lib/app.js > dist/forkability.$(VERSION).js
 
 serve:
 	ruby -rwebrick -e'WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => Dir.pwd).start'
