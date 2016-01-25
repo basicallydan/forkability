@@ -440,4 +440,55 @@ describe('forkability', function () {
 				done();
 			});
 	});
+
+	it('should allow uppercase spellings of languages to be used for linting', function (done) {
+		mockResponses({
+			tagsBody: ['tag1'],
+			firstCommitTreeBody: {
+				tree: [{
+					path: 'contributing.md'
+				}, {
+						path: 'readme.md'
+					}, {
+						path: 'licence.md'
+					}, {
+						path: 'codeofconduct.md'
+					}, {
+						path: 'changelog.md'
+					}, {
+						path: '.gitignore'
+					}, {
+						path: 'spec',
+						type: 'tree'
+					}, {
+						path: 'setup.py'
+					}, {
+						path: 'requirements.txt'
+					}, {
+						path: 'docs',
+						type: 'tree'
+					}, {
+						path: 'tests',
+						type: 'tree'
+					},{
+					path:'package.json'
+				}]
+			}
+		});
+
+		forkability({
+			user: 'thatoneguy',
+			repository: 'thatonerepo',
+			languages: ['Python', 'Nodejs']
+		},
+			function (err, report) {
+				should(err).eql(null);
+				console.log(report);
+				
+				report.passes.should.have.a.lengthOf(14);
+				report.failures.should.have.a.lengthOf(0);
+				report.badge.type.should.equal(forkability.badgeTypes.ok);
+				done();
+			});
+	});
 });
