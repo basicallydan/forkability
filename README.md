@@ -128,6 +128,8 @@ Thanks to everybody who has helped. So far this includes:
 * [@matiassingers](https://github.com/matiassingers)
 * [@algernon](https://github.com/algernon)
 * [@rowanmanning](https://github.com/rowanmanning)
+* [@ExcaliburZero](https://github.com/ExcaliburZero)
+* [@charlotteis](https://github.com/charlotteis)
 
 ## Long-term goals of this project
 

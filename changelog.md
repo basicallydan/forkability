@@ -1,3 +1,4 @@
+* 26/01/2016: 0.18.0: [@charlotteis](https://github.com/charlotteis) made codes of conduct a requirement. [@ExcaliburZero](https://github.com/ExcaliburZero) made the language option case-insensitive.
 * 02/12/2015: 0.17.0: [@rowanmanning](https://github.com/rowanmanning) added Mocha to development dependencies, and added support for "HISTORY" files as changelogs. [@algernon](https://github.com/algernon) added support for "NEWS" files as changelogs.
 * 22/11/2015: 0.16.1: Multiple language support fixed.
 * 11/09/2015: 0.16.0: Usernames were not being compared lower case with issues. Thanks to [@Alshie](https://github.com/Alshie) they are!
