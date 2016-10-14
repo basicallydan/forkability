@@ -336,7 +336,7 @@ describe('forkability', function () {
 		},
 			function (err, report) {
 				should(err).eql(null);
-				report.passes.should.have.a.lengthOf(11);
+				report.passes.should.have.a.lengthOf(12);
 				report.failures.should.have.a.lengthOf(1);
 				report.badge.type.should.equal(forkability.badgeTypes.ok);
 				report.badge.svg.should.equal('https://img.shields.io/badge/forkable-yes-brightgreen.svg');
@@ -382,7 +382,7 @@ describe('forkability', function () {
 		},
 			function (err, report) {
 				should(err).eql(null);
-				report.passes.should.have.a.lengthOf(11);
+				report.passes.should.have.a.lengthOf(12);
 				report.failures.should.have.a.lengthOf(3);
 				report.failures.should.containEql({ message : 'setup.py file' });
 				report.badge.type.should.equal(forkability.badgeTypes.fail);
@@ -434,7 +434,7 @@ describe('forkability', function () {
 				should(err).eql(null);
 				console.log(report);
 				
-				report.passes.should.have.a.lengthOf(14);
+				report.passes.should.have.a.lengthOf(15);
 				report.failures.should.have.a.lengthOf(0);
 				report.badge.type.should.equal(forkability.badgeTypes.ok);
 				done();
@@ -485,7 +485,7 @@ describe('forkability', function () {
 				should(err).eql(null);
 				console.log(report);
 				
-				report.passes.should.have.a.lengthOf(14);
+				report.passes.should.have.a.lengthOf(15);
 				report.failures.should.have.a.lengthOf(0);
 				report.badge.type.should.equal(forkability.badgeTypes.ok);
 				done();
