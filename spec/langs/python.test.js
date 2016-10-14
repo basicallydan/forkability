@@ -34,7 +34,8 @@ describe('forkability with python', function () {
 			report.passes.should.containEql({ message : 'setup.py file' });
 			report.passes.should.containEql({ message : 'requirements.txt file' });
 			report.passes.should.containEql({ message : 'Documentation' });
-			report.passes.should.containEql({ message : 'Test suite' });
+			report.passes.should.containEql({ message: 'Test suite' });
+			report.passes.should.containEql({message: 'No *.pyc file'})
 			report.failures.should.containEql({ message : 'Contributing document' });
 			report.failures.should.containEql({ message : 'Readme document' });
 			report.failures.should.containEql({ message : 'License document' });
